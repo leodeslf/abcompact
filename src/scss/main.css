@@ -1,0 +1,231 @@
+@font-face {
+  font-family: "Oleo Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=rax5HieDvtMOe0iICsUccBhfqUOZs339S9KBKCQ&skey=d18666d540079220&v=v9) format("woff2");
+}
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/roboto/v27/KFOmCnqEu92Fr1Mu4mxK.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Courier Prime";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/courierprime/v2/u-450q2lgwslOqpF_6gQ8kELawFpWg.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Courier Prime";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=u-4n0q2lgwslOqpF_6gQ8kELawRpWtXzjtTHfRzlZv8f_uG8&skey=bd88f0a6edeea7b7&v=v2) format("woff2");
+}
+.monospace, .font-face {
+  font-family: "Courier Prime", serif;
+}
+
+.spec-input, input[type=submit], input[type=text],
+textarea, .char-preset label {
+  border-color: #0002;
+  border-radius: 3px;
+  border-style: solid;
+  border-width: 1px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  outline: none;
+  padding: 0.5rem;
+  transition: border-color 120ms;
+}
+.spec-input:hover, input[type=submit]:hover, input[type=text]:hover,
+textarea:hover, .char-preset label:hover {
+  border-color: #0006;
+}
+.spec-input:disabled:active, input[type=submit]:disabled:active, input[type=text]:disabled:active,
+textarea:disabled:active, .char-preset label:disabled:active, .spec-input:disabled:hover, input[type=submit]:disabled:hover, input[type=text]:disabled:hover,
+textarea:disabled:hover, .char-preset label:disabled:hover {
+  border-color: #0002;
+}
+.spec-input:disabled:active, input[type=submit]:disabled:active, input[type=text]:disabled:active,
+textarea:disabled:active, .char-preset label:disabled:active {
+  box-shadow: none;
+}
+.spec-input:active, input[type=submit]:active, input[type=text]:active,
+textarea:active, .char-preset label:active, .spec-input:focus, input[type=submit]:focus, input[type=text]:focus,
+textarea:focus, .char-preset label:focus {
+  border-color: #0006;
+  box-shadow: 0 0 0px 2px #80c0ff80;
+}
+
+.char-preset {
+  align-items: center;
+  display: flex;
+  margin-bottom: 0.5rem;
+  position: relative;
+}
+.char-preset:last-of-type {
+  margin-bottom: 0;
+}
+.char-preset label {
+  color: #737578;
+  padding: 0.25rem;
+  padding-left: 1.75rem;
+  padding-right: 0.5rem;
+}
+.char-preset input {
+  left: 0.5rem;
+  pointer-events: none;
+  position: absolute;
+}
+.char-preset input:checked + label {
+  color: #15181a;
+  border-color: #0006;
+}
+.char-preset input:hover + label {
+  color: #15181a;
+}
+
+.font-uri {
+  display: flex;
+}
+
+.font-face::placeholder {
+  font-style: italic;
+}
+
+.width-fixer {
+  display: flex;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  background-color: #ffffff;
+  color: #15181a;
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+header {
+  border-bottom: 1px solid #0001;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+header .header__content {
+  max-width: 100%;
+  padding: 1rem 1rem 0.9rem;
+  width: 640px;
+}
+header .header__content span {
+  border-left: 1px solid #0001;
+  margin-left: 1rem;
+  padding-left: 1rem;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: auto;
+}
+
+main,
+footer {
+  align-self: center;
+  max-width: 100%;
+  padding: 0 1rem;
+  width: 640px;
+}
+
+footer {
+  color: #737578;
+  display: flex;
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+  padding-bottom: 1rem;
+}
+footer p {
+  margin-left: auto;
+}
+
+h1 {
+  display: inline;
+  font-family: "Oleo Script", serif;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+h2 {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+textarea {
+  flex-grow: 1;
+}
+
+input[type=checkbox] {
+  cursor: pointer;
+}
+
+input[type=submit] {
+  background-color: #ffffff;
+  color: #737578;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 16px;
+  transition-property: border-color, color;
+}
+input[type=submit]:active, input[type=submit]:focus, input[type=submit]:hover {
+  border-color: #0006;
+  color: #15181a;
+}
+
+label {
+  cursor: pointer;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+form > div {
+  display: flex;
+  flex-direction: column;
+}
+
+ul {
+  list-style-type: none;
+}
+
+/*# sourceMappingURL=main.css.map */
