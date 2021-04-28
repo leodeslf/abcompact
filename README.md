@@ -1,5 +1,7 @@
 # ABCompact
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/cf03fa1a-0cb2-4c92-a163-20c07ce40fc0/deploy-status)](https://app.netlify.com/sites/abcompact/deploys)
+
 Save on Google Fonts' requests by getting a custom font-face.
 
 ## About
