@@ -1,0 +1,729 @@
+@font-face {
+  font-family: "Oleo Script";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/l/font?kit=rax5HieDvtMOe0iICsUccBhfqU2Zs335QNCd&skey=d18666d540079220&v=v9) format("woff2");
+}
+/* latin */
+@font-face {
+  font-family: "Bitter";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/bitter/v17/raxhHiqOu8IVPmnRc6SY1KXhnF_Y8SjYOLjOXQ.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr6DRAW_0.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr4TRAW_0.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* devanagari */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr5DRAW_0.woff2) format("woff2");
+  unicode-range: U+0900-097F, U+1CD0-1CF6, U+1CF8-1CF9, U+200C-200D, U+20A8, U+20B9, U+25CC, U+A830-A839, U+A8E0-A8FB;
+}
+/* greek-ext */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr6TRAW_0.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr5jRAW_0.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr6jRAW_0.woff2) format("woff2");
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr6zRAW_0.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Noto Sans";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notosans/v12/o-0IIpQlx3QUlC5A4PNr5TRA.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firacode/v10/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV37Nv7g.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firacode/v10/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVT7Nv7g.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firacode/v10/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVz7Nv7g.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firacode/v10/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVP7Nv7g.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firacode/v10/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJV77Nv7g.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Fira Code";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/firacode/v10/uU9eCBsR6Z2vfE9aq3bL0fxyUs4tcw4W_D1sJVD7Ng.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: "Noto Serif Cyrillic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserif/v9/ga6Iaw1J5X9T9RW6j9bNfFoWaCi_.woff2) format("woff2");
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: "Noto Serif Cyrillic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserif/v9/ga6Iaw1J5X9T9RW6j9bNfFMWaCi_.woff2) format("woff2");
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: "Noto Serif Greek";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserif/v9/ga6Iaw1J5X9T9RW6j9bNfFsWaCi_.woff2) format("woff2");
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: "Noto Serif Greek";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserif/v9/ga6Iaw1J5X9T9RW6j9bNfFQWaCi_.woff2) format("woff2");
+  unicode-range: U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family: "Noto Serif Latin";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserif/v9/ga6Iaw1J5X9T9RW6j9bNfFkWaCi_.woff2) format("woff2");
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: "Noto Serif Latin";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(https://fonts.gstatic.com/s/notoserif/v9/ga6Iaw1J5X9T9RW6j9bNfFcWaA.woff2) format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Noto Sans Arabic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSansArabic-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Sans Symbols";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSansSymbols-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Sans Symbols 2";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSansSymbols2-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Sans Thai";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSansThai-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Serif Armenian";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSerifArmenian-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Serif Bengali";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSerifBengali-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Serif Devanagari";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSerifDevanagari-Regular.ttf) format("truetype");
+}
+@font-face {
+  font-family: "Noto Serif Hebrew";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(../fonts/NotoSerifHebrew-Regular.ttf) format("truetype");
+}
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+@keyframes rotate {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+:root {
+  color: #000;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+#root {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background-color: inherit;
+}
+
+footer {
+  align-self: center;
+  color: #6f6f6f;
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  margin: 2rem auto;
+  max-width: 100%;
+  padding: 0 1rem;
+  width: 720px;
+}
+footer a {
+  text-decoration: underline;
+}
+
+h1 {
+  display: inline;
+  font-family: "Oleo Script", serif;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+header {
+  box-shadow: 0 1px 6px rgba(238, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  background-color: #f3ff52;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+header .header__content {
+  max-width: 100%;
+  padding: calc(0.5rem + 2px) 1.5rem 0.5rem;
+  margin: 0 1rem;
+  width: 720px;
+}
+
+input[type=text],
+textarea {
+  border-color: #0001;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  outline: none;
+  padding: 0.5rem;
+  transition-property: border-color, border-radius, box-shadow;
+  transition-duration: 90ms;
+}
+input[type=text]:active, input[type=text]:hover, input[type=text]:focus,
+textarea:active,
+textarea:hover,
+textarea:focus {
+  border-color: #0002;
+  border-radius: 4px;
+}
+
+label,
+input[type=submit],
+button {
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+textarea {
+  flex-grow: 1;
+  min-height: 4rem;
+  resize: vertical;
+}
+
+strong {
+  font-family: "Bitter", serif;
+  font-weight: 600;
+}
+
+.heading {
+  font-family: "Bitter", serif;
+  margin-bottom: 0.5em;
+  margin-top: 2rem;
+}
+.heading:first-child {
+  margin-top: 0;
+}
+
+.invalid-input-message {
+  animation: 130ms 1 appear ease-out;
+  border-left: 1px solid #0001;
+  color: #ff4747;
+  margin-left: 1rem;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  padding-left: 1rem;
+}
+
+.white-box {
+  box-shadow: 0 1px 6px #0001, 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  animation: 130ms 1 appear ease-out;
+  background-color: #fff;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  padding: 1rem;
+  max-width: 100%;
+  width: 720px;
+}
+.white-box .green-btn {
+  font-size: 18px;
+  padding: calc(0.5rem + 2px) 1rem 0.5rem;
+}
+
+.white-box__title {
+  display: inline;
+  font-size: 18px;
+  font-weight: 600;
+  padding-right: 0.5rem;
+  text-indent: 0.5rem;
+}
+
+.warn {
+  box-shadow: 0 1px 6px rgba(238, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  background-color: #f3ff52;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 1rem;
+}
+.warn p {
+  font-size: 13px;
+  margin-bottom: 0.5em;
+  max-width: 67ch;
+}
+.warn p:last-of-type {
+  margin-bottom: 0;
+}
+
+.warn__title {
+  font-size: 15px;
+}
+
+.tabbed-menu {
+  flex-direction: column;
+}
+
+.tabbed-menu,
+.tabbed-menu__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tabbed-menu__bodies {
+  max-width: 100%;
+}
+
+.tabbed-menu__body {
+  border-color: #0001;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  transition: color 90ms;
+  width: 100%;
+}
+.tabbed-menu__body.textarea-container {
+  border: none;
+  padding: 0;
+}
+
+.tabbed-menu__tab-label {
+  box-shadow: 0 0 0 1px #0001;
+  border-radius: 3px;
+  color: #757575;
+  padding: 0.5rem 1rem;
+  transition-duration: 90ms;
+  transition-property: color, box-shadow, text-shadow;
+}
+.tabbed-menu__tab-label:hover {
+  color: #000;
+}
+
+.tabbed-menu__tab-radio {
+  display: none;
+}
+.tabbed-menu__tab-radio:checked + .tabbed-menu__tab-label {
+  box-shadow: 0 1px 6px #0001, 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  color: #000;
+}
+
+.chars__title {
+  display: grid;
+}
+
+.option__checkbox {
+  display: none;
+}
+.option__checkbox:checked + .option__label {
+  box-shadow: 0 1px 6px rgba(238, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  border-radius: 3px;
+  color: #000;
+  will-change: color, border-radius, box-shadow;
+}
+.option__checkbox:checked + .option__label::before {
+  transform: translateX(0%);
+  will-change: transform;
+}
+
+.option__label {
+  display: grid;
+  border-radius: 2px;
+  color: #757575;
+  font-family: "Fira Code", monospace;
+  font-variant-ligatures: none;
+  font-size: 13px;
+  overflow: hidden !important;
+  padding: 2px 0.5rem 0;
+  position: relative;
+  transition-duration: 90ms;
+  transition-property: color, border-radius, box-shadow;
+  word-wrap: break-word;
+  z-index: 0;
+}
+.option__label:hover {
+  box-shadow: 0 0 0 1px #0001;
+  color: #000;
+}
+.option__label::before {
+  background-color: #f3ff52;
+  content: "";
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  transform: translateX(-104%);
+  transition-duration: 130ms;
+  transition-property: transform;
+  transition-timing-function: ease-out;
+  width: 102%;
+  z-index: -1;
+}
+
+.fonts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.font {
+  border-radius: 3px;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #0001;
+}
+
+.font__name {
+  align-self: center;
+  line-height: 1;
+  margin-left: 0.5rem;
+  margin-right: auto;
+}
+.font__name.not-ok {
+  color: #757575;
+}
+
+.not-covered-chars {
+  border-color: #0001;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 0 1px 6px #0001, 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  background-color: #f4f4f4;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-height: 60ch;
+  max-width: 720px;
+  overflow: auto;
+  padding: 1rem;
+  width: fit-content;
+}
+.not-covered-chars p {
+  margin-left: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.not-covered-chars__chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.not-covered-chars__char {
+  border-color: #0001;
+  border-style: solid;
+  border-width: 1px;
+  background-color: #fff;
+  border-radius: 3px;
+  display: grid;
+  font-family: "Noto Sans Symbols", "Noto Sans Symbols 2", "Noto Serif Latin", "Noto Serif Armenian", "Noto Serif Bengali", "Noto Serif Cyrillic", "Noto Serif Devanagari", "Noto Serif Greek", "Noto Serif Hebrew", "Noto Sans Arabic", "Noto Sans Thai", serif;
+  font-size: 28.8px;
+  height: 2em;
+  padding: 0.5rem;
+  place-content: center;
+  width: 1.8em;
+}
+.not-covered-chars__char span {
+  line-height: 2;
+}
+
+.font__feedback {
+  align-items: center;
+  display: flex;
+  font-family: "Fira Code", monospace;
+  font-size: 13px;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+}
+.font__feedback::before {
+  border-radius: 50%;
+  content: "";
+  height: 7px;
+  width: 7px;
+  margin-bottom: 1px;
+}
+.font__feedback--warn::before {
+  box-shadow: 0 1px 6px rgba(238, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  background-color: #f3ff52;
+}
+.font__feedback--error::before {
+  box-shadow: 0 1px 6px rgba(249, 69, 69, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  background-color: #ff4747;
+}
+
+.font__copy-btn {
+  box-shadow: 0 1px 6px rgba(80, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  align-self: center;
+  background-color: #52ff52;
+  border-radius: 3px;
+  font-family: "Bitter", serif;
+  font-size: 13px;
+  font-weight: 600;
+  padding: calc(0.2rem + 1px) 0.5rem 0.2rem;
+}
+
+.font-btn {
+  border-radius: 3px;
+}
+.font-btn:hover {
+  box-shadow: 0 0 0 1px #0001;
+}
+
+.placeholder,
+.font__copy-btn.placeholder,
+.green-btn.placeholder {
+  background-color: #f4f4f4;
+  border-radius: 3px;
+  box-shadow: none;
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+}
+
+.modal-window {
+  animation: 90ms 1 ease-out appear;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  height: 100vh;
+  left: 0;
+  padding: 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.green-btn {
+  box-shadow: 0 1px 6px rgba(80, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  border-radius: 3px;
+  background-color: #52ff52;
+  font-family: "Bitter", serif;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.green-btn__container.loading {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+.green-btn__container.loading .green-btn {
+  cursor: default;
+  color: transparent;
+}
+.green-btn__container.loading::before {
+  content: "";
+  position: absolute;
+  place-self: center;
+  height: 1rem;
+  width: 1rem;
+  filter: drop-shadow(0 0 3px #a4ff00) drop-shadow(0 0 1px #a4ff00);
+  border-left: 0.5ex solid #f3ff52;
+  border-right: 0.5ex solid #f3ff52;
+  border-top: 0.5ex solid transparent;
+  border-bottom: 0.5ex solid transparent;
+  border-radius: 50%;
+  animation: 360ms infinite rotate linear;
+}
+
+.input .green-btn__container,
+.output > .green-btn {
+  margin-top: 2rem;
+  align-self: center;
+}
+
+/*# sourceMappingURL=main.css.map */

@@ -3,13 +3,8 @@ export default function Header() {
     <header>
       <div className="header__content">
         <h1>
-          <a href='/'>
-            ABCompact
-          </a>
+          <a href='/'>ABChoose</a>
         </h1>
-        <span>
-          Save on Google Fonts' requests by getting a custom font-face.
-        </span>
       </div>
     </header>
   );

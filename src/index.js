@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ABCompact from './ABCompact';
-import './scss/main.css';
+import ABChoose from './ABChoose';
+import './sass/main.css';
 
 ReactDOM.render(
   <React.StrictMode>
-    <ABCompact />
+    <ABChoose />
   </React.StrictMode>,
   document.getElementById('root')
 );

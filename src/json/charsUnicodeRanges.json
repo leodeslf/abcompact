@@ -1,0 +1,280 @@
+[
+  {
+    "id": "ur0",
+    "title": "Languajes",
+    "groups": [
+      {
+        "id": "ur0.0",
+        "rangeTitle": "Arabic",
+        "font": "arabic",
+        "range": [
+          "0600",
+          "06FF"
+        ]
+      },
+      {
+        "id": "ur0.1",
+        "rangeTitle": "Bengali",
+        "range": [
+          "0980",
+          "09FF"
+        ]
+      },
+      {
+        "id": "ur0.2",
+        "rangeTitle": "Cyrillic",
+        "range": [
+          "0400",
+          "04FF"
+        ]
+      },
+      {
+        "id": "ur0.3",
+        "rangeTitle": "Cyrillic Supplement",
+        "range": [
+          "0500",
+          "052F"
+        ]
+      },
+      {
+        "id": "ur0.4",
+        "rangeTitle": "Cyrillic Extended-A",
+        "range": [
+          "2DE0",
+          "2DFF"
+        ]
+      },
+      {
+        "id": "ur0.5",
+        "rangeTitle": "Cyrillic Extended-B",
+        "range": [
+          "A640",
+          "A69F"
+        ]
+      },
+      {
+        "id": "ur0.6",
+        "rangeTitle": "Devanagari",
+        "range": [
+          "0900",
+          "097F"
+        ]
+      },
+      {
+        "id": "ur0.7",
+        "rangeTitle": "Devanagari Extended",
+        "range": [
+          "A8E0",
+          "A8FF"
+        ]
+      },
+      {
+        "id": "ur0.8",
+        "rangeTitle": "Devangari Vedic Extensions",
+        "range": [
+          "1CD0",
+          "1CFF"
+        ]
+      },
+      {
+        "id": "ur0.9",
+        "rangeTitle": "Greek",
+        "range": [
+          "0370",
+          "03CF"
+        ]
+      },
+      {
+        "id": "ur0.10",
+        "rangeTitle": "Greek and Coptic",
+        "range": [
+          "0370",
+          "03FF"
+        ]
+      },
+      {
+        "id": "ur0.11",
+        "rangeTitle": "Greek Extended",
+        "range": [
+          "1F00",
+          "1FFF"
+        ]
+      },
+      {
+        "id": "ur0.12",
+        "rangeTitle": "Hebrew",
+        "range": [
+          "0591",
+          "05F4"
+        ]
+      },
+      {
+        "id": "ur0.13",
+        "rangeTitle": "Hebrew Presentation Forms",
+        "range": [
+          "FB00",
+          "FB4F"
+        ]
+      },
+      {
+        "id": "ur0.14",
+        "rangeTitle": "Latin",
+        "range": [
+          "0020",
+          "007E"
+        ]
+      },
+      {
+        "id": "ur0.15",
+        "rangeTitle": "Latin-1 Supplement",
+        "range": [
+          "00A0",
+          "00FF"
+        ]
+      },
+      {
+        "id": "ur0.16",
+        "rangeTitle": "Latin Extended-A",
+        "range": [
+          "0100",
+          "017F"
+        ]
+      },
+      {
+        "id": "ur0.17",
+        "rangeTitle": "Latin Extended-B",
+        "range": [
+          "0180",
+          "024F"
+        ]
+      },
+      {
+        "id": "ur0.18",
+        "rangeTitle": "Latin Extended-C",
+        "range": [
+          "2C60",
+          "2C7F"
+        ]
+      },
+      {
+        "id": "ur0.19",
+        "rangeTitle": "Latin Extended-D",
+        "range": [
+          "A720",
+          "A7FF"
+        ]
+      },
+      {
+        "id": "ur0.20",
+        "rangeTitle": "Latin Extended Additional",
+        "range": [
+          "1E00",
+          "1EFF"
+        ]
+      },
+      {
+        "id": "ur0.21",
+        "rangeTitle": "Thai",
+        "range": [
+          "0E00",
+          "0E7F"
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ur1",
+    "title": "Other",
+    "font": "symbols",
+    "groups": [
+      {
+        "id": "ur1.0",
+        "rangeTitle": "General Punctuation",
+        "range": [
+          "2000",
+          "206F"
+        ]
+      },
+      {
+        "id": "ur1.1",
+        "rangeTitle": "Currency Symbols",
+        "range": [
+          "20A0",
+          "20BF"
+        ]
+      },
+      {
+        "id": "ur1.2",
+        "rangeTitle": "Letterlike Symbols",
+        "range": [
+          "2100",
+          "214F"
+        ]
+      },
+      {
+        "id": "ur1.3",
+        "rangeTitle": "Arrows",
+        "range": [
+          "2190",
+          "21FF"
+        ]
+      },
+      {
+        "id": "ur1.4",
+        "rangeTitle": "Mathematical Operators",
+        "range": [
+          "2200",
+          "22FF"
+        ]
+      },
+      {
+        "id": "ur1.5",
+        "rangeTitle": "Box Drawing",
+        "range": [
+          "2500",
+          "257F"
+        ]
+      },
+      {
+        "id": "ur1.6",
+        "rangeTitle": "Block Elements",
+        "range": [
+          "2580",
+          "259F"
+        ]
+      },
+      {
+        "id": "ur1.7",
+        "rangeTitle": "Geometric Shapes",
+        "range": [
+          "25A0",
+          "25FF"
+        ]
+      },
+      {
+        "id": "ur1.8",
+        "rangeTitle": "Braille Patterns",
+        "range": [
+          "2800",
+          "28FF"
+        ]
+      },
+      {
+        "id": "ur1.9",
+        "rangeTitle": "Miscellaneous Symbols and Arrows",
+        "range": [
+          "2B00",
+          "2BFF"
+        ]
+      },
+      {
+        "id": "ur1.10",
+        "rangeTitle": "Supplemental Punctuation",
+        "range": [
+          "2E00",
+          "2E7F"
+        ]
+      }
+    ]
+  }
+]

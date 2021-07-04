@@ -1,22 +1,22 @@
-export default function Output({ fontFace }) {
+import { createContext } from "react";
+import Fonts from "./fonts-stuff/Fonts";
+import CopyAllButton from "./CopyAllButton";
+
+export const ActiveTabContext = createContext();
+
+export default function Output() {
+
   return (
-    <section className="output">
-      <h2>
-        <label htmlFor="font-face">
-          Font-face
-        </label>
-      </h2>
-      <div className="width-fixer">
-        <textarea
-          id="font-face"
-          className="font-face"
-          value={fontFace}
-          placeholder="@font-face {..."
-          readOnly={true}
-          rows="6"
-          disabled={!fontFace.length}
-        />
-      </div>
-    </section>
+    <div className="output white-box">
+      <span
+        className="white-box__title heading"
+        role="heading"
+        aria-level="2"
+      >
+        @font-face
+      </span>
+      <Fonts />
+      <CopyAllButton />
+    </div>
   );
 }

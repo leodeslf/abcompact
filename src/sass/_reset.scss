@@ -1,0 +1,103 @@
+:root {
+  color: $color;
+  font-family: $font--default;
+  font-size: $font-size--m;
+  font-weight: 400;
+}
+
+#root {
+  background-color: $bg--em;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  background-color: inherit;
+}
+
+footer {
+  align-self: center;
+  color: $color--off--em;
+  display: flex;
+  flex-direction: column;
+  font-size: $font-size--s;
+  margin: 2rem auto;
+  max-width: 100%;
+  padding: 0 1rem;
+  width: $max-w;
+  a {
+    text-decoration: underline;
+  }
+}
+
+h1 {
+  display: inline;
+  font-family: $font--title;
+  font-size: $font-size--l;
+  font-weight: 400;
+}
+
+header {
+  @include box-shadow--mix($yellow);
+  background-color: $yellow;
+  color: $color--header;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  .header__content {
+    max-width: 100%;
+    padding: calc(0.5rem + 2px) 1.5rem 0.5rem;
+    margin: 0 1rem;
+    width: $max-w;
+  }
+}
+
+input[type="text"],
+textarea {
+  @include text-input;
+}
+
+label,
+input[type="submit"],
+button {
+  border: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+li {
+  list-style: none;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+textarea {
+  flex-grow: 1;
+  min-height: 4rem;
+  resize: vertical;
+}
+
+strong {
+  font-family: $font--serif;
+  font-weight: 600;
+}

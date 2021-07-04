@@ -1,0 +1,49 @@
+.tabbed-menu {
+  flex-direction: column;
+}
+
+.tabbed-menu,
+.tabbed-menu__tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tabbed-menu__bodies {
+  max-width: 100%;
+}
+
+.tabbed-menu__body {
+  @include border;
+  border-radius: $bor-rad--m;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  transition: color $time--m;
+  width: 100%;
+  &.textarea-container {
+    border: none;
+    padding: 0;
+  }
+}
+
+.tabbed-menu__tab-label {
+  @include box-shadow--mimic-border;
+  border-radius: $bor-rad--m;
+  color: $color--off;
+  padding: 0.5rem 1rem;
+  transition-duration: $time--m;
+  transition-property: color, box-shadow, text-shadow;
+  &:hover {
+    color: $color--on;
+  }
+}
+
+.tabbed-menu__tab-radio {
+  display: none;
+  &:checked + .tabbed-menu__tab-label {
+    @include box-shadow;
+    color: $color--on;
+  }
+}

@@ -1,0 +1,40 @@
+.green-btn {
+  @include box-shadow--mix($green);
+  border-radius: $bor-rad--m;
+  background-color: $green;
+  font-family: $font--serif;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.green-btn__container {
+  &.loading {
+    position: relative;
+    display: grid;
+    place-items: center;
+    .green-btn {
+      cursor: default;
+      color: transparent;
+    }
+    &::before {
+      content: "";
+      position: absolute;
+      place-self: center;
+      height: 1rem;
+      width: 1rem;
+      filter: drop-shadow(0 0 3px #a4ff00) drop-shadow(0 0 1px #a4ff00);
+      border-left: 0.5ex solid $yellow;
+      border-right: 0.5ex solid $yellow;
+      border-top: 0.5ex solid transparent;
+      border-bottom: 0.5ex solid transparent;
+      border-radius: 50%;
+      animation: $time--xl infinite rotate linear;
+    }
+  }
+}
+
+.input .green-btn__container,
+.output > .green-btn {
+  margin-top: 2rem;
+  align-self: center;
+}

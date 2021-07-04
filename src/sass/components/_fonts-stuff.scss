@@ -1,0 +1,119 @@
+.fonts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.font {
+  border-radius: $bor-rad--m;
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid $color--t1;
+}
+
+.font__name {
+  align-self: center;
+  line-height: 1;
+  margin-left: 0.5rem;
+  margin-right: auto;
+  &.not-ok {
+    color: $color--off;
+  }
+}
+
+.not-covered-chars {
+  @include border;
+  @include box-shadow;
+  background-color: $bg--em;
+  border-radius: $bor-rad--m;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  max-height: 60ch;
+  max-width: $max-w;
+  overflow: auto;
+  padding: 1rem;
+  width: fit-content;
+  p {
+    margin-left: 0.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.not-covered-chars__chars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.not-covered-chars__char {
+  @include border;
+  background-color: $bg;
+  border-radius: $bor-rad--m;
+  display: grid;
+  font-family: "Noto Sans Symbols", "Noto Sans Symbols 2", "Noto Serif Latin", "Noto Serif Armenian",
+  "Noto Serif Bengali", "Noto Serif Cyrillic", "Noto Serif Devanagari", "Noto Serif Greek", "Noto Serif Hebrew",
+  "Noto Sans Arabic", "Noto Sans Thai", serif;
+  font-size: $font-size--l * 1.6;
+  height: 2em;
+  padding: 0.5rem;
+  place-content: center;
+  width: 1.8em;
+  span {
+    line-height: 2;
+  }
+}
+
+.font__feedback {
+  align-items: center;
+  display: flex;
+  font-family: $font--monospace;
+  font-size: $font-size--s;
+  gap: 0.5rem;
+  padding: 0 0.5rem;
+  &::before {
+    border-radius: 50%;
+    content: "";
+    height: 7px;
+    width: 7px;
+    margin-bottom: 1px;
+  }
+  &--warn::before {
+    @include box-shadow--mix($yellow);
+    background-color: $yellow;
+  }
+  &--error::before {
+    @include box-shadow--mix($red);
+    background-color: $red;
+  }
+}
+
+.font__copy-btn {
+  @include box-shadow--mix($green);
+  align-self: center;
+  background-color: $green;
+  border-radius: $bor-rad--m;
+  font-family: $font--serif;
+  font-size: $font-size--s;
+  font-weight: 600;
+  padding: calc(0.2rem + 1px) 0.5rem 0.2rem;
+}
+
+.font-btn {
+  border-radius: $bor-rad--m;
+  &:hover {
+    @include box-shadow--mimic-border;
+  }
+}
+
+.placeholder,
+.font__copy-btn.placeholder,
+.green-btn.placeholder {
+  background-color: $bg--em;
+  border-radius: $bor-rad--m;
+  box-shadow: none;
+  color: transparent;
+  pointer-events: none;
+  user-select: none;
+}
