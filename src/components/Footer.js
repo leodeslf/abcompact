@@ -1,7 +1,6 @@
 export default function Footer() {
   return (
     <footer>
-      <span>References</span>
       <ul>
         <li>
           <a href="https://developers.google.com/fonts/docs/getting_started#optimizing_your_font_requests">

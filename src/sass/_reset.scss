@@ -6,11 +6,10 @@
 }
 
 #root {
-  background-color: $bg--em;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  min-height: 100vh;
+  overflow-y: hidden;
+  max-height: 100vh;
 }
 
 * {
@@ -35,9 +34,9 @@ footer {
   display: flex;
   flex-direction: column;
   font-size: $font-size--s;
-  margin: 2rem auto;
+  margin: auto auto 2rem;
   max-width: 100%;
-  padding: 0 1rem;
+  padding: 2rem 1rem 0;
   width: $max-w;
   a {
     text-decoration: underline;

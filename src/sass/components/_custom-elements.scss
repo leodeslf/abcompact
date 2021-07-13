@@ -1,3 +1,12 @@
+.scrollable {
+  background-color: $bg--em;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+  height: max-content;
+}
+
 .heading {
   font-family: $font--serif;
   margin-bottom: 0.5em;

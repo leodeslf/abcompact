@@ -39,7 +39,11 @@ export default function ABChoose() {
   }
 
   return (
-      <ModalWindowContext.Provider value={{ modalWindow, updateModalWindow }}>
+    <ModalWindowContext.Provider value={{ modalWindow, updateModalWindow }}>
+      <div
+        className="scrollable"
+        style={{ overflowY: modalWindow ? 'hidden' : 'auto' }}
+      >
         <Header />
         {modalWindow && <ModalWindow />}
         <main>
@@ -51,6 +55,7 @@ export default function ABChoose() {
           </FontsContext.Provider>
         </main>
         <Footer />
-      </ModalWindowContext.Provider>
+      </div>
+    </ModalWindowContext.Provider>
   );
 }

@@ -268,11 +268,10 @@
 }
 
 #root {
-  background-color: #f4f4f4;
   display: flex;
   flex-direction: column;
-  gap: 2rem;
-  min-height: 100vh;
+  overflow-y: hidden;
+  max-height: 100vh;
 }
 
 * {
@@ -297,9 +296,9 @@ footer {
   display: flex;
   flex-direction: column;
   font-size: 13px;
-  margin: 2rem auto;
+  margin: auto auto 2rem;
   max-width: 100%;
-  padding: 0 1rem;
+  padding: 2rem 1rem 0;
   width: 720px;
 }
 footer a {
@@ -378,6 +377,15 @@ textarea {
 strong {
   font-family: "Bitter", serif;
   font-weight: 600;
+}
+
+.scrollable {
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-height: 100vh;
+  height: max-content;
 }
 
 .heading {
