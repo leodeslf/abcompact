@@ -1,9 +1,5 @@
 .green-btn {
-  @include box-shadow--mix($green);
-  border-radius: $bor-rad--m;
-  background-color: $green;
-  font-family: $font--serif;
-  font-weight: 600;
+  @extend .green-element;
   width: fit-content;
 }
 

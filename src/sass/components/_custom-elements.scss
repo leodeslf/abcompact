@@ -27,6 +27,17 @@
   padding-left: 1rem;
 }
 
+.green-element {
+  @include box-shadow--mix($green);
+  border-radius: $bor-rad--m;
+  background-color: $green;
+  font-family: $font--serif;
+  font-weight: 600;
+  &:active {
+    background-color: desaturate($green, 12);
+  }
+}
+
 .white-box {
   @include box-shadow;
   animation: $time--l 1 appear ease-out;

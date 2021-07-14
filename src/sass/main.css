@@ -408,6 +408,17 @@ strong {
   padding-left: 1rem;
 }
 
+.green-element, .green-btn, .font__copy-btn {
+  box-shadow: 0 1px 6px rgba(80, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
+  border-radius: 3px;
+  background-color: #52ff52;
+  font-family: "Bitter", serif;
+  font-weight: 600;
+}
+.green-element:active, .green-btn:active, .font__copy-btn:active {
+  background-color: #5cf55c;
+}
+
 .white-box {
   box-shadow: 0 1px 6px #0001, 0 1px 3px 1px #0001, 0 1px 1px #00000008;
   animation: 130ms 1 appear ease-out;
@@ -654,13 +665,8 @@ strong {
 }
 
 .font__copy-btn {
-  box-shadow: 0 1px 6px rgba(80, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
   align-self: center;
-  background-color: #52ff52;
-  border-radius: 3px;
-  font-family: "Bitter", serif;
   font-size: 13px;
-  font-weight: 600;
   padding: calc(0.2rem + 1px) 0.5rem 0.2rem;
 }
 
@@ -696,11 +702,6 @@ strong {
 }
 
 .green-btn {
-  box-shadow: 0 1px 6px rgba(80, 249, 80, 0.6266666667), 0 1px 3px 1px #0001, 0 1px 1px #00000008;
-  border-radius: 3px;
-  background-color: #52ff52;
-  font-family: "Bitter", serif;
-  font-weight: 600;
   width: fit-content;
 }
 

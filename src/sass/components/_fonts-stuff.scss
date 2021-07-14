@@ -90,13 +90,9 @@
 }
 
 .font__copy-btn {
-  @include box-shadow--mix($green);
+  @extend .green-element;
   align-self: center;
-  background-color: $green;
-  border-radius: $bor-rad--m;
-  font-family: $font--serif;
   font-size: $font-size--s;
-  font-weight: 600;
   padding: calc(0.2rem + 1px) 0.5rem 0.2rem;
 }
 
