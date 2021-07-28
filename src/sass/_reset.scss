@@ -26,18 +26,23 @@ a {
 
 button {
   background-color: inherit;
+  font-family: inherit;
 }
 
 footer {
-  align-self: center;
   color: $color--off--em;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
   font-size: $font-size--s;
   margin: auto auto 2rem;
   max-width: 100%;
   padding: 2rem 1rem 0;
   width: $max-w;
+  > div:last-of-type {
+    text-align: right;
+    margin-top: auto;
+  }
   a {
     text-decoration: underline;
   }
@@ -70,11 +75,14 @@ textarea {
   @include text-input;
 }
 
-label,
+button,
 input[type="submit"],
-button {
+label {
   border: none;
   cursor: pointer;
+}
+
+label {
   user-select: none;
 }
 
@@ -88,6 +96,12 @@ main {
   flex-direction: column;
   gap: 2rem;
   padding: 0 1rem;
+}
+
+p {
+  * > &:not(:last-of-type) {
+    margin-bottom: 1rem;
+  }
 }
 
 textarea {

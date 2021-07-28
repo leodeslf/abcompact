@@ -1,4 +1,4 @@
-export default function CssIsDefaultError() {
+export default function FontFaceIsDefaultError() {
   return (
     <div
       className="warn"

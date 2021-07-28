@@ -1,23 +1,23 @@
 import CopyBtn from "./CopyBtn";
 import Coverage from "./Coverage";
-import NoData from "./NoData";
+import NotFound from "./NotFound";
+import SizeOptim from "./SizeOptim";
 
-export default function Font(font) {
-  const { css, fontName, ok } = font;
+export default function Font(fontFace) {
+  const { familyName, textFontFace, sizeOptim, coverage } = fontFace;
+  const ok = textFontFace && coverage.percentage > 0;
 
   return (
-    <div
-      className="font"
-      role="listitem"
-    >
-      <span className={`font__name${!ok ? ' not-ok' : ''}`}>
-        {fontName}
-      </span>
+    <tr className={`font${!ok ? ' font--not-ok' : ''}`}>
+      <td className="font__name">
+        {familyName}
+      </td>
       {ok && <>
-        <Coverage {...font} />
-        <CopyBtn data={css} />
+        <td><SizeOptim {...{ sizeOptim }} /></td>
+        <td><Coverage {...{ familyName, coverage }} /></td>
+        <td><CopyBtn data={textFontFace} /></td>
       </>}
-      {!ok && <NoData />}
-    </div>
+      {!ok && <td colSpan="3"><NotFound /></td>}
+    </tr>
   );
 }

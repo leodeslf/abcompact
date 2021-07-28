@@ -24,7 +24,7 @@
   font-variant-ligatures: none;
   font-size: $font-size--s;
   overflow: hidden !important;
-  padding: 2px 0.5rem 0;
+  padding: calc(2px + 0.25em) 0.5em 0.25em;
   position: relative;
   transition-duration: $time--m;
   transition-property: color, border-radius, box-shadow;

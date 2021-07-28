@@ -3,9 +3,10 @@ export default function CopyBtn({ data }) {
     <button
       className="font__copy-btn"
       onClick={() => navigator.clipboard.writeText(data)}
-      title="Click to copy this @font-face to Clipboard."
+      title="Click to copy this font to Clipboard."
     >
-      Copy
+      <span className="copy-btn__back-paper"></span>
+      <span className="copy-btn__front-paper"></span>
     </button>
   );
 }

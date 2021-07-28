@@ -1,38 +1,41 @@
 import { useContext } from "react";
 import { ModalWindowContext } from "../../ABChoose";
-import NotCoveredChars from "./NotCoveredChars";
+import NotCoveredChars from "../modals/NotCoveredChars";
 
-export default function Coverage(font) {
-  const { coverage, fontName, notCoveredChars } = font;
-
-  const total = coverage === 100;
-  const partial = coverage > 0 && coverage < 100;
-  const empty = coverage === 0;
-
-  const { updateModalWindow } = useContext(ModalWindowContext);
+export default function Coverage({ familyName, coverage }) {
+  const { neededCharsCount, percentage } = coverage;
 
   return (
-    !total && <>
-      {partial && <>
-        <button
-          className={`font__coverage font__feedback font__feedback--warn font-btn`}
-          title={`Some characters are missing, click to see details.`}
-          onClick={() => {
-            updateModalWindow(NotCoveredChars({ notCoveredChars, fontName }));
-          }}
-          role="status"
-        >
-          {coverage}%
-        </button>
-      </>}
-      {empty &&
-        <span
-          className={`font__coverage font__feedback font__feedback--error`}
-          title={`This font does not include any of the characters you need.`}
-          role="status"
-        >
-          {coverage}%
-        </span>}
-    </>
+    (percentage === 100 &&
+      <span className="font__feedback secondary">
+        all&nbsp;({neededCharsCount})
+      </span>) ||
+    (percentage < 100 &&
+      <CoverageBtn {...{ familyName, coverage }} />)
+  );
+}
+
+function CoverageBtn({ familyName, coverage }) {
+  const { updateModalWindow } = useContext(ModalWindowContext);
+  const {
+    neededCharsCount,
+    notCoveredCharsCount,
+    notCoveredChars,
+    percentage
+  } = coverage;
+
+  let available = neededCharsCount - notCoveredCharsCount +
+    '/' + neededCharsCount;
+
+  return (
+    <button
+      className="font__feedback font__coverage btn"
+      title="Click to see more info."
+      onClick={() => updateModalWindow(
+        NotCoveredChars({ familyName, notCoveredChars })
+      )}
+    >
+      {available}&nbsp;<span className="secondary">|&nbsp;{percentage}%</span>
+    </button>
   );
 }

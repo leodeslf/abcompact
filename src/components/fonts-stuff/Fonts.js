@@ -1,21 +1,23 @@
-import { FontsContext } from "../../ABChoose";
+import { FontFaceSetContext } from "../../ABChoose";
 import { useContext } from "react";
 import Font from "./Font";
-import FontsPlaceholder from "./FontsPlaceholder";
 
 export default function Fonts() {
-  const { fonts } = useContext(FontsContext);
+  const { fontFaceSet } = useContext(FontFaceSetContext);
 
   return (
-    fonts ?
-      <div
-        className="fonts"
-        role="list"
-      >
-        {fonts.map((font, i) =>
-          <Font {...font} key={i} />
+    <table className="fonts">
+      <tbody>
+        <tr>
+          <th>Name</th>
+          <th title="Up to.">Saved</th>
+          <th title="Included.">Characters</th>
+          <th></th>
+        </tr>
+        {fontFaceSet.map((fontFace, i) =>
+          <Font {...fontFace} key={i} />
         )}
-      </div> :
-      <FontsPlaceholder />
+      </tbody>
+    </table>
   );
 }

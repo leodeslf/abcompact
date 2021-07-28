@@ -14,6 +14,7 @@ export default function CharsTitle({ id, title }) {
         className="tabbed-menu__tab-radio"
         name="tabbed-menu__tab-radio--chars"
         type="radio"
+        defaultChecked={id === 'd0'}
         onChange={e => {
           if (e.target.checked) updateCharsTab(id)
         }}

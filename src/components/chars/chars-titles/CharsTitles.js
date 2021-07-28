@@ -7,9 +7,9 @@ export default function CharsTitles() {
   return (
     <div className="chars__titles tabbed-menu__tabs" >
       {/* Exception for custom characters input. */}
-      <CharsTitleCustomChars />
       {[...CHARS_DATA, ...CHARS_UNICODE_RANGES].map(({ id, title }) =>
         <CharsTitle {...{ id, title }} key={id} />)}
+      <CharsTitleCustomChars />
     </div>
   );
 }

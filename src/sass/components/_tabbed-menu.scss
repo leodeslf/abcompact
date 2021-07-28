@@ -29,13 +29,13 @@
 }
 
 .tabbed-menu__tab-label {
-  @include box-shadow--mimic-border;
   border-radius: $bor-rad--m;
   color: $color--off;
-  padding: 0.5rem 1rem;
+  padding: 0.5em 1em;
   transition-duration: $time--m;
   transition-property: color, box-shadow, text-shadow;
   &:hover {
+    @include box-shadow--mimic-border;
     color: $color--on;
   }
 }

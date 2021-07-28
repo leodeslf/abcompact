@@ -34,8 +34,15 @@
   font-family: $font--serif;
   font-weight: 600;
   &:active {
-    background-color: desaturate($green, 12);
+    background-color: desaturate(darken($green, 10), 30);
   }
+}
+
+.vertical-line {
+  min-height: 100%;
+  background-color: $color--t1;
+  width: 1px;
+  display: flex;
 }
 
 .white-box {

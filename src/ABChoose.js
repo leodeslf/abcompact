@@ -3,36 +3,35 @@ import Header from './components/Header';
 import Input from './components/Input';
 import Output from './components/Output';
 import Footer from './components/Footer';
-import requestFonts from './js/font-face-util/requestFonts';
-import returnsDefault from './js/font-face-util/returnsDefault';
-import CssIsDefaultError from './components/warns/CssIsDefaultError';
+import FontFaceIsDefaultError from './components/warns/FontFaceIsDefaultError';
 import RequestError from './components/warns/RequestError';
 import ModalWindow from './components/ModalWindow';
+import getFontFaceSet from './js/util/getFontFaceSet';
 
-export const FontsContext = createContext();
+export const FontFaceSetContext = createContext();
 export const ModalWindowContext = createContext();
 
 export default function ABChoose() {
   const [loading, setLoading] = useState(false);
   const [requestError, setRequestError] = useState(false);
-  const [cssIsDefault, setCssIsDefault] = useState(false);
+  const [fontFaceIsDefault, setFontFaceIsDefault] = useState(false);
 
   // Mimic/sort of a Portal to display a modal window from other components.
   const [modalWindow, setModalWindow] = useState(false);
   const updateModalWindow = content => setModalWindow(content);
 
-  // Actual fonts to output (font-face CSS and any feedback).
-  const [fonts, setFonts] = useState(false);
-  const updateFonts = (chars, fontUri) => {
+  // Actual data to output (font-face CSS and any feedback).
+  const [fontFaceSet, setFontFaceSet] = useState(false);
+  const updateFontFaceSet = (chars, fontURL) => {
     setLoading(true);
-    setFonts(false);
+    setFontFaceSet(false);
     setRequestError(false);
-    setCssIsDefault(false);
+    setFontFaceIsDefault(false);
 
-    requestFonts(fontUri, chars)
-      .then(async res => {
-        setCssIsDefault(await returnsDefault(chars));
-        setFonts(res);
+    getFontFaceSet(fontURL, chars)
+      .then(res => {
+        setFontFaceSet(res.fontFaceSet);
+        setFontFaceIsDefault(res.isDefault);        
       })
       .catch(() => setRequestError(true))
       .finally(() => setLoading(false));
@@ -47,12 +46,12 @@ export default function ABChoose() {
         <Header />
         {modalWindow && <ModalWindow />}
         <main>
-          <FontsContext.Provider value={{ fonts, updateFonts }}>
+          <FontFaceSetContext.Provider value={{ fontFaceSet, updateFontFaceSet }}>
             <Input {...{ loading }} />
-            {cssIsDefault && <CssIsDefaultError />}
+            {fontFaceIsDefault && <FontFaceIsDefaultError />}
             {requestError && <RequestError />}
             <Output />
-          </FontsContext.Provider>
+          </FontFaceSetContext.Provider>
         </main>
         <Footer />
       </div>

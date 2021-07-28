@@ -14,7 +14,6 @@ export default function CharsTitleCustomChars() {
         className="tabbed-menu__tab-radio"
         name="tabbed-menu__tab-radio--chars"
         type="radio"
-        defaultChecked
         onChange={e => {
           if (e.target.checked) updateCharsTab('custom-chars');
         }}

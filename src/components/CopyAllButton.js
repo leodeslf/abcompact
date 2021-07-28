@@ -1,20 +1,20 @@
 import { useContext } from "react";
-import { FontsContext } from "../ABChoose";
+import { FontFaceSetContext } from "../ABChoose";
 
 export default function CopyAllButton() {
-  const { fonts } = useContext(FontsContext);
+  const { fontFaceSet } = useContext(FontFaceSetContext);
 
-  let allCss = '';
-  if (fonts) fonts.forEach(font => {
-    if (font.ok) allCss += font.css;
+  let allFontFaceCSS = '';
+  if (fontFaceSet) fontFaceSet.forEach(font => {
+    if (font.ok) allFontFaceCSS += font.textFontFace;
   });
 
   return (
-    fonts ?
+    fontFaceSet ?
       <button
         className="green-btn"
         title="Click to copy all to Clipboard."
-        onClick={() => navigator.clipboard.writeText(allCss)}
+        onClick={() => navigator.clipboard.writeText(allFontFaceCSS)}
       >
         Copy all to Clipboard
       </button> :

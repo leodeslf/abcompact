@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from 'react';
-import { FontsContext } from '../ABChoose';
+import { FontFaceSetContext } from '../ABChoose';
 import getCharsFromIds from '../js/chars-util/charsFromIds';
 import Chars from './chars/Chars';
 
@@ -7,15 +7,15 @@ export const CharsContext = createContext();
 
 export default function Input({ loading }) {
   // Invalid (or empty) input messages.
-  const [invFontURIMessage, setInvFontURIMessage] = useState(false);
+  const [invFontURLMessage, setInvFontURLMessage] = useState(false);
   const [invCharsMessage, setInvCharsMessage] = useState(false);
 
   // Inputs.
-  const [fontUri, setFontURI] = useState('');
+  const [fontURL, setFontURL] = useState('');
   const [customChars, setCustomChars] = useState('');
   const [selectedUGroupIds, setSelectedUGroupIds] = useState([]);
 
-  // Functions to update inputs from outside.
+  // Functions to update inputs from child components.
   const updateCustomChars = chars => setCustomChars(chars);
   const updateSelectedPresetIds = (id, toAdd) => {
     setSelectedUGroupIds(
@@ -25,8 +25,8 @@ export default function Input({ loading }) {
     );
   }
 
-  // Submit (update output).
-  const { updateFonts } = useContext(FontsContext);
+  // Submit (to update output).
+  const { updateFontFaceSet } = useContext(FontFaceSetContext);
   const submit = e => {
     e.preventDefault();
 
@@ -34,11 +34,11 @@ export default function Input({ loading }) {
     let isInvalid = false;
 
     // Custom minimum input validations.
-    if (!fontUri) {
-      setInvFontURIMessage('Please, complete this field.');
+    if (!fontURL) {
+      setInvFontURLMessage('Please, complete this field.');
       isInvalid = true;
-    } else if (invFontURIMessage) {
-      setInvFontURIMessage(false);
+    } else if (invFontURLMessage) {
+      setInvFontURLMessage(false);
     }
 
     if (!chars) {
@@ -50,7 +50,7 @@ export default function Input({ loading }) {
 
     if (isInvalid) return false;
 
-    updateFonts(chars, fontUri);
+    updateFontFaceSet(chars, fontURL);
   }
 
   return (
@@ -60,27 +60,27 @@ export default function Input({ loading }) {
     >
       <label
         className="white-box__title heading"
-        htmlFor="font-uri"
+        htmlFor="font-url"
         aria-required="true"
-        aria-invalid={invFontURIMessage}
-        title="URI given by Google Fonts."
+        aria-invalid={invFontURLMessage}
+        title="URL given by Google Fonts."
       >
-        Font URI
-        {invFontURIMessage &&
+        Font URL
+        {invFontURLMessage &&
           <span
             className="invalid-input-message"
             role="status"
           >
-            {invFontURIMessage}
+            {invFontURLMessage}
           </span>
         }
       </label>
       <input
-        id="font-uri"
+        id="font-url"
         type="text"
         placeholder="https://fonts.googleapis.com..."
-        value={fontUri}
-        onChange={e => setFontURI(e.target.value)}
+        value={fontURL}
+        onChange={e => setFontURL(e.target.value)}
         pattern="^https://fonts.googleapis.com/.+"
       />
       <span

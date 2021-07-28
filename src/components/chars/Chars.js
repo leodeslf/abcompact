@@ -5,7 +5,7 @@ import CharsTitles from './chars-titles/CharsTitles';
 export const CharsTabContext = createContext();
 
 export default function Chars() {
-  const [charsTab, setCharsTab] = useState('custom-chars');
+  const [charsTab, setCharsTab] = useState('d0');
   const updateCharsTab = i => setCharsTab(i);
 
   return (
