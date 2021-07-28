@@ -38,7 +38,7 @@
       },
       {
         "id": "ur0.4",
-        "rangeTitle": "Cyrillic Extended-A",
+        "rangeTitle": "Cyrillic Ext-A",
         "range": [
           "2DE0",
           "2DFF"
@@ -46,7 +46,7 @@
       },
       {
         "id": "ur0.5",
-        "rangeTitle": "Cyrillic Extended-B",
+        "rangeTitle": "Cyrillic Ext-B",
         "range": [
           "A640",
           "A69F"
@@ -62,7 +62,7 @@
       },
       {
         "id": "ur0.7",
-        "rangeTitle": "Devanagari Extended",
+        "rangeTitle": "Devanagari Ext",
         "range": [
           "A8E0",
           "A8FF"
@@ -70,7 +70,7 @@
       },
       {
         "id": "ur0.8",
-        "rangeTitle": "Devangari Vedic Extensions",
+        "rangeTitle": "Devangari Vedic Ext",
         "range": [
           "1CD0",
           "1CFF"
@@ -94,7 +94,7 @@
       },
       {
         "id": "ur0.11",
-        "rangeTitle": "Greek Extended",
+        "rangeTitle": "Greek Ext",
         "range": [
           "1F00",
           "1FFF"
@@ -106,14 +106,6 @@
         "range": [
           "0591",
           "05F4"
-        ]
-      },
-      {
-        "id": "ur0.13",
-        "rangeTitle": "Hebrew Presentation Forms",
-        "range": [
-          "FB00",
-          "FB4F"
         ]
       },
       {
@@ -134,7 +126,7 @@
       },
       {
         "id": "ur0.16",
-        "rangeTitle": "Latin Extended-A",
+        "rangeTitle": "Latin Ext-A",
         "range": [
           "0100",
           "017F"
@@ -142,7 +134,7 @@
       },
       {
         "id": "ur0.17",
-        "rangeTitle": "Latin Extended-B",
+        "rangeTitle": "Latin Ext-B",
         "range": [
           "0180",
           "024F"
@@ -150,7 +142,7 @@
       },
       {
         "id": "ur0.18",
-        "rangeTitle": "Latin Extended-C",
+        "rangeTitle": "Latin Ext-C",
         "range": [
           "2C60",
           "2C7F"
@@ -158,7 +150,7 @@
       },
       {
         "id": "ur0.19",
-        "rangeTitle": "Latin Extended-D",
+        "rangeTitle": "Latin Ext-D",
         "range": [
           "A720",
           "A7FF"
@@ -166,18 +158,10 @@
       },
       {
         "id": "ur0.20",
-        "rangeTitle": "Latin Extended Additional",
+        "rangeTitle": "Latin Ext Additional",
         "range": [
           "1E00",
           "1EFF"
-        ]
-      },
-      {
-        "id": "ur0.21",
-        "rangeTitle": "Thai",
-        "range": [
-          "0E00",
-          "0E7F"
         ]
       }
     ]
@@ -261,7 +245,7 @@
       },
       {
         "id": "ur1.9",
-        "rangeTitle": "Miscellaneous Symbols and Arrows",
+        "rangeTitle": "Misc Symbols and Arrows",
         "range": [
           "2B00",
           "2BFF"
