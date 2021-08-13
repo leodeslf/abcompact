@@ -5,9 +5,13 @@ export default function CopyAllButton() {
   const { fontFaceSet } = useContext(FontFaceSetContext);
 
   let allFontFaceCSS = '';
-  if (fontFaceSet) fontFaceSet.forEach(font => {
-    if (font.ok) allFontFaceCSS += font.textFontFace;
-  });
+  if (fontFaceSet) {
+    fontFaceSet.forEach(font => {
+      if (font.textFontFace && font.coverage.percentage > 0) {
+        allFontFaceCSS += font.textFontFace;
+      }
+    });
+  }
 
   return (
     fontFaceSet ?
