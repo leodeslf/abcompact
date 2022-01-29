@@ -1,0 +1,57 @@
+@import "./chars";
+
+.input {
+  @extend .main__section;
+  textarea {
+    min-height: calc(13rem - 2px);
+    resize: vertical;
+  }
+}
+
+.url {
+  @extend .flex-column;
+  label {
+    @extend .h2;
+  }
+}
+
+.submit-button {
+  @extend .button;
+  align-self: center;
+  display: grid;
+  padding: $padding--medium;
+  position: relative;
+  &:disabled {
+    background-color: $color--em;
+    pointer-events: none;
+    &.loading::after {
+      background-image: radial-gradient(closest-side, $color--em 66%, transparent 66%),
+        conic-gradient(transparent 20%, $color--primary 80%);
+    }
+  }
+  &.loading {
+    color: transparent;
+    pointer-events: none;
+    &::after {
+      animation: rotate linear 400ms infinite;
+      background-image: radial-gradient(closest-side, $color 66%, transparent 66%),
+        conic-gradient(transparent 20%, $color--primary 80%);
+      border-radius: 50%;
+      content: "";
+      height: 1em;
+      place-self: center;
+      position: absolute;
+      transform: rotateZ(0deg);
+      width: 1em;
+    }
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}

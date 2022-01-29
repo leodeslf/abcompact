@@ -1,0 +1,31 @@
+$animation-function: cubic-bezier(0.4, 0, 0.2, 1);
+
+$bg--em: #f3f3f3;
+$bg: #fff;
+
+$color: #222;
+$color--em: #808080;
+$color--border-shadow: #0001;
+$color--primary: #fdff60;
+$color--primary-var: #fceb3a;
+
+$border-radius: 4px;
+
+$font-size: 14px;
+$font-size--large: 22px;
+
+$padding--small: 0.25rem 0.5rem;
+$padding--medium: 0.5rem 1rem;
+$padding--large: 2rem 1.5rem;
+
+$font-family: "Roboto", sans-serif;
+$font-family--monospace: "Roboto Mono", monospace;
+$font-family--headline: "Roboto Slab", serif;
+$font-family--title: "Oleo Script", serif;
+$font-family--missing-char: "Noto Sans Arabic", "Noto Sans Symbols", "Noto Sans Symbols 2", "Noto Serif Bengali",
+  "Noto Serif Devanagari", "Noto Serif Hebrew", "Noto Serif Cyrillic", "Noto Serif Greek", "Noto Serif Latin", serif;
+
+// Dependant variables:
+
+$box-shadow: 0 1px 3px $color--border-shadow;
+$box-shadow--yellow: 0 0px 3px $color--primary-var;

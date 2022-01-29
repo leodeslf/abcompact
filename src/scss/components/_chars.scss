@@ -1,0 +1,17 @@
+.chars {
+  legend {
+    @extend .h2;
+  }
+  &__sets {
+    min-height: 14rem;
+  }
+}
+
+.chars .char-set {
+  @extend .flex-wrap-gap;
+}
+
+.char-subset {
+  @extend .yellow-selection;
+  font-variant-ligatures: no-contextual;
+}

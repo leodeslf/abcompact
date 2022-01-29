@@ -1,0 +1,229 @@
+[
+  {
+    "name": "Languajes",
+    "sets": [
+      {
+        "name": "Arabic",
+        "range": [
+          "0600",
+          "06FF"
+        ]
+      },
+      {
+        "name": "Bengali",
+        "range": [
+          "0980",
+          "09FF"
+        ]
+      },
+      {
+        "name": "Cyrillic",
+        "range": [
+          "0400",
+          "04FF"
+        ]
+      },
+      {
+        "name": "Cyrillic Supplement",
+        "range": [
+          "0500",
+          "052F"
+        ]
+      },
+      {
+        "name": "Cyrillic Ext-A",
+        "range": [
+          "2DE0",
+          "2DFF"
+        ]
+      },
+      {
+        "name": "Cyrillic Ext-B",
+        "range": [
+          "A640",
+          "A69F"
+        ]
+      },
+      {
+        "name": "Devanagari",
+        "range": [
+          "0900",
+          "097F"
+        ]
+      },
+      {
+        "name": "Devanagari Ext",
+        "range": [
+          "A8E0",
+          "A8FF"
+        ]
+      },
+      {
+        "name": "Devangari Vedic Ext",
+        "range": [
+          "1CD0",
+          "1CFF"
+        ]
+      },
+      {
+        "name": "Greek",
+        "range": [
+          "0370",
+          "03CF"
+        ]
+      },
+      {
+        "name": "Greek and Coptic",
+        "range": [
+          "0370",
+          "03FF"
+        ]
+      },
+      {
+        "name": "Greek Ext",
+        "range": [
+          "1F00",
+          "1FFF"
+        ]
+      },
+      {
+        "name": "Hebrew",
+        "range": [
+          "0591",
+          "05F4"
+        ]
+      },
+      {
+        "name": "Latin",
+        "range": [
+          "0020",
+          "007E"
+        ]
+      },
+      {
+        "name": "Latin-1 Supplement",
+        "range": [
+          "00A0",
+          "00FF"
+        ]
+      },
+      {
+        "name": "Latin Ext-A",
+        "range": [
+          "0100",
+          "017F"
+        ]
+      },
+      {
+        "name": "Latin Ext-B",
+        "range": [
+          "0180",
+          "024F"
+        ]
+      },
+      {
+        "name": "Latin Ext-C",
+        "range": [
+          "2C60",
+          "2C7F"
+        ]
+      },
+      {
+        "name": "Latin Ext-D",
+        "range": [
+          "A720",
+          "A7FF"
+        ]
+      },
+      {
+        "name": "Latin Ext Additional",
+        "range": [
+          "1E00",
+          "1EFF"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Other",
+    "sets": [
+      {
+        "name": "General Punctuation",
+        "range": [
+          "2000",
+          "206F"
+        ]
+      },
+      {
+        "name": "Currency Symbols",
+        "range": [
+          "20A0",
+          "20BF"
+        ]
+      },
+      {
+        "name": "Letterlike Symbols",
+        "range": [
+          "2100",
+          "214F"
+        ]
+      },
+      {
+        "name": "Arrows",
+        "range": [
+          "2190",
+          "21FF"
+        ]
+      },
+      {
+        "name": "Mathematical Operators",
+        "range": [
+          "2200",
+          "22FF"
+        ]
+      },
+      {
+        "name": "Box Drawing",
+        "range": [
+          "2500",
+          "257F"
+        ]
+      },
+      {
+        "name": "Block Elements",
+        "range": [
+          "2580",
+          "259F"
+        ]
+      },
+      {
+        "name": "Geometric Shapes",
+        "range": [
+          "25A0",
+          "25FF"
+        ]
+      },
+      {
+        "name": "Braille Patterns",
+        "range": [
+          "2800",
+          "28FF"
+        ]
+      },
+      {
+        "name": "Misc Symbols and Arrows",
+        "range": [
+          "2B00",
+          "2BFF"
+        ]
+      },
+      {
+        "name": "Supplemental Punctuation",
+        "range": [
+          "2E00",
+          "2E7F"
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,107 @@
+:root {
+  color: $color;
+  font-size: $font-size;
+  font-family: $font-family;
+  line-height: 1.5;
+}
+
+#root {
+  @extend .flex-column;
+  align-items: center;
+  min-block-size: 100%;
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  background-color: transparent;
+}
+
+button,
+textarea {
+  border: none;
+}
+
+button,
+label,
+summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="text"] {
+  border: 1px solid $color--border-shadow;
+  line-height: 2;
+}
+
+input[type="text"],
+textarea {
+  border-radius: $border-radius;
+  font-family: $font-family--monospace;
+  font-size: 1rem;
+  padding: $padding--small;
+  width: 100%;
+}
+
+fieldset {
+  border: none;
+  legend {
+    @extend .h2;
+  }
+}
+
+footer {
+  color: $color--em;
+  margin-top: auto;
+  padding: $padding--large;
+}
+
+footer,
+header {
+  text-align: center;
+}
+
+main {
+  @extend .max-width;
+}
+
+h1 {
+  font-family: $font-family--title;
+  font-size: $font-size--large;
+  font-weight: 400;
+  line-height: 1.25;
+  padding-top: 2px;
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+header {
+  background-color: $color--primary;
+  box-shadow: $box-shadow--yellow, $box-shadow;
+  padding: $padding--medium;
+  width: 100%;
+}
+
+html {
+  background-color: $bg;
+  display: grid;
+  min-block-size: 100%;
+}
+
+main {
+  @extend .flex-column;
+  > * {
+    margin-bottom: 2rem;
+  }
+}
+
+textarea {
+  display: flex;
+}
