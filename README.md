@@ -2,35 +2,21 @@
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/cf03fa1a-0cb2-4c92-a163-20c07ce40fc0/deploy-status)](https://app.netlify.com/sites/abchoose/deploys)
 
-Save on Google Fonts' requests by getting only what you need.
+Save on Google Fonts requests and get only what you need.
 
 ## About
 
-A tool to reduce the weight and potentially the duration of request from Google Fonts, by asking for a specific set of characters instead of getting the entire font-face with hundreds or even thousands of unused characters.
+An app to get a specific `@font-face` that includes just the characters you choose.
 
-Ref. at Google Fonts docs. [Optimizing your font requests](https://developers.google.com/fonts/docs/getting_started#optimizing_your_font_requests).
+It makes use of the Google Fonts request `text` parameter considerably reducing the amount of requests and the size of them.
 
-<!-- 
-## Features
+The only thing you'll need to bring in is the font(s) URL given by Google Fonts from the `<link>`/`@import`, just copy it all, don't worry.
 
-Let the user select:
+You'll get feedback about:
 
-- Predefined sets of characters.
-- Ranges of characters.
-- Or, a custom set of characters.
-
-Given a `<link>`/`@import` provided by Google Fonts (or the relevant part of it, the fonts' url):
-
-- Identify all the individual font names.
-- For each font name, return:
-  - The CSS optimization in bytes and %.
-  - The optimized CSS.
-  - The `@font-face` optimization in bytes and %.
-  - Not included characters (if any).
-  - Warn if it was not found.
-  - Warn if no needed characters are included.
-- Warn if Google Fonts returns the default CSS.
- -->
+- **Character coverage**, preview included & missing characters if any;
+- **Saved requests** on Woff2 files;
+- **Saved bytes** on CSS & Woff2 files.
 
 ## Author
 
