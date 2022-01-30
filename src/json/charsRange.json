@@ -10,6 +10,13 @@
         ]
       },
       {
+        "name": "Arabic Suppl",
+        "range": [
+          "0750",
+          "077F"
+        ]
+      },
+      {
         "name": "Bengali",
         "range": [
           "0980",
@@ -24,13 +31,6 @@
         ]
       },
       {
-        "name": "Cyrillic Supplement",
-        "range": [
-          "0500",
-          "052F"
-        ]
-      },
-      {
         "name": "Cyrillic Ext-A",
         "range": [
           "2DE0",
@@ -42,6 +42,13 @@
         "range": [
           "A640",
           "A69F"
+        ]
+      },
+      {
+        "name": "Cyrillic Suppl",
+        "range": [
+          "0500",
+          "052F"
         ]
       },
       {
@@ -63,6 +70,27 @@
         "range": [
           "1CD0",
           "1CFF"
+        ]
+      },
+      {
+        "name": "Georgian",
+        "range": [
+          "10A0",
+          "10FF"
+        ]
+      },
+      {
+        "name": "Georgian Extended",
+        "range": [
+          "1C90",
+          "1CBF"
+        ]
+      },
+      {
+        "name": "Georgian Supplement",
+        "range": [
+          "2D00",
+          "2D2F"
         ]
       },
       {
@@ -89,21 +117,21 @@
       {
         "name": "Hebrew",
         "range": [
-          "0591",
-          "05F4"
+          "0590",
+          "05FF"
         ]
       },
       {
         "name": "Latin",
         "range": [
-          "0020",
+          "0000",
           "007E"
         ]
       },
       {
-        "name": "Latin-1 Supplement",
+        "name": "Latin-1 Suppl",
         "range": [
-          "00A0",
+          "0080",
           "00FF"
         ]
       },
@@ -141,6 +169,20 @@
           "1E00",
           "1EFF"
         ]
+      },
+      {
+        "name": "Malayalam",
+        "range": [
+          "0D00",
+          "0D7F"
+        ]
+      },
+      {
+        "name": "Thai",
+        "range": [
+          "0E00",
+          "0E7F"
+        ]
       }
     ]
   },
@@ -148,38 +190,10 @@
     "name": "Other",
     "sets": [
       {
-        "name": "General Punctuation",
-        "range": [
-          "2000",
-          "206F"
-        ]
-      },
-      {
-        "name": "Currency Symbols",
-        "range": [
-          "20A0",
-          "20BF"
-        ]
-      },
-      {
-        "name": "Letterlike Symbols",
-        "range": [
-          "2100",
-          "214F"
-        ]
-      },
-      {
         "name": "Arrows",
         "range": [
           "2190",
           "21FF"
-        ]
-      },
-      {
-        "name": "Mathematical Operators",
-        "range": [
-          "2200",
-          "22FF"
         ]
       },
       {
@@ -197,6 +211,41 @@
         ]
       },
       {
+        "name": "Braille Patterns",
+        "range": [
+          "2800",
+          "28FF"
+        ]
+      },
+      {
+        "name": "Currency Symbols",
+        "range": [
+          "20A0",
+          "20CF"
+        ]
+      },
+      {
+        "name": "Dingbats",
+        "range": [
+          "2700",
+          "27BF"
+        ]
+      },
+      {
+        "name": "Enclosed Alphanumerics",
+        "range": [
+          "2460",
+          "24FF"
+        ]
+      },
+      {
+        "name": "General Punctuation",
+        "range": [
+          "2000",
+          "206F"
+        ]
+      },
+      {
         "name": "Geometric Shapes",
         "range": [
           "25A0",
@@ -204,10 +253,45 @@
         ]
       },
       {
-        "name": "Braille Patterns",
+        "name": "Letterlike Symbols",
         "range": [
-          "2800",
-          "28FF"
+          "2100",
+          "214F"
+        ]
+      },
+      {
+        "name": "Number Forms",
+        "range": [
+          "2150",
+          "218F"
+        ]
+      },
+      {
+        "name": "Mathematical Operators",
+        "range": [
+          "2200",
+          "22FF"
+        ]
+      },
+      {
+        "name": "Misc Mathematical Symbols-A",
+        "range": [
+          "27C0",
+          "27EF"
+        ]
+      },
+      {
+        "name": "Misc Mathematical Symbols-B",
+        "range": [
+          "2980",
+          "29FF"
+        ]
+      },
+      {
+        "name": "Misc Symbols",
+        "range": [
+          "2600",
+          "26FF"
         ]
       },
       {
@@ -218,7 +302,35 @@
         ]
       },
       {
-        "name": "Supplemental Punctuation",
+        "name": "Misc Technical",
+        "range": [
+          "2300",
+          "23FF"
+        ]
+      },
+      {
+        "name": "Suppl Arrows-A",
+        "range": [
+          "27F0",
+          "27FF"
+        ]
+      },
+      {
+        "name": "Suppl Arrows-B",
+        "range": [
+          "2900",
+          "297F"
+        ]
+      },
+      {
+        "name": "Suppl Mathematical Operators",
+        "range": [
+          "2A00",
+          "2AFF"
+        ]
+      },
+      {
+        "name": "Suppl Punctuation",
         "range": [
           "2E00",
           "2E7F"
