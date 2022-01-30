@@ -69,14 +69,16 @@ body[overflow-hidden] {
 
 .char-coverage__char {
   @extend .bordered-box;
+  align-items: center;
+  display: grid;
   font-size: $font-size--large;
-  height: 2em;
-  line-height: 2;
-  text-align: center;
-  width: 2em;
+  height: 44px;
+  justify-content: center;
+  line-height: 1;
+  width: 44px;
   &.missing {
     border-color: #c3000010;
-    background-color: #c3000008;
+    background-color: #c300000b;
     color: #c30000;
     font-family: $font-family--missing-char;
     font-weight: 400;
