@@ -1,10 +1,10 @@
-import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { set } from '../../../stores/customCharsSlice';
 
 export default function CustomChars() {
-  const [value, setValue] = useState('');
   const dispatch = useDispatch();
+  const [value, setValue] = useState('');
 
   function handleChange({ target }) {
     dispatch(set(target.value));

@@ -14,7 +14,7 @@ const headers = [
 ];
 
 export default function Output() {
-  const fontFaceList = useSelector(state => state.fontFaceList);
+  const { fontFaceList } = useSelector(state => state);
   if (!fontFaceList.length) return <></>;
 
   const { generic, specific, saved } = getFontFaceListTotal(fontFaceList);

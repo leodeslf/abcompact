@@ -6,7 +6,7 @@ export default function FontFaceChars({
   chars, cssText, title
 }) {
   const dispatch = useDispatch();
-  const lastRequest = useSelector(state => state.lastRequest);
+  const { lastRequest } = useSelector(state => state);
 
   function openModal() {
     dispatch(setCharCoverageModalContent({ chars, cssText, title }));

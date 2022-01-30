@@ -3,7 +3,6 @@ import Input from "./components/layout/Input";
 import CharCoverageModal from "./components/layout/CharCoverageModal";
 import Output from "./components/layout/Output";
 
-
 function ABChoose() {
   const { charCoverageModalContent } = useSelector(state => state);
 

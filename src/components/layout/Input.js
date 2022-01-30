@@ -11,8 +11,8 @@ import Chars from "./chars/Chars";
 
 export default function Input() {
   const dispatch = useDispatch();
-  const [loading, setLoading] = useState(false);
   const { url, customChars, charSubsets } = useSelector(state => state);
+  const [loading, setLoading] = useState(false);
   const chars = getSortedSet(customChars.concat(charSubsets.join('')));
   const validInput = url?.length && chars.length && chars.length <= 800;
 

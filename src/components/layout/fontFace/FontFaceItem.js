@@ -7,7 +7,6 @@ import FontFaceChars from './FontFaceChars';
 export default function FontFaceItem({
   chars, error, generic, name, specific, styles, saved
 }) {
-
   return (
     <tr className={`font-face__item ${error ? 'has-error' : ''}`}>
       <td>
