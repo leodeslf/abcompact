@@ -13,24 +13,24 @@ export default function CharCoverageModal() {
 
   const styles = [];
   const cssTextStyles = getCssTextStyles(cssText);
-  let defaultStyleIndex = 0;
+  let initialStyleIndex = 0;
 
   for (const cssTextStyle of cssTextStyles) {
     const style = cssTextStyle.match(/font-style: (normal|italic);/)[1];
-    const weight = cssTextStyle.match(/font-weight: (\d*);/)[1];
+    const weight = cssTextStyle.match(/font-weight: (\d\d\d);/)[1];
+    if (style === 'normal' && weight === '400') {
+      initialStyleIndex = styles.length;
+    }
+    styles.push({ style, weight });
     const font = new FontFace(
       title,
       `url(${getWoff2Urls(cssTextStyle)})`,
       { style, weight, display: 'swap', }
     );
     font.load().then(() => document.fonts.add(font));
-    if (style === 'normal' && weight === '400') {
-      defaultStyleIndex = styles.length;
-    }
-    styles.push({ style, weight });
   }
 
-  const [activeStyleIndex, setActiveStyle] = useState(defaultStyleIndex);
+  const [selectedStyleIndex, setActiveStyle] = useState(initialStyleIndex);
 
   function closeModal() {
     dispatch(clear());
@@ -60,7 +60,7 @@ export default function CharCoverageModal() {
                 <label
                   key={i}
                   htmlFor={`char-coverage__style--${i}`}
-                  className={`char-coverage__style ${i === activeStyleIndex ?
+                  className={`char-coverage__style ${i === selectedStyleIndex ?
                     'selected' : ''}`}
                 >
                   {style === 'italic' ? 'i-' : ''}{weight}
@@ -68,7 +68,7 @@ export default function CharCoverageModal() {
                     type="radio"
                     name="char-coverage__style"
                     onChange={() => setActiveStyle(i)}
-                    checked={i === activeStyleIndex}
+                    checked={i === selectedStyleIndex}
                     id={`char-coverage__style--${i}`}
                   />
                 </label>
@@ -84,11 +84,12 @@ export default function CharCoverageModal() {
                 key={i}
                 className={`char-coverage__char ${!included.includes(char) ?
                   'missing' : ''}`}
-                style={included.includes(char) === true ? {
-                  fontFamily: title,
-                  fontStyle: styles[activeStyleIndex].style,
-                  fontWeight: styles[activeStyleIndex].weight
-                } : {}}
+                style={included.includes(char) === true ?
+                  {
+                    fontFamily: `"${title}"`,
+                    fontStyle: styles[selectedStyleIndex].style,
+                    fontWeight: styles[selectedStyleIndex].weight
+                  } : {}}
               >
                 {char}
               </span>
