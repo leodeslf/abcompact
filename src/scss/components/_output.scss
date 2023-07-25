@@ -1,8 +1,0 @@
-@import "./fontFace";
-
-.output {
-  @extend .main__section;
-  h2 {
-    @extend .h2;
-  }
-}
