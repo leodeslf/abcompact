@@ -77,14 +77,11 @@
   padding-inline-start: 1ch;
 }
 
-.output-placeholder {
-  padding: 1rem;
-  p {
-    border-radius: $border-radius;
-    border: 1px solid $grey--light;
-    padding: $distance--extra-large;
-    text-align: center;
-  }
+.output-placeholder p {
+  border-radius: $border-radius;
+  border: 1px solid $grey--light;
+  padding: $distance--extra-large;
+  text-align: center;
 }
 
 .data-td {
