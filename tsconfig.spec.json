@@ -1,0 +1,20 @@
+{
+  "ts-node": {
+    "compilerOptions": {
+      "allowSyntheticDefaultImports": true,
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "resolveJsonModule": true,
+      "target": "ESNext"
+    },
+    "files": true,
+    "esm": true
+  },
+  "files": [
+    "src/vite-env.d.ts",
+  ],
+  "include": [
+    "src/ts/**/*.ts",
+    "test/**/*.ts"
+  ]
+}
