@@ -1,0 +1,239 @@
+:root {
+  color: $color;
+  font-family: $font-family--default;
+  font-size: $font-size--medium;
+  font-style: normal;
+  line-height: 1.5;
+  text-rendering: geometricPrecision;
+  accent-color: $color;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  block-size: 100%;
+}
+
+body {
+  background-color: $white--dark;
+  min-block-size: 100%;
+  display: flex;
+  overflow-y: scroll;
+  width: 100%;
+}
+
+header {
+  padding-top: $distance--large;
+}
+
+header,
+footer {
+  display: grid;
+  justify-content: center;
+}
+
+main {
+  margin-bottom: $distance--extra-large;
+  max-width: inherit;
+  width: 830px;
+  > * {
+    background-color: $white--light;
+    border-radius: $border-radius;
+    box-shadow:
+      0 1px 1px $shadow--from-white,
+      0 1px 2px $shadow--from-white;
+    display: flex;
+    flex-direction: column;
+    margin-top: $distance--large;
+    padding: 0.25in;
+    > :first-child {
+      margin-top: 0 !important;
+    }
+  }
+}
+
+footer p {
+  margin-top: $distance--medium;
+}
+
+#root {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 100%;
+  position: relative;
+}
+
+h1 {
+  font-size: $font-size--large;
+  a {
+    text-decoration: none;
+  }
+}
+
+h1,
+label,
+legend,
+th {
+  font-weight: $font-weight--bold;
+}
+
+a {
+  color: inherit;
+}
+
+label {
+  width: fit-content;
+}
+
+button,
+input[type="checkbox"],
+label,
+select {
+  cursor: pointer;
+  user-select: none;
+  &:disabled {
+    color: $color--off;
+    cursor: default;
+  }
+}
+
+fieldset,
+label:not(li label, legend label, [role="heading"] label),
+[role="heading"]:not(fieldset [role="heading"]) {
+  margin-top: $distance--large;
+}
+
+input[type="text"],
+select {
+  padding-inline-start: 1ch;
+  padding-inline-end: 1ch;
+}
+
+input[type="text"],
+table {
+  line-height: 2;
+}
+
+input[type="text"],
+textarea,
+select {
+  color: $color;
+  border-radius: $border-radius;
+  border: 1px solid $grey--light;
+  font-family: $font-family--monospace;
+  font-size: inherit;
+  &:hover {
+    border-color: $grey--dark;
+  }
+}
+
+input[type="text"],
+select:not(.heading select),
+textarea,
+ul {
+  &:not(:first-child) {
+    margin-top: $distance--medium;
+  }
+}
+
+textarea {
+  padding: 1ch;
+  resize: vertical;
+}
+
+button,
+fieldset {
+  border: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  background-color: $grey--dark;
+  border-radius: $border-radius;
+  box-shadow:
+    0 1px 1px $shadow--from-grey,
+    0 1px 2px $shadow--from-grey;
+  color: $color;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $font-weight--bold;
+  line-height: 1.5;
+  padding-left: 1ch;
+  padding-right: 1ch;
+  &:not(:disabled) {
+    &:hover {
+      background-color: $grey--light;
+    }
+    &:active {
+      background-color: $grey--dark;
+      box-shadow: none;
+    }
+  }
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  line-height: 2;
+  white-space: nowrap;
+}
+
+tbody {
+  tr {
+    th,
+    td {
+      border-bottom: 1px solid $grey--light;
+      border-top: 1px solid $grey--light;
+    }
+  }
+}
+
+tr,
+th {
+  > *:first-child {
+    width: 100%;
+    color: $color;
+    text-align: left;
+  }
+}
+
+tr > * {
+  padding: 0 $distance--medium;
+}
+
+[role="status"],
+[role="note"],
+[role="alert"] {
+  color: $color--off;
+}
+
+[role="heading"] {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+select:not([role="heading"] select) {
+  height: 30px;
+}
+
+footer {
+  padding: $distance--large;
+  margin-top: auto;
+  text-align: center;
+}
+
+[role="note"] {
+  font-size: $font-size--small;
+  text-align: center;
+  text-wrap: balance; // linter needs to be updated.
+}
