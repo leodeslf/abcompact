@@ -1,0 +1,166 @@
+[
+  {
+    "id": 0,
+    "name": "Arabic",
+    "unicodeRanges": [
+      {
+        "start": "600",
+        "end": "6FF"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Cyrillic",
+    "unicodeRanges": [
+      {
+        "start": "400",
+        "end": "4FF"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Cyrillic Supplement",
+    "unicodeRanges": [
+      {
+        "start": "500",
+        "end": "52F"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "Devanagari",
+    "unicodeRanges": [
+      {
+        "start": "900",
+        "end": "97F"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "Devanagari Extended",
+    "unicodeRanges": [
+      {
+        "start": "A8E0",
+        "end": "A8FB"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "Greek",
+    "unicodeRanges": [
+      {
+        "start": "370",
+        "end": "3CF"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "name": "Greek Extended",
+    "unicodeRanges": [
+      {
+        "start": "1F00",
+        "end": "1FFF"
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "name": "Hangul Compatibility Jamo",
+    "unicodeRanges": [
+      {
+        "start": "3131",
+        "end": "318E"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Hangul Syllables",
+    "unicodeRanges": [
+      {
+        "start": "AC00",
+        "end": "D7A3"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "name": "Hebrew",
+    "unicodeRanges": [
+      {
+        "start": "590",
+        "end": "5FF"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "name": "Hiragana",
+    "unicodeRanges": [
+      {
+        "start": "3041",
+        "end": "3096"
+      },
+      {
+        "start": "3099",
+        "end": "309F"
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Kangxi Radicals",
+    "unicodeRanges": [
+      {
+        "start": "2F00",
+        "end": "2FD5"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "name": "Katakana",
+    "unicodeRanges": [
+      {
+        "start": "30A0",
+        "end": "30FF"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "name": "Latin Basic ASCII",
+    "unicodeRanges": [
+      {
+        "start": "20",
+        "end": "7E"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "name": "Latin Supplement ASCII",
+    "unicodeRanges": [
+      {
+        "start": "A0",
+        "end": "FF"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "name": "Thai",
+    "unicodeRanges": [
+      {
+        "start": "E01",
+        "end": "E5B"
+      }
+    ]
+  }
+]
