@@ -118,10 +118,10 @@ type OptimizedFontCore = {
   name: string
 };
 
-type OptimizedFont = OptimizedFontCore & (
-  { errorMessage: string } |
-  { results: OptimizedFontResults }
-);
+type OptimizedFont = OptimizedFontCore & {
+  errorMessage: string,
+  results: OptimizedFontResults
+};
 
 type OptimizedFontWithError = OptimizedFontCore & {
   errorMessage: string,
