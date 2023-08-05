@@ -3,7 +3,7 @@ export default function Header() {
     <header>
       <h1>
         <a href='/'>
-          deglyph
+          fontima
         </a>
       </h1>
     </header>
