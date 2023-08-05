@@ -153,7 +153,7 @@ async function requestOptimizedFonts(
     store.dispatch(optimizedFontsAdd(Object.freeze(optimizedFont)));
     store.dispatch(requestStatusUpdateProgress());
 
-    if ("results" in optimizedFont) {
+    if ("results" in optimizedFont && optimizedFont.results) {
       store.dispatch(outputSummaryAdd(optimizedFont.results.filesWeight));
       store.dispatch(optimizedCssAdd(optimizedFont.results.optimizedCss));
     } else {
