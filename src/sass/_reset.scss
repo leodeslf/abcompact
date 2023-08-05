@@ -70,13 +70,23 @@ footer p {
 }
 
 h1 {
-  font-size: $font-size--large;
+  display: flex;
+  font-family: $font-family--monospace;
+  font-size: $font-size--medium;
+  font-weight: $font-weight--normal;
   a {
+    color: $color--off;
+    background-color: $white--light;
+    border-radius: $border-radius;
+    box-shadow:
+      0 1px 1px $shadow--from-grey inset,
+      0 1px 2px $shadow--from-grey inset;
+    line-height: 2;
+    padding: 0 1ch;
     text-decoration: none;
   }
 }
 
-h1,
 label,
 legend,
 th {
