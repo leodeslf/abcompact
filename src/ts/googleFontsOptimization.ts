@@ -51,11 +51,11 @@ function errorFont(
 async function getWeightData(
   defaultCss: string,
   optimizedCss: string,
-  avaiableCharacterUnits: string[]
+  availableCharacterUnits: string[]
 ): Promise<[WeightReport, WeightReport]> {
   const usedCss = getUsedCssBlocks(
     defaultCss,
-    [...avaiableCharacterUnits.join('')]
+    [...availableCharacterUnits.join('')]
   );
   const defaultWoff2Urls = getWoff2Urls(usedCss);
   const defaultWoff2Weight = await getTotalWoff2Weight(defaultWoff2Urls);
