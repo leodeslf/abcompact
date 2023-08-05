@@ -114,7 +114,7 @@ async function* getOptimizedFonts(
       const fontStyles = getFontStyles(familyValue, cleanOptimizedCss);
       await loadFontStyles(fontName, fontStyles);
 
-      yield <OptimizedFontWithoutError>{
+      yield <OptimizedFont>{
         id: fontId,
         name: fontName,
         results: {
