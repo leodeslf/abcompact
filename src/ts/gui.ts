@@ -8,10 +8,10 @@ import {
   widthToWidthName
 } from "./styles.js";
 
-function getGoogleFontsUrlInputValue(
+function getGoogleFontsCodeInputValue(
   elements: HTMLFormControlsCollection
 ): string {
-  return (elements.namedItem('google-fonts-url') as HTMLInputElement).value;
+  return (elements.namedItem('google-fonts-code') as HTMLInputElement).value;
 }
 
 function getCustomCharactersInputValue(
@@ -111,7 +111,7 @@ function getReadableCssProperties(fontVariationSettings: string): string {
 
 export {
   getCustomCharactersInputValue,
-  getGoogleFontsUrlInputValue,
+  getGoogleFontsCodeInputValue,
   getPercentage,
   getPredefinedCharacterSubsetsInputValue,
   getReadableCssProperties,
