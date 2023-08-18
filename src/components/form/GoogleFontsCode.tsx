@@ -1,23 +1,23 @@
 import { useState } from "react";
 
-export default function GoogleFontsUrl() {
-  const [googleFontsUrl, setGoogleFontsUrl] = useState('');
+export default function GoogleFontsCode() {
+  const [googleFontsCode, setGoogleFontsCode] = useState('');
 
   return (<>
-    <label htmlFor="google-fonts-url">
-      Google Fonts URL
+    <label htmlFor="google-fonts-code">
+      Google Fonts Code
     </label>
     <input
       autoComplete="on"
       autoFocus={true}
-      id="google-fonts-url"
-      onChange={({ target }) => setGoogleFontsUrl(target.value)}
+      id="google-fonts-code"
+      onChange={({ target }) => setGoogleFontsCode(target.value)}
       pattern=".*https://fonts\.googleapis\.com/css2\?(family=[+,-.:;@\dA-Za-z]+&)+display=swap.*"
       placeholder="https://fonts.googleapis.com..."
       required={true}
       spellCheck="false"
       type="text"
-      value={googleFontsUrl}
+      value={googleFontsCode}
     />
   </>);
 };
