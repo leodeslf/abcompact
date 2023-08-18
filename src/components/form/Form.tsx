@@ -1,10 +1,10 @@
 import { FormEvent } from "react";
 import { getCharacterUnitsFromInputValue } from "../../ts/characters";
 import { getGoogleFontsUrl } from "../../ts/googleFontsApi";
-import { getGoogleFontsCodeInputValue } from "../../ts/gui";
+import { getGoogleFontsUrlInputValue } from "../../ts/gui";
 import { requestOptimizedFonts } from "../../ts/googleFontsOptimization";
 import CustomCharacters from "./CustomCharacters";
-import GoogleFontsCode from "./GoogleFontsCode";
+import GoogleFontsUrl from "./GoogleFontsUrl";
 import PredefinedCharacterSubsets from "./PredefinedCharacterSubsets";
 import SubmitButton from "./SubmitButton";
 
@@ -15,7 +15,7 @@ export default function Form() {
     event.preventDefault();
     const { elements } = event.currentTarget;
     await requestOptimizedFonts(
-      getGoogleFontsUrl(getGoogleFontsCodeInputValue(elements)),
+      getGoogleFontsUrl(getGoogleFontsUrlInputValue(elements)),
       getCharacterUnitsFromInputValue(elements)
     );
   };
@@ -27,7 +27,7 @@ export default function Form() {
       id="form"
       onSubmit={onSubmitEventHandler}
     >
-      <GoogleFontsCode />
+      <GoogleFontsUrl />
       <div className="characters">
         <CustomCharacters />
         <PredefinedCharacterSubsets />

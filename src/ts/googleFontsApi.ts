@@ -8,8 +8,8 @@ import { defaultCssRegex, fontFaceCssRegex } from "./googleFontsCss.js";
 const googleFontsUrlRegex = /.*(https:\/\/fonts\.googleapis\.com\/css2\?(family=[+,-.:;@\dA-Za-z]+&)+display=swap).*/;
 
 // At this point, the URL was already validated, so we seal the type to string.
-function getGoogleFontsUrl(googleFontsCode: string): string {
-  return googleFontsCode.match(googleFontsUrlRegex)?.[1] as string;
+function getGoogleFontsUrl(googleFontsUrlInput: string): string {
+  return googleFontsUrlInput.match(googleFontsUrlRegex)?.[1] as string;
 }
 
 // Each family includes the font name and its styles (if any).
