@@ -4,43 +4,39 @@
 
 ## About
 
-Fontima delivers optimized **CSS for the fonts and characters we need**, potentially **saving up to 95%** (counting both CSS and WOFF2 files). It makes use of the `text` parameter from Google Fonts URLs to subset a given font, while giving feedback about improvements and preview the results.
+**[Fontima](https://fontima.com/) delivers fine-grained CSS** for the fonts and characters you need, it is possible to **save up to 90%** on requests (CSS + WOFF2).
 
-## How to use Fontima?
+## Why use Fontima?
 
-1. Bring the Google Fonts URL (copy either the `<link>` or `@import` code);
-1. Choose the characters you need;
-1. Click optimize and get your CSS.
+>If you can not measure it, you can not improve it. -Lord Kelvin
 
-That's it!
-
-## Why to use Fontima?
-
-You cannot optimize what you cannot measure.
-
-And yes, we absolutely need to optimize fonts, they are getting **larger than images**, the amount of requests is also considerable. In bytes we can easily **save from 5 KB up to 2 MB per font** depending on the font and the characters.
+We often attack images with a battery of optimization tools, what we don't realize is that fonts are as large or even larger than images. Fontima *requests font subsets* and *optimizes those requests* on the fly if possible. *Useful feedback* such as **how much you saved**, missing characters, heavier files, and font preview are some of its features.
 
 ## When to use Fontima?
 
-**Always we can**. If we can is because we know what we need.
+Use it as long as you **have a clear idea of what the characters wearing a given font will be**. Practical examples: a web/app logo; a set of math symbols; or even a set of languages (in case the web/app is not intended to be worldwide used e.g.: a local web or a private business app).
 
-We cannot make everyone happy by delivering fonts covering every possible character. Also, **fonts don't always look the way we expect** in different languages/scripts, that's a good reason to use Fontima for subsetting. The most notorious use case is **when we need a font for a single word** (or even a single glyph).
+## How to use Fontima?
+
+1. Bring the code given by Google Fonts;
+1. Choose the characters you need;
+1. Get your optimized CSS.
+
+That's it!
 
 ## Pros and Cons
 
 ✅ Pros:
 
 - **Less bytes**;
-- **Less request** (potentially);
-- **Feedback** about optimization.
+- **Less request**, potentially;
+- **Feedback**, the actual improvement.
 
 ❌ Cons:
 
-- **Static CSS** (updates may be required, not likely to happen);
-- Possible **false positive character coverage** (see below).
-
-Some included characters may not be true as Google Fonts uses a generic set of `unicode-ranges` on its CSS. Thus, it may "say" there is a glyph available when the font does not actually include such a glyph. Low-level font analysis is required to get rid of this issue, which Fontima doesn't do.
+- **Static CSS**;
+- Possible **false positive characters**.
 
 ## Author
 
-[Leonardo de S.L.F](https://github.com/leodeslf "GitHub profile").
+[Leo de S.L.F](https://github.com/leodeslf "GitHub profile").
