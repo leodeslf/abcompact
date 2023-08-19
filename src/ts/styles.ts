@@ -222,7 +222,7 @@ async function loadFontStyles(
     for (const url of fontStyle.urls) {
       // Font name is changed in order to avoid conflicts.
       const fontFace = new FontFace(
-        `Deglyphied ${fontName}`,
+        `Fontima - ${fontName}`,
         `url(${url})`,
         {
           display: "swap",
