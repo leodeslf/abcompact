@@ -36,6 +36,7 @@ That's it!
 
 - **Static CSS**;
 - Possible **false positive characters**.
+- Some **variable fonts can not optimized by GF**.
 
 ## Author
 
