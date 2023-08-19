@@ -1,4 +1,3 @@
-import axios from "axios";
 import { defaultCssRegex, fontFaceCssRegex } from "./googleFontsCss.js";
 
 /**
@@ -29,21 +28,10 @@ function generateGoogleFontsUrl(family: string): string {
   return `https://fonts.googleapis.com/css2?family=${family}&display=swap`;
 }
 
-const axiosInstance = axios.create();
-
 async function getCss(googleFontsUrl: string): Promise<string> {
-  return await axiosInstance
-    .get(googleFontsUrl)
-    .then(({ data }) => {
-      if (fontFaceCssRegex.test(data)) {
-        return data;
-      }
-
-      throw null;
-    })
-    .catch(() => {
-      throw Error('failed to fetch CSS files');
-    });
+  const responseText = await (await fetch(googleFontsUrl)).text();
+  if (fontFaceCssRegex.test(responseText)) return responseText;
+  throw Error('failed to fetch CSS files');
 }
 
 async function getOptimizedCss(
@@ -67,14 +55,19 @@ async function getOptimizedCss(
   return optimizedCss;
 }
 
-// Weight = content length = file size in bytes.
+const woff2Request = new XMLHttpRequest();
+
 async function getWoff2Weight(woff2Url: string): Promise<number> {
-  return await axiosInstance
-    .get(woff2Url)
-    .then(({ headers }) => Number(headers['content-length']))
-    .catch(() => {
-      throw Error('failed to fetch WOFF2 files')
-    });
+  woff2Request.open('GET', woff2Url);
+  woff2Request.send();
+  return new Promise((resolve, reject) => {
+    woff2Request.onload = () => {
+      resolve(Number(woff2Request.getResponseHeader('content-length')));
+    };
+    woff2Request.onerror = () => {
+      reject(Error('failed to fetch WOFF2 files'));
+    };
+  });
 }
 
 async function getTotalWoff2Weight(woff2Urls: string[]): Promise<number> {
