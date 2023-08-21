@@ -18,7 +18,7 @@ export default function CustomCharacters() {
   };
 
   return (
-    <div className="custom-characters">
+    <div className="custom-characters__container">
       <label htmlFor="custom-characters">
         Custom Characters
       </label>
