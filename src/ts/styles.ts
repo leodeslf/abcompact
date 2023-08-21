@@ -1,5 +1,6 @@
 import { getStyleHeaders, getStyleTuples } from "./googleFontsApi.js";
 import { getFontFaceRules, getWoff2Urls } from "./googleFontsCss.js";
+import { fontimaFontPrefix } from "./gui.js";
 
 const styleHeaderToReadableName = {
   ital: 'Style',
@@ -222,7 +223,7 @@ async function loadFontStyles(
     for (const url of fontStyle.urls) {
       // Font name is changed in order to avoid conflicts.
       const fontFace = new FontFace(
-        `Fontima - ${fontName}`,
+        `${fontimaFontPrefix}${fontName}`,
         `url(${url})`,
         {
           display: "swap",
