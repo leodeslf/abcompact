@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useAppSelector } from "../../stores/hooks";
 import CharacterGalleryLayer from "./CharacterGalleryLayer";
 import CharacterUnits from "./CharacterUnits";
+import { fontimaFontPrefix } from "../../ts/gui";
 
 const pageLength = 14 * 35;
 
@@ -71,7 +72,7 @@ export default function CharacterGallery({
         <CharacterGalleryLayer
           category="included"
           style={{
-            fontFamily: `"Deglyphied ${name}", serif`,
+            fontFamily: `"${fontimaFontPrefix}${name}", serif`,
             fontVariationSettings: cssProperties.fontVariationSettings, // *
             fontStyle: cssProperties.fontStyle, // Needs to be set >:(
             fontWeight: cssProperties.fontWeight, // Can be removed :D
