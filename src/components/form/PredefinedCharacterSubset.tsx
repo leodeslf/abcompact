@@ -24,6 +24,7 @@ export default function PredefinedCharacterSubset({
 
   return (
     <label
+      aria-checked={checked}
       className='predefined-character-subsets__subset'
       htmlFor={`subset-${id}`}
       role="checkbox"
