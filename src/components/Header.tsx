@@ -2,7 +2,7 @@ export default function Header() {
   return (
     <header>
       <h1>
-        <a href='/'>
+        <a href="/">
           fontima
         </a>
       </h1>
