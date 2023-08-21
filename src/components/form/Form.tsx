@@ -22,7 +22,6 @@ export default function Form() {
 
   return (
     <form
-      autoComplete="on"
       className="form"
       id="form"
       onSubmit={onSubmitEventHandler}
