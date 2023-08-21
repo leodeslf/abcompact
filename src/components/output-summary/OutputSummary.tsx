@@ -13,10 +13,10 @@ export default function OutputSummary() {
             <th colSpan={2}>
               Font
             </th>
-            <th colSpan={2}>
+            <th colSpan={2} title="Default weight.">
               Default
             </th>
-            <th colSpan={2}>
+            <th colSpan={2} title="Optimized weight.">
               Optimized
             </th>
           </tr>

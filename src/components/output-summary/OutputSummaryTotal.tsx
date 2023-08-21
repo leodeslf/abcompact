@@ -11,7 +11,7 @@ export default function OutputSummaryTotal() {
 
   return (
     <tr>
-      <th colSpan={2}>
+      <th colSpan={2} title="Total weight.">
         Total
       </th>
       <DefaultVsOptimizedTds
