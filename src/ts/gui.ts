@@ -109,11 +109,14 @@ function getReadableCssProperties(fontVariationSettings: string): string {
     .join(', ');
 }
 
+const fontimaFontPrefix = 'Fontima - ';
+
 export {
   getCustomCharactersInputValue,
   getGoogleFontsCodeInputValue,
   getPercentage,
   getPredefinedCharacterSubsetsInputValue,
   getReadableCssProperties,
-  useReadableFileWeight
+  useReadableFileWeight,
+  fontimaFontPrefix
 };
