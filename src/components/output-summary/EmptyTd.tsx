@@ -8,7 +8,7 @@ export default function EmptyTd({ colSpan }: EmptyTdProps) {
       className="empty-td"
       colSpan={colSpan}
     >
-      -
+      &nbsp;
     </td>
   );
 };
