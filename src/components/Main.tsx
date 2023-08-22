@@ -1,7 +1,7 @@
 import { useAppSelector } from "../stores/hooks";
 import Form from "./form/Form";
 import Output from "./output/Output";
-import OutputPlaceholder from "./OutputPlaceholder";
+import OutputPlaceholder from "./output/OutputPlaceholder";
 import OutputSummary from "./output-summary/OutputSummary";
 import Preview from "./preview/Preview";
 
