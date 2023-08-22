@@ -14,17 +14,23 @@ export default function Preview() {
   const [styleIndex, setStyleIndex] = useState(0);
 
   return (
-    <div className="preview">
-      <FontPicker {...{
-        fontIndex,
-        setFontIndex,
-        setStyleIndex
-      }} />
-      <StylePicker {...{
-        fontIndex,
-        styleIndex,
-        setStyleIndex
-      }} />
+    <div>
+      <div className="preview-selects__container">
+        <span>
+          <FontPicker {...{
+            fontIndex,
+            setFontIndex,
+            setStyleIndex
+          }} />
+        </span>
+        <span>
+          <StylePicker {...{
+            fontIndex,
+            styleIndex,
+            setStyleIndex
+          }} />
+        </span>
+      </div>
       <CharacterGallery
         fontIndex={fontIndex}
         styleIndex={styleIndex}
