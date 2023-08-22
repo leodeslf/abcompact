@@ -5,10 +5,10 @@ type WeightTdsProps = {
 
 export default function WeightTds({ value, unit }: WeightTdsProps) {
   return (<>
-    <td className="data-td">
+    <td>
       {value.toFixed(1)}
     </td>
-    <td className="unit-td">
+    <td>
       &nbsp;{unit}
     </td>
   </>);

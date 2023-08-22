@@ -24,14 +24,10 @@ export default function OptimizedFontBody({
   return (
     <tr>
       <td>
-        {name}{styles.length > 1 && <span
-          role="status"
-          className="inline-status"
-        >
+        {name}{styles.length > 1 && <span role="status">
           {styles.length} styles
         </span>}{missingCharacterUnits > 0 && <span
           role="alert"
-          className="inline-status"
           title={`${missingCharacterUnits} character${missingCharacterUnits > 1 ? 's' : ''} missing.`}
         >
           {requiredCharacterUnits - missingCharacterUnits}
@@ -41,7 +37,7 @@ export default function OptimizedFontBody({
       <td>
         <button
           onClick={() => navigator.clipboard.writeText(optimizedCss)}
-          title={`Click to copy ${name}${name[name.length - 1] === 's' ? "'" : "'s"} CSS to the clipboard.`}
+          title={`Click to copy ${name}${name[name.length - 1] === 's' ? '\'' : '\'s'} CSS to the clipboard.`}
         >
           Copy
         </button>

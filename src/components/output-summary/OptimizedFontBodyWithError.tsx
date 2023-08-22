@@ -9,11 +9,7 @@ export default function OptimizedFontBodyWithError({
       <td
         colSpan={2}
       >
-        {name}<span
-          role="alert"
-          className="inline-status"
-          aria-errormessage={errorMessage}
-        >
+        {name}<span role="alert">
           Error, {errorMessage}.
         </span>
       </td>

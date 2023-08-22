@@ -3,10 +3,6 @@ import { getPercentage, useReadableFileWeight } from "../../ts/gui";
 
 export default function OutputSummaryFootnote() {
   const {
-    requestStatus: {
-      isFailed,
-      isLoading
-    },
     outputSummary: {
       css,
       woff2
@@ -23,8 +19,8 @@ export default function OutputSummaryFootnote() {
     totalDifference
   );
 
-  return !(isLoading || isFailed) ? (
-    <p className="optimization-summary-footnote">
+  return (
+    <p>
       {totalDifference >= 0 ? (<>
         You saved <strong>
           {roundedDifference} {differenceUnit}
@@ -35,5 +31,5 @@ export default function OutputSummaryFootnote() {
         </strong> ({-differenceAsPercentage}%) heavier than before.
       </>)}
     </p>
-  ) : (<></>);
+  );
 }
