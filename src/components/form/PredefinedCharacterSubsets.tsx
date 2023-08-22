@@ -1,14 +1,40 @@
+import { ChangeEvent, forwardRef } from 'react';
 import predefinedCharacterSubsets from
   '../../json/predefinedCharacterSubsets.json';
 import PredefinedCharacterSubset from './PredefinedCharacterSubset';
 
-export default function PredefinedCharacterSubsets() {
+type PredefinedCharacterSubsetsProps = {
+  amountOfSelectedSubsets: number,
+  setAmountOfSelectedSubsets: (amount: number) => void;
+};
+
+const PredefinedCharacterSubsets = forwardRef<
+  HTMLFieldSetElement,
+  PredefinedCharacterSubsetsProps
+>(({
+  amountOfSelectedSubsets,
+  setAmountOfSelectedSubsets
+},
+  ref
+) => {
+  function updateAmountOfSelectedSubsets(
+    event: ChangeEvent<HTMLFieldSetElement>
+  ): void {
+    if (event.target instanceof HTMLInputElement) {
+      const { checked } = event.target;
+      setAmountOfSelectedSubsets(amountOfSelectedSubsets + (checked ? 1 : -1));
+    }
+  }
+
   return (
-    <fieldset>
+    <fieldset
+      ref={ref}
+      onChange={updateAmountOfSelectedSubsets}
+    >
       <legend>
         Predefined Character Subsets
       </legend>
-      <ul className="predefined-character-subsets__subsets">
+      <ul>
         {predefinedCharacterSubsets.map(({ id, name }) => (
           <li key={id}>
             <PredefinedCharacterSubset
@@ -21,4 +47,6 @@ export default function PredefinedCharacterSubsets() {
       </ul>
     </fieldset>
   );
-}
+});
+
+export default PredefinedCharacterSubsets;
