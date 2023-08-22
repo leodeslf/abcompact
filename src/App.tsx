@@ -5,7 +5,9 @@ import Main from './components/Main';
 export default function App() {
   return (<>
     <Header />
+    <hr />
     <Main />
+    <hr />
     <Footer />
   </>);
 }
