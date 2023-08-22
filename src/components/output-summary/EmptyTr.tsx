@@ -1,9 +1,9 @@
+import EmptyTd from "./EmptyTd";
+
 export default function EmptyTr() {
   return (
     <tr>
-      <td>
-        &nbsp;
-      </td>
+      <EmptyTd />
     </tr>
   );
 };
