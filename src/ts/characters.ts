@@ -1,7 +1,5 @@
-import {
-  getCustomCharactersInputValue,
-  getPredefinedCharacterSubsetsInputValue
-} from './gui.js';
+import predefinedCharacterSubsets from
+  '../json/predefinedCharacterSubsets.json';
 
 function getCharactersFromUnicodeRange({ start, end }: UnicodeRange): string {
   let characters: string = '';
@@ -86,7 +84,7 @@ const blackListedCharacters = getCharactersFromUnicodeRanges([
   { start: "80", end: "9F" }
 ]);
 
-function getFilteredCharactersFromCustomCharacters(
+function filterBlackListedCharacters(
   characters: string
 ): string {
   let whiteListedCharacters: string = characters;
@@ -154,24 +152,34 @@ function getCharacterUnits(characters: string): string[] {
   )].sort(sortCharacterUnits);
 }
 
-function getCharacterUnitsFromInputValue(
-  elements: HTMLFormControlsCollection
+function getCharacterUnitsFromInputElements(
+  customCharactersElement: HTMLTextAreaElement,
+  predefinedCharacterSubsetsElements: HTMLFieldSetElement
 ): string[] {
+  const predefinedCharacterSubsetsValue = [
+    ...predefinedCharacterSubsetsElements.getElementsByTagName('input')
+  ]
+    .filter(({ checked }) => checked)
+    .map(({ value }) => getCharactersFromUnicodeRanges(
+      predefinedCharacterSubsets
+        .filter((subset) => subset.id === Number(value))[0].unicodeRanges
+    ))
+    .join('');
+
   return getCharacterUnits(
-    getFilteredCharactersFromCustomCharacters(
-      getCustomCharactersInputValue(elements)
-    ).concat(getPredefinedCharacterSubsetsInputValue(elements))
+    filterBlackListedCharacters(customCharactersElement.value)
+      .concat((predefinedCharacterSubsetsValue))
   );
 }
 
 export {
+  filterBlackListedCharacters,
   getAvailableCharacterUnits,
   getCharacterChunks,
   getCharacterCoverageBitmap,
   getCharactersFromUnicodeRange,
   getCharactersFromUnicodeRanges,
   getCharacterUnits,
-  getCharacterUnitsFromInputValue,
-  getEncodedCharacterChunks,
-  getFilteredCharactersFromCustomCharacters
+  getCharacterUnitsFromInputElements,
+  getEncodedCharacterChunks
 };

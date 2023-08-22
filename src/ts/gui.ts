@@ -1,46 +1,9 @@
-import predefinedCharacterSubsets from
-  '../json/predefinedCharacterSubsets.json';
-import { getCharactersFromUnicodeRanges } from './characters.js';
 import {
   styleHeaderToReadableName,
   styleTupleValueToCssValue,
   weightToWeightName,
   widthToWidthName
 } from "./styles.js";
-
-function getGoogleFontsCodeInputValue(
-  elements: HTMLFormControlsCollection
-): string {
-  return (elements.namedItem('google-fonts-code') as HTMLInputElement).value;
-}
-
-function getCustomCharactersInputValue(
-  elements: HTMLFormControlsCollection
-): string {
-  return (
-    elements.namedItem('custom-characters') as HTMLTextAreaElement
-  ).value;
-}
-
-function getPredefinedCharacterSubsetsInputValue(
-  elements: HTMLFormControlsCollection
-): string {
-  const characters: HTMLInputElement[] = [];
-
-  for (const subset of predefinedCharacterSubsets) {
-    characters.push(
-      elements.namedItem(`subset-${subset.id}`) as HTMLInputElement
-    );
-  }
-
-  return characters
-    .filter(element => element.checked)
-    .map(({ value }) => getCharactersFromUnicodeRanges(
-      predefinedCharacterSubsets
-        .filter((subset) => subset.id === Number(value))[0].unicodeRanges
-    ))
-    .join('');
-}
 
 const kb = 1_000;
 const mb = 1_000_000;
@@ -97,7 +60,9 @@ function getReadableCssProperties(fontVariationSettings: string): string {
           propertyValue += ` (${weightToWeightName[
             propertyValue as FontWeightValues
           ]})`;
-        } else if (styleHeader === 'wdth' && propertyValue in widthToWidthName) {
+        } else if (
+          styleHeader === 'wdth' && propertyValue in widthToWidthName
+        ) {
           propertyValue += ` (${widthToWidthName[
             propertyValue as FontWidthValues
           ]})`;
@@ -112,10 +77,7 @@ function getReadableCssProperties(fontVariationSettings: string): string {
 const fontimaFontPrefix = 'Fontima - ';
 
 export {
-  getCustomCharactersInputValue,
-  getGoogleFontsCodeInputValue,
   getPercentage,
-  getPredefinedCharacterSubsetsInputValue,
   getReadableCssProperties,
   useReadableFileWeight,
   fontimaFontPrefix
