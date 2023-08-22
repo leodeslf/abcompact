@@ -1,3 +1,4 @@
+import { useAppSelector } from "../../stores/hooks";
 import EmptyTr from "./EmptyTr";
 import FilesWeight from "./FilesWeight";
 import OptimizedFonts from "./OptimizedFonts";
@@ -5,6 +6,14 @@ import OutputSummaryFootnote from "./OutputSummaryFootnote";
 import OutputSummaryTotal from "./OutputSummaryTotal";
 
 export default function OutputSummary() {
+  const {
+    requestStatus: {
+      isFailed,
+      isLoading
+    }
+  } = useAppSelector(state => state);
+  const isFailedOrLoading = isFailed || isLoading;
+
   return (
     <div>
       <table>
@@ -23,13 +32,15 @@ export default function OutputSummary() {
         </thead>
         <tbody>
           <OptimizedFonts />
-          <EmptyTr />
-          <FilesWeight />
-          <EmptyTr />
-          <OutputSummaryTotal />
+          {!isFailedOrLoading && (<>
+            <EmptyTr />
+            <FilesWeight />
+            <EmptyTr />
+            <OutputSummaryTotal />
+          </>)}
         </tbody>
       </table>
-      <OutputSummaryFootnote />
+      {!isFailedOrLoading && <OutputSummaryFootnote />}
     </div>
   );
 }
