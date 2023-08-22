@@ -4,7 +4,7 @@ import CharacterGalleryLayer from "./CharacterGalleryLayer";
 import CharacterUnits from "./CharacterUnits";
 import { fontimaFontPrefix } from "../../ts/gui";
 
-const pageLength = 14 * 35;
+const pageLength = 15 * 15;
 
 type CharacterGalleryProps = {
   fontIndex: number,
@@ -48,7 +48,7 @@ export default function CharacterGallery({
         <legend>
           Character Preview
         </legend>
-        {totalPages > 1 ? (
+        {totalPages > 1 && (
           <span>
             <label htmlFor="page-selector">
               Page <select
@@ -66,7 +66,7 @@ export default function CharacterGallery({
                 ))}
               </select>
             </label> of {totalPages}
-          </span>) : (<></>)}
+          </span>)}
       </div>
       <div className="character-gallery__character-layers">
         <CharacterGalleryLayer

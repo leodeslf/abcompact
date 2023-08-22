@@ -4,7 +4,7 @@ type CharacterGalleryLayerProps = {
   style?: React.CSSProperties
 };
 
-const className = 'character-gallery__character-layer';
+const characterGalleryLayerClass = 'character-gallery__character-layer';
 
 export default function CharacterGalleryLayer({
   category,
@@ -13,7 +13,8 @@ export default function CharacterGalleryLayer({
 }: CharacterGalleryLayerProps) {
   return (
     <div
-      className={`${className} ${className}--${category}`}
+      className={`${characterGalleryLayerClass
+        } ${characterGalleryLayerClass}--${category}`}
       style={style}
     >
       {children}
