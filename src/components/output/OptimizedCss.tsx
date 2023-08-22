@@ -24,8 +24,6 @@ export default function OptimizedCss() {
     </div>
     <textarea
       id="optimized-css"
-      placeholder={isLoading ? 'Loading...' :
-        isFailed ? 'No optimized CSS to show...' : undefined}
       readOnly
       rows={10}
       value={optimizedCss}
