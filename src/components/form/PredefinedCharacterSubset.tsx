@@ -1,8 +1,4 @@
-import { ChangeEvent, useState } from 'react';
-import {
-  characterValidationUpdate
-} from '../../stores/characterValidationSlice';
-import store from '../../stores/store';
+import { useState } from 'react';
 
 type PredefinedCharactersSubsetProps = {
   id: number,
@@ -15,17 +11,9 @@ export default function PredefinedCharacterSubset({
 }: PredefinedCharactersSubsetProps) {
   const [checked, setChecked] = useState(false);
 
-  function updatePredefinedCharacters({
-    target: { checked }
-  }: ChangeEvent<HTMLInputElement>): void {
-    setChecked(checked);
-    store.dispatch(characterValidationUpdate(checked));
-  }
-
   return (
     <label
       aria-checked={checked}
-      className='predefined-character-subsets__subset'
       htmlFor={`subset-${id}`}
       role="checkbox"
       title={label}
@@ -33,7 +21,7 @@ export default function PredefinedCharacterSubset({
       <input
         checked={checked}
         id={`subset-${id}`}
-        onChange={updatePredefinedCharacters}
+        onChange={({ target }) => setChecked(target.checked)}
         type="checkbox"
         value={id}
       />

@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { forwardRef, useState } from "react";
 
-export default function GoogleFontsCode() {
+const GoogleFontsCode = forwardRef<HTMLInputElement, {}>((_, ref) => {
   const [googleFontsCode, setGoogleFontsCode] = useState('');
 
   return (<>
@@ -14,10 +14,13 @@ export default function GoogleFontsCode() {
       onChange={({ target }) => setGoogleFontsCode(target.value)}
       pattern=".*https://fonts\.googleapis\.com/css2\?(family=[+,-.:;@\dA-Za-z]+&)+display=swap.*"
       placeholder="https://fonts.googleapis.com..."
+      ref={ref}
       required={true}
       spellCheck="false"
       type="text"
       value={googleFontsCode}
     />
   </>);
-};
+});
+
+export default GoogleFontsCode;
