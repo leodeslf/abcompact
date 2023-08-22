@@ -13,7 +13,7 @@ export default function FormSubmitButton() {
   return (
     <div className="submit-button__container">
       <button
-        className={`submit-button${isLoading ? ' submit-button--loading' : ''}`}
+        className={isLoading ? 'submit-button--loading' : ''}
         disabled={isLoading}
         form="form"
         title={isLoading ? loadingText : 'Click to get your optimized CSS.'}
