@@ -18,7 +18,7 @@ const CustomCharacters = forwardRef<
   return (
     <div className="custom-characters__container">
       <label htmlFor="custom-characters">
-        Custom Characters
+        Characters
       </label>
       <textarea
         id="custom-characters"

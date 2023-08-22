@@ -32,7 +32,7 @@ const PredefinedCharacterSubsets = forwardRef<
       onChange={updateAmountOfSelectedSubsets}
     >
       <legend>
-        Predefined Character Subsets
+        Predefined Subsets
       </legend>
       <ul>
         {predefinedCharacterSubsets.map(({ id, name }) => (
