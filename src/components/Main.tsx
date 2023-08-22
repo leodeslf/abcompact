@@ -14,23 +14,19 @@ export default function Main() {
     }
   } = useAppSelector(state => state);
   const hasOutput = optimizedFonts.length > 0;
-  const hasOutputToPreview = (
-    !(isLoading && isFailed) &&
-    optimizedFonts.find(font => "results" in font)
-  );
 
   return (
     <main>
       <Form />
       {hasOutput ? (<>
         <OutputSummary />
-        <Output />
+        {!(isFailed || isLoading) && (<>
+          <Output />
+          <Preview />
+        </>)}
       </>) : (
         <OutputPlaceholder />
       )}
-      {hasOutputToPreview && (<>
-        <Preview />
-      </>)}
     </main>
   );
 }
