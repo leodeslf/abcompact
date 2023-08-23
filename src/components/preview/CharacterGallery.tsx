@@ -4,8 +4,8 @@ import CharacterGalleryLayer from "./CharacterGalleryLayer";
 import CharacterUnits from "./CharacterUnits";
 import { familyPrefix } from "../../ts/gui";
 
-const rows = 15;
-const columns = 30;
+const columns = 15;
+const rows = 24;
 const pageLength = rows * columns;
 
 type CharacterGalleryProps = {
@@ -77,8 +77,6 @@ export default function CharacterGallery({
             fontFamily: `"${familyPrefix}${family}", serif`,
             fontVariationSettings: cssProperties.fontVariationSettings, // *
             fontStyle: cssProperties.fontStyle, // Needs to be set >:(
-            fontWeight: cssProperties.fontWeight, // Can be removed :D
-            fontStretch: cssProperties.fontStretch // Could be removed too :D
           }}
         >
           <CharacterUnits
@@ -104,6 +102,8 @@ export default function CharacterGallery({
 };
 
 /**
- * * 04/04/2023 `fontVariationSettings: "ital" 1` is not applying (it used to),
- * heigh level property `font-style` is needed to achieve the desired results.
+ * * 04/04/2023
+ * `fontVariationSettings: "ital" 1` is supposed to override its counterpart
+ *  heigh-level property `font-style` but is not working (it used to). For now,
+ *  we need to use `font-style` to ensure the correct style is used.
  */
