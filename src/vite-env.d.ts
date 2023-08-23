@@ -145,15 +145,15 @@ type FontWeightValues = (
 );
 
 type FontWidthValues = (
-  '25' |
-  '50' |
-  '62.5' |
-  '75' |
-  '87.5' |
-  '100' |
-  '112.5' |
-  '125' |
-  '150'
+  '25%' |
+  '50%' |
+  '62.5%' |
+  '75%' |
+  '87.5%' |
+  '100%' |
+  '112.5%' |
+  '125%' |
+  '150%'
 );
 
 type FontIndexSetter = (fontIndex: number) => void;

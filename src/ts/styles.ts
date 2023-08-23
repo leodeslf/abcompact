@@ -53,15 +53,15 @@ const weightToWeightName = {
 };
 
 const widthToWidthName = {
-  '25': 'SuperCondensed',
-  '50': 'UltraCondensed',
-  '62.5': 'ExtraCondensed',
-  '75': 'Condensed',
-  '87.5': 'SemiCondensed',
-  '100': 'Normal',
-  '112.5': 'SemiExpanded',
-  '125': 'Expanded',
-  '150': 'ExtraExpanded'
+  '25%': 'SuperCondensed',
+  '50%': 'UltraCondensed',
+  '62.5%': 'ExtraCondensed',
+  '75%': 'Condensed',
+  '87.5%': 'SemiCondensed',
+  '100%': 'Normal',
+  '112.5%': 'SemiExpanded',
+  '125%': 'Expanded',
+  '150%': 'ExtraExpanded'
 };
 
 function defaultStyle(optimizedCss: string): OptimizedFontStyle {
