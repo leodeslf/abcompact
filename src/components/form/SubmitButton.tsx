@@ -8,7 +8,7 @@ export default function FormSubmitButton() {
       progressPhases
     }
   } = useAppSelector(state => state);
-  const loadingText = `Loading: ${currentProgress + 1}/${progressPhases}...`;
+  const loadingText = `Loading... (${currentProgress}/${progressPhases})`;
 
   return (
     <div className="submit-button__container">
