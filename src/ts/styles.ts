@@ -213,7 +213,7 @@ function getFontStyles(
  * Chrome e.g.: 'Foo Bar' --> '"Foo Bar"'
  */
 let familyWrapper: string = '';
-if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+if (navigator.userAgent.toLowerCase().indexOf('gecko/') > -1) {
   familyWrapper = '"';
 }
 
