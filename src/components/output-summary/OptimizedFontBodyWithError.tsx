@@ -2,14 +2,12 @@ import DefaultVsOptimizedTds from "./DefaultVsOptimizedTds";
 
 export default function OptimizedFontBodyWithError({
   errorMessage,
-  name
+  family
 }: OptimizedFontWithError) {
   return (
     <tr>
-      <td
-        colSpan={2}
-      >
-        {name}<span role="alert">
+      <td colSpan={2}>
+        {family}<span role="alert">
           Error, {errorMessage}.
         </span>
       </td>

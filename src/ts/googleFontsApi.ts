@@ -18,14 +18,14 @@ function getFamilyValues(googleFontsUrl: string): string[] {
     .map(match => match.slice(7, -1));
 }
 
-function getFontName(familyValue: string): string {
+function getFamily(familyValue: string): string {
   return (
     familyValue.match(/([^:]+):?/)?.[1] as string
   ).replace(/\+/g, ' ') as string;
 }
 
-function generateGoogleFontsUrl(family: string): string {
-  return `https://fonts.googleapis.com/css2?family=${family}&display=swap`;
+function generateGoogleFontsUrl(familyValue: string): string {
+  return `https://fonts.googleapis.com/css2?family=${familyValue}&display=swap`;
 }
 
 async function getCss(googleFontsUrl: string): Promise<string> {
@@ -91,15 +91,15 @@ function getStyleTuples(familyValue: string): string[][] | null {
   return familyValue
     .match(/@(.+)/)?.[1]
     .split(';')
-    .map(tuple => tuple.split(','))
-    || null;
+    .map(tuple => tuple.split(',')) ||
+    null;
 }
 
 export {
   generateGoogleFontsUrl,
   getCss,
   getFamilyValues,
-  getFontName,
+  getFamily,
   getGoogleFontsUrl,
   getOptimizedCss,
   getStyleHeaders,

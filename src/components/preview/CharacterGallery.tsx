@@ -2,9 +2,11 @@ import { useState } from "react";
 import { useAppSelector } from "../../stores/hooks";
 import CharacterGalleryLayer from "./CharacterGalleryLayer";
 import CharacterUnits from "./CharacterUnits";
-import { fontimaFontPrefix } from "../../ts/gui";
+import { familyPrefix } from "../../ts/gui";
 
-const pageLength = 15 * 15;
+const rows = 15;
+const columns = 30;
+const pageLength = rows * columns;
 
 type CharacterGalleryProps = {
   fontIndex: number,
@@ -26,7 +28,7 @@ export default function CharacterGallery({
       characterCoverageBitmap,
       styles
     },
-    name
+    family
   } = (optimizedFonts[fontIndex] as OptimizedFontWithoutError);
   const { cssProperties } = styles[styleIndex];
   const totalPages = Math.ceil(characterUnits.length / pageLength);
@@ -72,7 +74,7 @@ export default function CharacterGallery({
         <CharacterGalleryLayer
           category="included"
           style={{
-            fontFamily: `"${fontimaFontPrefix}${name}", serif`,
+            fontFamily: `"${familyPrefix}${family}", serif`,
             fontVariationSettings: cssProperties.fontVariationSettings, // *
             fontStyle: cssProperties.fontStyle, // Needs to be set >:(
             fontWeight: cssProperties.fontWeight, // Can be removed :D

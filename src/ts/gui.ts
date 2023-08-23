@@ -74,11 +74,11 @@ function getReadableCssProperties(fontVariationSettings: string): string {
     .join(', ');
 }
 
-const fontimaFontPrefix = 'Fontima - ';
+const familyPrefix = 'Fontima - ';
 
 export {
   getPercentage,
   getReadableCssProperties,
   useReadableFileWeight,
-  fontimaFontPrefix
+  familyPrefix
 };

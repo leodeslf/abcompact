@@ -28,13 +28,13 @@ export default function FontPicker({
       onChange={fontPickerChangeHandler}
       value={fontIndex}
     >
-      {optimizedFonts.map(({ errorMessage, id, name }) => (
+      {optimizedFonts.map(({ errorMessage, id, family }) => (
         <option
           key={id}
           value={id}
           disabled={errorMessage !== undefined}
         >
-          {name}
+          {family}
         </option>
       ))}
     </select>

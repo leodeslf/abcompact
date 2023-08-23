@@ -8,7 +8,7 @@ export default function OptimizedFontBody({
     optimizedCss,
     styles
   },
-  name
+  family
 }: OptimizedFontWithoutError) {
   const {
     requestMemo: {
@@ -24,7 +24,7 @@ export default function OptimizedFontBody({
   return (
     <tr>
       <td>
-        {name}{styles.length > 1 && <span role="status">
+        {family}{styles.length > 1 && <span role="status">
           {styles.length} styles
         </span>}{missingCharacterUnits > 0 && <span
           role="alert"
@@ -37,7 +37,7 @@ export default function OptimizedFontBody({
       <td>
         <button
           onClick={() => navigator.clipboard.writeText(optimizedCss)}
-          title={`Click to copy ${name}${name[name.length - 1] === 's' ? '\'' : '\'s'} CSS to the clipboard.`}
+          title={`Click to copy ${family}${family[family.length - 1] === 's' ? '\'' : '\'s'} CSS to the clipboard.`}
         >
           Copy
         </button>

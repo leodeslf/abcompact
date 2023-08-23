@@ -2,7 +2,7 @@ import {
   generateGoogleFontsUrl,
   getCss,
   getFamilyValues,
-  getFontName,
+  getFamily,
   getOptimizedCss,
   getTotalWoff2Weight
 } from "./googleFontsApi";
@@ -83,8 +83,8 @@ async function* getOptimizedFonts(
   let index: number = 0;
 
   for (const familyValue of familyValues) {
-    const fontId = index++;
-    const fontName = getFontName(familyValue);
+    const id = index++;
+    const family = getFamily(familyValue);
 
     try {
       const googleFontsUrl = generateGoogleFontsUrl(familyValue);
@@ -112,11 +112,11 @@ async function* getOptimizedFonts(
         availableCharacterUnits
       );
       const fontStyles = getFontStyles(familyValue, cleanOptimizedCss);
-      await loadFontStyles(fontName, fontStyles);
+      await loadFontStyles(family, fontStyles);
 
       yield <OptimizedFont>{
-        id: fontId,
-        name: fontName,
+        id,
+        family,
         results: {
           characterCoverageBitmap,
           filesWeight: {
@@ -129,8 +129,8 @@ async function* getOptimizedFonts(
       };
     } catch (error) {
       yield errorFont(
-        { id: fontId, name: fontName },
-        error instanceof Error ? error.message : 'an unspected error ocurred'
+        { id, family },
+        error instanceof Error ? error.message : 'an unexpected error occurred'
       );
     }
   }

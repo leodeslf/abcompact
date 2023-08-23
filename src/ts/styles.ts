@@ -1,6 +1,6 @@
 import { getStyleHeaders, getStyleTuples } from "./googleFontsApi.js";
 import { getFontFaceRules, getWoff2Urls } from "./googleFontsCss.js";
-import { fontimaFontPrefix } from "./gui.js";
+import { familyPrefix } from "./gui.js";
 
 const styleHeaderToReadableName = {
   ital: 'Style',
@@ -107,7 +107,7 @@ function parseStyleHeadersAndTuple(
     const styleTupleValue = styleTuple[i];
 
     fontVariationSettings.push(
-      `"${styleHeader}" ${styleHeader === 'opsz' ? '26' : styleTupleValue}`
+      `"${styleHeader}" ${styleHeader === 'opsz' ? '30' : styleTupleValue}`
     );
 
     if (isRegisteredAxisTag(styleHeader)) {
@@ -125,7 +125,7 @@ const camelCaseCssPropertyToKebabCaseCssProperty = {
   fontStretch: 'font-stretch',
   fontStyle: 'font-style',
   fontWeight: 'font-weight'
-} as { [key in CamelCaseCssPropertyToMatch]: KebabCaseCssPropertyToMatch};
+} as { [key in CamelCaseCssPropertyToMatch]: KebabCaseCssPropertyToMatch };
 
 function isCamelCaseCssPropertyToMatch(
   camelCaseCssProperty: string
@@ -207,6 +207,17 @@ function getFontStyles(
 }
 
 /**
+ * Firefox needs quotes to be passed manually; Chrome adds them automatically.
+ * 
+ * Firefox e.g.: 'Foo Bar' --> "Foo Bar"
+ * Chrome e.g.: 'Foo Bar' --> '"Foo Bar"'
+ */
+let familyWrapper: string = '';
+if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+  familyWrapper = '"';
+}
+
+/**
  * Reference:
  * 
  * - https://developer.mozilla.org/en-US/docs/Web/API/Document/fonts
@@ -216,14 +227,14 @@ function getFontStyles(
  * - https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
  */
 async function loadFontStyles(
-  fontName: string,
+  family: string,
   fontStyles: OptimizedFontStyle[]
 ): Promise<true | void> {
   for (const fontStyle of fontStyles) {
     for (const url of fontStyle.urls) {
-      // Font name is changed in order to avoid conflicts.
+      // Font name is changed in order to avoid any override.
       const fontFace = new FontFace(
-        `${fontimaFontPrefix}${fontName}`,
+        `${familyWrapper}${familyPrefix}${family}${familyWrapper}`,
         `url(${url})`,
         {
           display: "swap",

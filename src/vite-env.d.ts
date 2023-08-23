@@ -115,7 +115,7 @@ type OptimizedFontResults = {
 
 type OptimizedFontCore = {
   id: number,
-  name: string
+  family: string
 };
 
 type OptimizedFont = OptimizedFontCore & {
