@@ -22,7 +22,7 @@ function getCharactersFromUnicodeRange({ start, end }: UnicodeRange): string {
 function getCharacterCoverageBitmap(
   characterUnits: string[],
   availableCharacters: string[]
-): BitmapValues[] {
+): Bit[] {
   const characterCoverageBitmap = characterUnits.map(characterUnit => {
     const characterUnitCharacters = [...characterUnit];
 
@@ -44,7 +44,7 @@ function getCharacterCoverageBitmap(
 
 function getAvailableCharacterUnits(
   characterUnits: string[],
-  characterCoverageBitmap: BitmapValues[]
+  characterCoverageBitmap: Bit[]
 ): string[] {
   return characterUnits.filter((_, index) =>
     characterCoverageBitmap[index] === 1);
