@@ -1,27 +1,21 @@
 import { useAppSelector } from "../../stores/hooks";
+import Heading from "../common/Heading";
 
 export default function OptimizedCss() {
-  const {
-    optimizedCss,
-    requestStatus: {
-      isFailed,
-      isLoading
-    }
-  } = useAppSelector(state => state);
+  const { optimizedCss } = useAppSelector(state => state);
 
   return (<>
-    <div role="heading">
+    <Heading>
       <label htmlFor="optimized-css">
         Optimized CSS
       </label>
       <button
         onClick={() => navigator.clipboard.writeText(optimizedCss)}
-        disabled={isLoading || isFailed}
         title="Click to copy your optimized CSS to the clipboard."
       >
         Copy
       </button>
-    </div>
+    </Heading>
     <textarea
       id="optimized-css"
       readOnly

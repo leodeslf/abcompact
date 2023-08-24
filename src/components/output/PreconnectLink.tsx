@@ -1,8 +1,10 @@
+import Heading from "../common/Heading";
+
 const preconnectLink = '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>';
 
 export default function PreconnectLink() {
   return (<>
-    <div role="heading">
+    <Heading>
       <label htmlFor="preconnect-link">
         Preconnect Link
       </label>
@@ -12,7 +14,7 @@ export default function PreconnectLink() {
       >
         Copy
       </button>
-    </div>
+    </Heading>
     <input
       id="preconnect-link"
       readOnly

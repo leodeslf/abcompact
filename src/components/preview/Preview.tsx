@@ -4,6 +4,7 @@ import CharacterGallery from "./CharacterGallery";
 import FontSelect from "./FontPicker";
 import StyleSelect from "./StylePicker";
 import PageSelect from "./PageSelect";
+import Heading from "../common/Heading";
 
 export default function Preview() {
   const { optimizedFonts } = useAppSelector(state => state);
@@ -33,7 +34,7 @@ export default function Preview() {
         </span>
       </div>
       <fieldset>
-        <div role="heading">
+        <Heading>
           <legend>
             Preview
           </legend>
@@ -43,7 +44,7 @@ export default function Preview() {
               setPageIndex
             }}
           />
-        </div>
+        </Heading>
         <CharacterGallery
           {...{
             fontIndex,
