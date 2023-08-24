@@ -29,9 +29,17 @@ function generateGoogleFontsUrl(familyValue: string): string {
 }
 
 async function getCss(googleFontsUrl: string): Promise<string> {
-  const responseText = await (await fetch(googleFontsUrl)).text();
-  if (fontFaceCssRegex.test(responseText)) return responseText;
-  throw Error('failed to fetch CSS files');
+  return new Promise(async (resolve, reject) => {
+    try {
+      const responseText = await (await fetch(googleFontsUrl)).text();
+
+      if (fontFaceCssRegex.test(responseText)) {
+        resolve(responseText);
+      };
+    } catch (error) {
+      reject(Error('failed to fetch CSS files'));
+    }
+  });
 }
 
 async function getOptimizedCss(
