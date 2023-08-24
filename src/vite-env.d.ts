@@ -80,7 +80,7 @@ type KebabCaseCssPropertyToMatch = (
   'font-weight'
 );
 
-type BitmapValues = 0 | 1;
+type Bit = 0 | 1;
 
 type WeightReport = {
   default: number,
@@ -107,7 +107,7 @@ type OptimizedFontStyle = {
 };
 
 type OptimizedFontResults = {
-  characterCoverageBitmap: BitmapValues[],
+  characterCoverageBitmap: Bit[],
   filesWeight: FilesWeight,
   optimizedCss: string,
   styles: OptimizedFontStyle[]
@@ -155,7 +155,3 @@ type FontWidthValues = (
   '125%' |
   '150%'
 );
-
-type FontIndexSetter = (fontIndex: number) => void;
-
-type StyleIndexSetter = (styleIndex: number) => void;
