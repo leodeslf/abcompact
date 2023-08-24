@@ -30,7 +30,9 @@ function getAvailableCharacters(css: string): string[] {
 function removeDuplicatedCssBlocks(css: string): string {
   return [...new Set(
     css.match(/(\/\*.+\*\/\n)?.+ {\n([^}]+\n)+}(\n)?/g) as string[]
-  )].join('');
+  )]
+    .sort()
+    .join('');
 }
 
 function getFontFaceRules(css: string): string[] {
