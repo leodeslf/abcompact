@@ -1,5 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
-import { filterBlackListedCharacters } from "../../ts/characters";
+import { forwardRef, useState } from "react";
 
 type CustomCharactersProps = {
   isRequired: boolean;
