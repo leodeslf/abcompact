@@ -8,11 +8,12 @@ export default function CharacterUnitIncluded({
   return (
     <span
       title={`"${characterUnit}" = ${[...characterUnit]
-        .map(character => `U+${character
-          .codePointAt(0)
-          ?.toString(16)
+        .map(character => `U+${((character
+          .codePointAt(0)) as number)
+          .toString(16)
           .toUpperCase()}`)
-        .join(' ')}`}
+        .join(' ')
+        }.`}
     >
       {characterUnit}
     </span>

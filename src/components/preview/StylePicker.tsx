@@ -4,7 +4,7 @@ import { getReadableCssProperties } from "../../ts/gui";
 type StylePickerProps = {
   fontIndex: number,
   styleIndex: number,
-  setStyleIndex: StyleIndexSetter
+  setStyleIndex: (index: number) => void
 };
 
 export default function StylePicker({
@@ -19,23 +19,25 @@ export default function StylePicker({
   const styleOptions = styles.map(style =>
     getReadableCssProperties(style.cssProperties.fontVariationSettings));
 
-  return (<>
-    <label htmlFor="style-picker">
-      Style
-    </label>
-    <select
-      id="style-picker"
-      onChange={event => setStyleIndex(event.target.selectedIndex)}
-      value={styleIndex}
-    >
-      {styleOptions.map((styleOption, index) => (
-        <option
-          key={index}
-          value={index}
-        >
-          {styleOption}
-        </option>
-      ))}
-    </select>
-  </>);
+  return (
+    <span>
+      <label htmlFor="style-picker">
+        Style
+      </label>
+      <select
+        id="style-picker"
+        onChange={event => setStyleIndex(event.target.selectedIndex)}
+        value={styleIndex}
+      >
+        {styleOptions.map((styleOption, index) => (
+          <option
+            key={index}
+            value={index}
+          >
+            {styleOption}
+          </option>
+        ))}
+      </select>
+    </span>
+  );
 }

@@ -3,8 +3,8 @@ import { useAppSelector } from "../../stores/hooks";
 
 type FontPickerProps = {
   fontIndex: number,
-  setFontIndex: FontIndexSetter,
-  setStyleIndex: StyleIndexSetter
+  setFontIndex: (index: number) => void,
+  setStyleIndex: (index: number) => void
 };
 
 export default function FontPicker({
@@ -19,24 +19,26 @@ export default function FontPicker({
     setFontIndex(target.selectedIndex);
   }
 
-  return (<>
-    <label htmlFor="font-picker">
-      Family
-    </label>
-    <select
-      id="font-picker"
-      onChange={fontPickerChangeHandler}
-      value={fontIndex}
-    >
-      {optimizedFonts.map(({ errorMessage, id, family }) => (
-        <option
-          key={id}
-          value={id}
-          disabled={errorMessage !== undefined}
-        >
-          {family}
-        </option>
-      ))}
-    </select>
-  </>);
+  return (
+    <span>
+      <label htmlFor="font-picker">
+        Family
+      </label>
+      <select
+        id="font-picker"
+        onChange={fontPickerChangeHandler}
+        value={fontIndex}
+      >
+        {optimizedFonts.map(({ errorMessage, id, family }) => (
+          <option
+            key={id}
+            value={id}
+            disabled={errorMessage !== undefined}
+          >
+            {family}
+          </option>
+        ))}
+      </select>
+    </span>
+  );
 }

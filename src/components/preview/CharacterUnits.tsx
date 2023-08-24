@@ -1,29 +1,29 @@
-import { Fragment } from "react";
-import CharacterUnitMissing from "./CharacterUnitMissing";
+import { memo } from "react";
 import CharacterUnitIncluded from "./CharacterUnitIncluded";
+import CharacterUnitMissing from "./CharacterUnitMissing";
+
+// Works faster, not sure why.
+const CharacterUnitIncludedMemo = memo(CharacterUnitIncluded);
+const CharacterUnitMissingMemo = memo(CharacterUnitMissing);
 
 type CharacterUnitsProps = {
-  category: "included" | "missing",
-  characterUnits: string[],
-  characterCoverageBitmap: BitmapValues[]
+  bitToMatch: Bit,
+  characterCoverageBitmap: Bit[],
+  characterUnits: string[]
 };
 
 export default function CharacterUnits({
-  category,
-  characterUnits,
-  characterCoverageBitmap
+  bitToMatch,
+  characterCoverageBitmap,
+  characterUnits
 }: CharacterUnitsProps) {
-  const bitToMatch = (category === "included" ? 1 : 0);
-
   return (<>
     {characterUnits.map((characterUnit, i) => (
-      <Fragment key={i}>
-        {bitToMatch === characterCoverageBitmap[i] ? (
-          <CharacterUnitIncluded characterUnit={characterUnit} />
-        ) : (
-          <CharacterUnitMissing />
-        )}
-      </Fragment>
+      (characterCoverageBitmap[i] === bitToMatch) ? (
+        <CharacterUnitIncludedMemo key={i} {...{ characterUnit }} />
+      ) : (
+        <CharacterUnitMissingMemo key={i} />
+      )
     ))}
   </>);
 }

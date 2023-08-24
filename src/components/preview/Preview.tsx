@@ -1,40 +1,57 @@
-import { useState } from "react";
+import { memo, useState } from "react";
 import { useAppSelector } from "../../stores/hooks";
 import CharacterGallery from "./CharacterGallery";
-import FontPicker from "./FontPicker";
-import StylePicker from "./StylePicker";
+import FontSelect from "./FontPicker";
+import StyleSelect from "./StylePicker";
+import PageSelect from "./PageSelect";
 
 export default function Preview() {
   const { optimizedFonts } = useAppSelector(state => state);
-  // At this point it's guaranteed that there is at least one valid font.
-  const firstValidOptimizedFontIndex = (
-    optimizedFonts.find(font => font.errorMessage === undefined)
-  )?.id as number;
-  const [fontIndex, setFontIndex] = useState(firstValidOptimizedFontIndex);
+  const [fontIndex, setFontIndex] = useState((
+    optimizedFonts.find(font => font.errorMessage === undefined) as
+    OptimizedFontWithoutError
+  ).id);
   const [styleIndex, setStyleIndex] = useState(0);
+  const [pageIndex, setPageIndex] = useState(0);
 
   return (
     <div>
       <div className="preview-selects__container">
         <span>
-          <FontPicker {...{
+          <FontSelect {...{
             fontIndex,
             setFontIndex,
             setStyleIndex
           }} />
         </span>
         <span>
-          <StylePicker {...{
+          <StyleSelect {...{
             fontIndex,
             styleIndex,
             setStyleIndex
           }} />
         </span>
       </div>
-      <CharacterGallery
-        fontIndex={fontIndex}
-        styleIndex={styleIndex}
-      />
+      <fieldset>
+        <div role="heading">
+          <legend>
+            Preview
+          </legend>
+          <PageSelect
+            {...{
+              pageIndex,
+              setPageIndex
+            }}
+          />
+        </div>
+        <CharacterGallery
+          {...{
+            fontIndex,
+            pageIndex,
+            styleIndex
+          }}
+        />
+      </fieldset>
     </div>
   );
 }

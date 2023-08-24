@@ -1,21 +1,21 @@
-import { useState } from "react";
+import { familyPrefix, usePreviewPagination } from "../../ts/gui";
+import { memo, useMemo } from "react";
 import { useAppSelector } from "../../stores/hooks";
 import CharacterGalleryLayer from "./CharacterGalleryLayer";
 import CharacterUnits from "./CharacterUnits";
-import { familyPrefix } from "../../ts/gui";
 
-const columns = 15;
-const rows = 24;
-const pageLength = rows * columns;
+const CharacterUnitsMemo = memo(CharacterUnits);
 
 type CharacterGalleryProps = {
   fontIndex: number,
-  styleIndex: number
+  styleIndex: number,
+  pageIndex: number
 };
 
 export default function CharacterGallery({
   fontIndex,
-  styleIndex
+  styleIndex,
+  pageIndex
 }: CharacterGalleryProps) {
   const {
     optimizedFonts,
@@ -29,75 +29,39 @@ export default function CharacterGallery({
       styles
     },
     family
-  } = (optimizedFonts[fontIndex] as OptimizedFontWithoutError);
+  } = optimizedFonts[fontIndex] as OptimizedFontWithoutError;
   const { cssProperties } = styles[styleIndex];
-  const totalPages = Math.ceil(characterUnits.length / pageLength);
-  const [currentPage, setPageNumber] = useState(0);
-  const currentPageStartIndex = currentPage * pageLength;
-  const currentPageEndIndex = (currentPage + 1) * pageLength;
-  const characterUnitsPage = characterUnits.slice(
-    currentPageStartIndex,
-    currentPageEndIndex
+  const [pageStart, pageEnd] = usePreviewPagination(pageIndex);
+  const characterUnitsPage = useMemo(
+    () => characterUnits.slice(pageStart, pageEnd),
+    [pageIndex]
   );
-  const characterCoverageBitmapPage = characterCoverageBitmap.slice(
-    currentPageStartIndex,
-    currentPageEndIndex
+  const characterCoverageBitmapPage = useMemo(
+    () => characterCoverageBitmap.slice(pageStart, pageEnd),
+    [characterCoverageBitmap, pageIndex]
   );
 
   return (
-    <fieldset>
-      <div role="heading">
-        <legend>
-          Character Preview
-        </legend>
-        {totalPages > 1 && (
-          <span>
-            <label htmlFor="page-selector">
-              Page <select
-                id="page-selector"
-                onChange={event => setPageNumber(+event.target.value)}
-                value={currentPage}
-              >
-                {(new Array(totalPages)).fill(0).map((_, i) => (
-                  <option
-                    key={i}
-                    value={i}
-                  >
-                    {i + 1}
-                  </option>
-                ))}
-              </select>
-            </label> of {totalPages}
-          </span>)}
-      </div>
-      <div className="character-gallery__character-layers">
-        <CharacterGalleryLayer
-          category="included"
-          style={{
-            fontFamily: `"${familyPrefix}${family}", serif`,
-            fontVariationSettings: cssProperties.fontVariationSettings, // *
-            fontStyle: cssProperties.fontStyle, // Needs to be set >:(
-          }}
-        >
-          <CharacterUnits
-            category="included"
-            {...{
-              characterUnits: characterUnitsPage,
-              characterCoverageBitmap: characterCoverageBitmapPage
-            }}
-          />
-        </CharacterGalleryLayer>
-        <CharacterGalleryLayer category="missing">
-          <CharacterUnits
-            category="missing"
-            {...{
-              characterUnits: characterUnitsPage,
-              characterCoverageBitmap: characterCoverageBitmapPage
-            }}
-          />
-        </CharacterGalleryLayer>
-      </div>
-    </fieldset>
+    <div className="character-gallery">
+      <CharacterGalleryLayer style={{
+        fontFamily: `"${familyPrefix}${family}", serif`,
+        fontVariationSettings: cssProperties.fontVariationSettings, // *
+        fontStyle: cssProperties.fontStyle, // Needs to be set >:(
+      }}>
+        <CharacterUnitsMemo
+          bitToMatch={1}
+          characterCoverageBitmap={characterCoverageBitmapPage}
+          characterUnits={characterUnitsPage}
+        />
+      </CharacterGalleryLayer>
+      <CharacterGalleryLayer>
+        <CharacterUnitsMemo
+          bitToMatch={0}
+          characterCoverageBitmap={characterCoverageBitmapPage}
+          characterUnits={characterUnitsPage}
+        />
+      </CharacterGalleryLayer>
+    </div>
   );
 };
 
