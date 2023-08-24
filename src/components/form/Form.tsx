@@ -42,7 +42,10 @@ export default function Form() {
         />
         <PredefinedCharacterSubsets
           ref={predefinedCharacterSubsetsRef}
-          {...{ amountOfSelectedSubsets, setAmountOfSelectedSubsets }}
+          {...{
+            amountOfSelectedSubsets,
+            setAmountOfSelectedSubsets
+          }}
         />
       </div>
       <SubmitButton />

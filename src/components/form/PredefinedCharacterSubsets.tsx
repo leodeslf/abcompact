@@ -1,7 +1,9 @@
-import { ChangeEvent, forwardRef } from 'react';
+import { ChangeEvent, forwardRef, memo } from 'react';
 import predefinedCharacterSubsets from
   '../../json/predefinedCharacterSubsets.json';
 import PredefinedCharacterSubset from './PredefinedCharacterSubset';
+
+const PredefinedCharacterSubsetMemo = memo(PredefinedCharacterSubset);
 
 type PredefinedCharacterSubsetsProps = {
   amountOfSelectedSubsets: number,
@@ -37,7 +39,7 @@ const PredefinedCharacterSubsets = forwardRef<
       <ul>
         {predefinedCharacterSubsets.map(({ id, name }) => (
           <li key={id}>
-            <PredefinedCharacterSubset
+            <PredefinedCharacterSubsetMemo
               id={id}
               key={id}
               label={name}
