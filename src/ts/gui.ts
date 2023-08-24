@@ -75,10 +75,24 @@ function getReadableCssProperties(fontVariationSettings: string): string {
 }
 
 const familyPrefix = 'Fontima - ';
+const previewColumns = 15;
+const previewRows = 45;
+const previewCharacterUnitsPerPage = previewColumns * previewRows;
+
+function usePreviewPagination(
+  pageIndex: number
+): [pageStart: number, pageEnd: number] {
+  return [
+    pageIndex * previewCharacterUnitsPerPage,
+    (pageIndex + 1) * previewCharacterUnitsPerPage
+  ];
+}
 
 export {
+  familyPrefix,
   getPercentage,
   getReadableCssProperties,
-  useReadableFileWeight,
-  familyPrefix
+  previewCharacterUnitsPerPage,
+  usePreviewPagination,
+  useReadableFileWeight
 };
