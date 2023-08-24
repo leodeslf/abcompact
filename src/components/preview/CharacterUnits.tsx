@@ -1,10 +1,10 @@
 import { memo } from "react";
-import CharacterUnitIncluded from "./CharacterUnitIncluded";
-import CharacterUnitMissing from "./CharacterUnitMissing";
+import CharacterUnit from "./CharacterUnit";
+import CharacterUnitPlaceholder from "./CharacterUnitPlaceholder";
 
 // Works faster, not sure why.
-const CharacterUnitIncludedMemo = memo(CharacterUnitIncluded);
-const CharacterUnitMissingMemo = memo(CharacterUnitMissing);
+const CharacterUnitMemo = memo(CharacterUnit);
+const CharacterUnitPlaceholderMemo = memo(CharacterUnitPlaceholder);
 
 type CharacterUnitsProps = {
   bitToMatch: Bit,
@@ -20,9 +20,9 @@ export default function CharacterUnits({
   return (<>
     {characterUnits.map((characterUnit, i) => (
       (characterCoverageBitmap[i] === bitToMatch) ? (
-        <CharacterUnitIncludedMemo key={i} {...{ characterUnit }} />
+        <CharacterUnitMemo key={i} {...{ characterUnit }} />
       ) : (
-        <CharacterUnitMissingMemo key={i} />
+        <CharacterUnitPlaceholderMemo key={i} />
       )
     ))}
   </>);
