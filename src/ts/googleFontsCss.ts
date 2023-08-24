@@ -28,15 +28,16 @@ function getAvailableCharacters(css: string): string[] {
 }
 
 function removeDuplicatedCssBlocks(css: string): string {
-  return [...new Set(
-    css.match(/(\/\*.+\*\/\n)?.+ {\n([^}]+\n)+}(\n)?/g) as string[]
-  )]
+  return [
+    ...new Set(css.match(/(\/\*.+\*\/\n)?.+ {\n([^}]+\n)+}(\n)?/g) as string[])
+  ]
     .sort()
     .join('');
 }
 
 function getFontFaceRules(css: string): string[] {
-  return css.match(/(\/\*.+\*\/\n)?@font-face {\n([^}]+\n)+}(\n)?/g) as string[];
+  return css
+    .match(/(\/\*.+\*\/\n)?@font-face {\n([^}]+\n)+}(\n)?/g) as string[];
 }
 
 function getUsedCssBlocks(css: string, requiredCharacters: string[]): string {
