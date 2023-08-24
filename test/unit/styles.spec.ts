@@ -131,7 +131,7 @@ describe('Styles', () => {
     });
   });
 
-  // ! Mocha can not run this because of `FontFace` JS built-in class.
+  // ! Mocha can not run this because it does not recognizes `FontFace` :(
   // describe('Loads a style to the DOM', () => {
   //   it('loads a style to the DOM', async () => {
   //     expect(await loadFontStyles(

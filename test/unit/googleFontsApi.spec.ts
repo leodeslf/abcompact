@@ -2,7 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 import {
   getFamilyValues,
-  getFontName,
+  getFamily,
   getStyleHeaders,
   getStyleTuples,
   googleFontsUrlRegex
@@ -65,7 +65,7 @@ describe('Google Fonts API', () => {
 
   describe('Font names', () => {
     it('gets the font name from a family value', () => {
-      expect(getFontName('Roboto+Mono:ital,wght@0,500;1,400'))
+      expect(getFamily('Roboto+Mono:ital,wght@0,500;1,400'))
         .to.equal('Roboto Mono');
     });
   });
