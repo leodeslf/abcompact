@@ -1,8 +1,8 @@
-import { memo, useState } from "react";
+import { useState } from "react";
 import { useAppSelector } from "../../stores/hooks";
 import CharacterGallery from "./CharacterGallery";
-import FontSelect from "./FontPicker";
-import StyleSelect from "./StylePicker";
+import FontSelect from "./FontSelect";
+import StyleSelect from "./StyleSelect";
 import PageSelect from "./PageSelect";
 import Heading from "../common/Heading";
 
