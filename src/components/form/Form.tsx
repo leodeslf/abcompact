@@ -1,9 +1,10 @@
 import { FormEvent, useRef, useState } from "react";
-import { getCharacterUnitsFromInputElements } from "../../ts/characters";
 import { getGoogleFontsUrl } from "../../ts/googleFontsApi";
 import { requestOptimizedFonts } from "../../ts/googleFontsOptimization";
 import CustomCharacters from "./CustomCharacters";
 import GoogleFontsCode from "./GoogleFontsCode";
+import predefinedCharacterSubsets from
+  '../../json/predefinedCharacterSubsets.json';
 import PredefinedCharacterSubsets from "./PredefinedCharacterSubsets";
 import SubmitButton from "./SubmitButton";
 
@@ -20,12 +21,23 @@ export default function Form() {
     event: FormEvent<HTMLFormElement>
   ): Promise<void> {
     event.preventDefault();
+    const inputCharacters = (
+      customCharactersRef.current as HTMLTextAreaElement
+    ).value;
+    const inputUnicodeRanges = [...(
+      predefinedCharacterSubsetsRef.current as HTMLFieldSetElement
+    ).getElementsByTagName('input')]
+      .filter(({ checked }) => checked)
+      .map(({ value }) =>
+        predefinedCharacterSubsets
+          .filter(({ id }) => id === Number(value))[0]
+          .unicodeRanges
+      )
+      .flat();
     await requestOptimizedFonts(
       getGoogleFontsUrl((googleFontsCodeRef.current as HTMLInputElement).value),
-      getCharacterUnitsFromInputElements(
-        customCharactersRef.current as HTMLTextAreaElement,
-        predefinedCharacterSubsetsRef.current as HTMLFieldSetElement
-      )
+      inputCharacters,
+      inputUnicodeRanges
     );
   };
 

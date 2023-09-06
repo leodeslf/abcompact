@@ -17,6 +17,11 @@ type RequestStatus = {
   progressPhases: number
 };
 
+type CharacterAndUnicodeRangeChunk = {
+  characters: string,
+  unicodeRanges: UnicodeRange[]
+};
+
 // Registered == Standard (has a respective/equivalent CSS property).
 type RegisteredAxisTag = (
   'ital' |
@@ -68,17 +73,17 @@ type CamelCaseCssProperty = (
   'fontWeight'
 );
 
-type CamelCaseCssPropertyToMatch = (
-  'fontStretch' |
-  'fontStyle' |
-  'fontWeight'
-);
+// type CamelCaseCssPropertyToMatch = (
+//   'fontStretch' |
+//   'fontStyle' |
+//   'fontWeight'
+// );
 
-type KebabCaseCssPropertyToMatch = (
-  'font-stretch' |
-  'font-style' |
-  'font-weight'
-);
+// type KebabCaseCssPropertyToMatch = (
+//   'font-stretch' |
+//   'font-style' |
+//   'font-weight'
+// );
 
 type Bit = 0 | 1;
 
@@ -93,22 +98,33 @@ type FilesWeight = {
   woff2: WeightReport
 };
 
+type CssPropertyToMatch = (
+  'fontStretch' |
+  'fontStyle' |
+  'fontWeight'
+);
+
 type CssProperties = {
+  [key in CssPropertyToMatch]?: string
+} & {
   fontOpticalSizing?: string,
-  fontStretch?: string,
-  fontStyle?: string,
   fontVariationSettings: string,
-  fontWeight?: string
+  unicodeRange?: string[]
+};
+
+type ChunkedCssProperties = {
+  unicodeRange: string,
+  url: string
 };
 
 type OptimizedFontStyle = {
   cssProperties: CssProperties,
-  urls: string[]
+  chunkedCssPropertiesList: ChunkedCssProperties[]
 };
 
 type OptimizedFontResults = {
   characterCoverageBitmap: Bit[],
-  filesWeight: FilesWeight,
+  weightReport: FilesWeight,
   optimizedCss: string,
   styles: OptimizedFontStyle[]
 };
