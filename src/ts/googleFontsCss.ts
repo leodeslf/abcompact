@@ -1,38 +1,31 @@
-import { getCharactersFromUnicodeRange } from "./characters.js";
+function getCssUnicodeRangeValue(css: string): string {
+  return css.match(/unicode-range: (.+);/)?.[1] as string;
+}
 
-const defaultCssRegex = /\/\* .+ \*\/\n@font-face/;
-const fontFaceCssRegex = /@font-face/;
+function getCssUnicodeRangeLine(css: string): string[] {
+  return [...new Set(
+    (css.match(/unicode-range: .+;/g) as string[]).map(getCssUnicodeRangeValue)
+  )];
+}
 
 function getCssUnicodeRanges(css: string): string[] {
-  return css.match(/U\+[\dA-Fa-f]{1,5}(-[\dA-Fa-f]{1,5})?/g) as string[];
+  return getCssUnicodeRangeLine(css)
+    .map(cssUnicodeRangeLine => cssUnicodeRangeLine
+      .match(/U\+[\dA-Fa-f]{1,6}(-[\dA-Fa-f]{1,6})?/g) as string[]
+    )
+    .flat();
 }
 
 function parseCssUnicodeRange(cssUnicodeRange: string): UnicodeRange {
   const boundaries = cssUnicodeRange.match(/[\dA-Fa-f]{1,6}/g) as string[];
-
   return {
     start: boundaries[0],
     end: boundaries[boundaries.length > 1 ? 1 : 0]
   };
 }
 
-function getParsedCssUnicodeRanges(css: string): UnicodeRange[] {
+function generateUnicodeRangesFromCss(css: string): UnicodeRange[] {
   return getCssUnicodeRanges(css).map(parseCssUnicodeRange);
-}
-
-function getAvailableCharacters(css: string): string[] {
-  return getParsedCssUnicodeRanges(css)
-    .map(getCharactersFromUnicodeRange)
-    .map(charactersFromUnicodeRange => [...charactersFromUnicodeRange])
-    .flat();
-}
-
-function removeDuplicatedCssBlocks(css: string): string {
-  return [
-    ...new Set(css.match(/(\/\*.+\*\/\n)?.+ {\n([^}]+\n)+}(\n)?/g) as string[])
-  ]
-    .sort()
-    .join('');
 }
 
 function getFontFaceRules(css: string): string[] {
@@ -40,42 +33,27 @@ function getFontFaceRules(css: string): string[] {
     .match(/(\/\*.+\*\/\n)?@font-face {\n([^}]+\n)+}(\n)?/g) as string[];
 }
 
-function getUsedCssBlocks(css: string, requiredCharacters: string[]): string {
-  const cssFontFaceRules = getFontFaceRules(css);
-  return cssFontFaceRules.filter(cssFontFaceRule => {
-    const unicodeRanges = getParsedCssUnicodeRanges(cssFontFaceRule);
-
-    // If any character of a given block is required, it's used; else it's not.
-    for (const requiredCharacter of requiredCharacters) {
-      const codePoint = requiredCharacter.codePointAt(0) as number;
-
-      for (const unicodeRange of unicodeRanges) {
-        if (
-          codePoint >= parseInt('0x'.concat(unicodeRange.start)) &&
-          codePoint <= parseInt('0x'.concat(unicodeRange.end))
-        ) {
-          return true;
-        }
-      }
-    }
-
-    return false;
-  }).join('');
+function getWoff2Url(css: string): string {
+  return (css.match(/https:.+(\.woff2|&v=v\d+)/) as string[])[0];
 }
 
 function getWoff2Urls(css: string): string[] {
-  return css
-    .match(/https:\/\/fonts\.gstatic\.com\/.+(\.woff2|&v=v\d+)/g) as string[];
+  return (css.match(/src: url\((.+)\) format\('woff2'\);/g) as string[])
+    .map(getWoff2Url);
+}
+
+function generateCssUnicodeRange(unicodeRanges: UnicodeRange[]): string {
+  return unicodeRanges
+    .map(({ start, end }) => `U+${start}${start === end ? '' : `-${end}`}`)
+    .join(', ');
 }
 
 export {
-  defaultCssRegex,
-  fontFaceCssRegex,
-  getAvailableCharacters,
-  getCssUnicodeRanges,
+  generateCssUnicodeRange,
+  generateUnicodeRangesFromCss,
   getFontFaceRules,
-  getUsedCssBlocks,
+  getCssUnicodeRangeLine,
+  getCssUnicodeRangeValue,
+  getWoff2Url,
   getWoff2Urls,
-  parseCssUnicodeRange,
-  removeDuplicatedCssBlocks
-}
+};
