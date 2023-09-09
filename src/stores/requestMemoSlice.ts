@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: RequestMemo = {
   googleFontsUrl: '',
-  characterUnits: []
+  charMolecules: []
 };
 
 const requestMemoSlice = createSlice({
