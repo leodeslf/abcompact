@@ -31,7 +31,8 @@ export default function Form() {
         predefinedCharSubsets
           .filter(({ id }) => id === Number(value))[0]
           .unicodeRanges
-      ).flat();
+      )
+      .flat();
     await requestOptimizedFonts(
       getGoogleFontsUrl((googleFontsCodeRef.current as HTMLInputElement).value),
       inputChars,
