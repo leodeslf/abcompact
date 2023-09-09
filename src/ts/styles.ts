@@ -1,6 +1,210 @@
 import { getStyleHeaders, getStyleTuples } from "./googleFontsApi.js";
-import { getFontFaceRules, getWoff2Urls } from "./googleFontsCss.js";
+import {
+  generateCssUnicodeRange,
+  getFontFaceRules,
+  getWoff2Url
+} from "./googleFontsCss.js";
 import { familyPrefix } from "./gui.js";
+
+function getDefaultStyle(
+  optimizedCss: string,
+  unicodeRangeChunks: UnicodeRange[][]
+): OptimizedFontStyle {
+  return {
+    cssProperties: {
+      fontVariationSettings: ''
+    },
+    chunkedCssPropertiesList: getFontFaceRules(optimizedCss)
+      .map((cssFontFaceRule, i) => ({
+        unicodeRange: generateCssUnicodeRange(unicodeRangeChunks[i]),
+        url: getWoff2Url(cssFontFaceRule)
+      }))
+  };
+}
+
+const styleHeaderToCssProperty = {
+  ital: 'fontStyle',
+  opsz: 'fontOpticalSizing',
+  slnt: 'fontStyle',
+  wdth: 'fontStretch',
+  wght: 'fontWeight'
+} as { [key in RegisteredAxisTag]: CamelCaseCssProperty };
+
+function isRegisteredAxisTag(axisTag: string): axisTag is RegisteredAxisTag {
+  return axisTag in styleHeaderToCssProperty;
+}
+
+const styleTupleValueToCssValue = {
+  ital: (value: string): string => value === '0' ? 'normal' : 'italic',
+  opsz: (): string => 'auto',
+  slnt: (value: string): string =>
+    value === '0' ? 'normal' : `oblique ${-Number(value)}deg`,
+  wdth: (value: string): string => value.concat('%'),
+  wght: (value: string): string => value
+};
+
+// Parse into CSS properties (from headers) and values (from tuple).
+function parseStyleHeadersAndTuple(
+  styleHeaders: AxisTag[],
+  styleTuple: string[]
+): CssProperties {
+  const fontVariationSettings = [];
+  const cssProperties = <CssProperties>{
+    fontVariationSettings: ''
+  };
+
+  for (let i = 0; i < styleHeaders.length; i++) {
+    const styleHeader = styleHeaders[i];
+    const styleTupleValue = styleTuple[i];
+
+    fontVariationSettings.push(
+      `"${styleHeader}" ${styleHeader === 'opsz' ? 'auto' : styleTupleValue}`
+    );
+
+    if (isRegisteredAxisTag(styleHeader)) {
+      cssProperties[styleHeaderToCssProperty[styleHeader]] =
+        styleTupleValueToCssValue[styleHeader](styleTupleValue);
+    }
+  }
+
+  cssProperties.fontVariationSettings = fontVariationSettings.join(', ');
+
+  return cssProperties;
+}
+
+const camelCaseCssPropertyToKebabCaseCssProperty: {
+  [key in CssPropertyToMatch]: string;
+} = {
+  fontStretch: 'font-stretch',
+  fontStyle: 'font-style',
+  fontWeight: 'font-weight'
+};
+
+function getStyleMatchingCssFontFaceRules(
+  optimizedCss: string,
+  cssProperties: CssProperties
+): string[] {
+  return getFontFaceRules(optimizedCss)
+    .filter(fontFaceRule => {
+      for (const cssProperty in camelCaseCssPropertyToKebabCaseCssProperty) {
+        const cssPropertyValue = cssProperties?.[
+          cssProperty as CssPropertyToMatch
+        ];
+
+        if (cssPropertyValue === undefined) {
+          continue;
+        }
+
+        const fontFaceRuleValue = fontFaceRule
+          .match(`${camelCaseCssPropertyToKebabCaseCssProperty?.[
+            cssProperty as CssPropertyToMatch
+          ]}: (.+);`)?.[1];
+
+        if (fontFaceRuleValue !== cssPropertyValue) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+}
+
+function getNonDefaultStyles(
+  optimizedCss: string,
+  unicodeRangeChunks: UnicodeRange[][],
+  styleHeaders: AxisTag[],
+  styleTuples: string[][]
+): OptimizedFontStyle[] {
+  return styleTuples
+    .map(styleTuple => {
+      const cssProperties = parseStyleHeadersAndTuple(styleHeaders, styleTuple);
+      const matchingCssFontFaceRules = getStyleMatchingCssFontFaceRules(
+        optimizedCss,
+        cssProperties
+      );
+      return {
+        cssProperties,
+        chunkedCssPropertiesList: matchingCssFontFaceRules
+          .map<ChunkedCssProperties>((matchingCssFontFaceRule, i) => ({
+            unicodeRange: generateCssUnicodeRange(unicodeRangeChunks[i]),
+            url: getWoff2Url(matchingCssFontFaceRule)
+          }))
+      };
+    });
+}
+
+function getStyles(
+  familyValue: string,
+  optimizedCss: string,
+  unicodeRangeChunks: UnicodeRange[][]
+): OptimizedFontStyle[] {
+  const styleHeaders = getStyleHeaders(familyValue);
+
+  if (styleHeaders === null) {
+    return [getDefaultStyle(optimizedCss, unicodeRangeChunks)];
+  }
+
+  return getNonDefaultStyles(
+    optimizedCss,
+    unicodeRangeChunks,
+    styleHeaders,
+    getStyleTuples(familyValue) as string[][]
+  );
+}
+
+/**
+ * Firefox needs quotes to be passed manually in order to work. Chrome does not
+ * need them, in fact, additional quotes become part of the actual family name.
+ * 
+ * Agent|Input Name|Actual Name|E.g. from CSS
+ * --:|:-:|:-:|:-:
+ * Firefox|"Foo Bar"|Error|n/a
+ * Firefox|"\\"Foo Bar\\""|Foo Bar|"Foo Bar"
+ * |||
+ * Chrome |"Foo Bar"|Foo Bar|"Foo Bar"
+ * Chrome |"\\"Foo Bar\\""|"Foo Bar"|"\\"Foo Bar\\""
+ */
+const familyWrapper = /gecko\//.test(navigator.userAgent.toLowerCase()) ?
+  '"' :
+  '';
+
+/**
+ * Reference:
+ * 
+ * - https://developer.mozilla.org/en-US/docs/Web/API/Document/fonts
+ * - https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API
+ * - https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet
+ * - https://developer.mozilla.org/en-US/docs/Web/API/FontFace
+ * - https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
+ */
+async function loadStyles(
+  family: string,
+  styles: OptimizedFontStyle[]
+): Promise<void> {
+  for (const style of styles) {
+    for (const chunkedCssPropertiesItem of style.chunkedCssPropertiesList) {
+      // Font name is changed in order to avoid any override.
+      const fontFace = new FontFace(
+        `${familyWrapper}${familyPrefix}${family}${familyWrapper}`,
+        `url(${chunkedCssPropertiesItem.url})`,
+        {
+          display: "swap",
+          style: style.cssProperties?.fontStyle,
+          weight: style.cssProperties?.fontWeight,
+          stretch: style.cssProperties?.fontStretch,
+          unicodeRange: chunkedCssPropertiesItem.unicodeRange
+        }
+      );
+
+      try {
+        await fontFace.load();
+        document.fonts.add(fontFace);
+      } catch (error) {
+        throw Error('failed to load styles');
+      }
+    }
+  }
+}
 
 const styleHeaderToReadableName = {
   ital: 'Style',
@@ -64,205 +268,15 @@ const widthToWidthName = {
   '150%': 'ExtraExpanded'
 };
 
-function defaultStyle(optimizedCss: string): OptimizedFontStyle {
-  return {
-    cssProperties: { fontVariationSettings: '' },
-    urls: getWoff2Urls(optimizedCss)
-  };
-}
-
-const styleHeaderToCssProperty = {
-  ital: 'fontStyle',
-  opsz: 'fontOpticalSizing',
-  slnt: 'fontStyle',
-  wdth: 'fontStretch',
-  wght: 'fontWeight'
-} as { [key in RegisteredAxisTag]: CamelCaseCssProperty };
-
-function isRegisteredAxisTag(axisTag: string): axisTag is RegisteredAxisTag {
-  return axisTag in styleHeaderToCssProperty;
-}
-
-const styleTupleValueToCssValue = {
-  ital: (value: string): string => value === '0' ? 'normal' : 'italic',
-  opsz: (): string => 'auto',
-  slnt: (value: string): string =>
-    value === '0' ? 'normal' : `oblique ${-Number(value)}deg`,
-  wdth: (value: string): string => value.concat('%'),
-  wght: (value: string): string => value
-};
-
-// Parse into CSS properties (from headers) and values (from tuple).
-function parseStyleHeadersAndTuple(
-  styleHeaders: AxisTag[],
-  styleTuple: string[]
-): CssProperties {
-  const fontVariationSettings = [];
-  const cssProperties = <CssProperties>{
-    fontVariationSettings: ''
-  };
-
-  for (let i = 0; i < styleHeaders.length; i++) {
-    const styleHeader = styleHeaders[i];
-    const styleTupleValue = styleTuple[i];
-
-    fontVariationSettings.push(
-      `"${styleHeader}" ${styleHeader === 'opsz' ? '30' : styleTupleValue}`
-    );
-
-    if (isRegisteredAxisTag(styleHeader)) {
-      cssProperties[styleHeaderToCssProperty[styleHeader]] =
-        styleTupleValueToCssValue[styleHeader](styleTupleValue);
-    }
-  }
-
-  cssProperties.fontVariationSettings = fontVariationSettings.join(', ');
-
-  return cssProperties;
-}
-
-const camelCaseCssPropertyToKebabCaseCssProperty = {
-  fontStretch: 'font-stretch',
-  fontStyle: 'font-style',
-  fontWeight: 'font-weight'
-} as { [key in CamelCaseCssPropertyToMatch]: KebabCaseCssPropertyToMatch };
-
-function isCamelCaseCssPropertyToMatch(
-  camelCaseCssProperty: string
-): camelCaseCssProperty is CamelCaseCssPropertyToMatch {
-  return camelCaseCssProperty in camelCaseCssPropertyToKebabCaseCssProperty;
-}
-
-function getMatchingWoff2Urls(
-  optimizedCss: string,
-  cssProperties: CssProperties
-): string[] {
-  const fontFaceRules = getFontFaceRules(optimizedCss);
-  const matchingWoff2Urls: string[] = [];
-
-  for (const fontFaceRule of fontFaceRules) {
-    let amountOfMatchedValues: number = 0;
-
-    for (const cssProperty in cssProperties) {
-      // Omit for irrelevant properties (optical sizing & variation settings).
-      if (!isCamelCaseCssPropertyToMatch(cssProperty)) {
-        amountOfMatchedValues++;
-        continue;
-      }
-
-      const cssValue = fontFaceRule
-        .match(
-          `${camelCaseCssPropertyToKebabCaseCssProperty[cssProperty]
-          }: ([^;]+);`)
-        ?.[1];
-
-      if (cssValue === cssProperties[cssProperty]) {
-        amountOfMatchedValues++;
-      }
-    }
-
-    if (Object.entries(cssProperties).length === amountOfMatchedValues) {
-      matchingWoff2Urls.push(...getWoff2Urls(fontFaceRule));
-    }
-  }
-
-  return matchingWoff2Urls;
-}
-
-function nonDefaultStyles(
-  optimizedCss: string,
-  styleHeaders: AxisTag[],
-  styleTuples: string[][]
-): OptimizedFontStyle[] {
-  const fontStyles: OptimizedFontStyle[] = [];
-
-  for (const styleTuple of styleTuples) {
-    const cssProperties = parseStyleHeadersAndTuple(styleHeaders, styleTuple);
-    fontStyles.push({
-      cssProperties,
-      urls: getMatchingWoff2Urls(optimizedCss, cssProperties)
-    });
-  }
-
-  return fontStyles;
-}
-
-function getFontStyles(
-  familyValue: string,
-  optimizedCss: string
-): OptimizedFontStyle[] {
-  const styleHeaders = getStyleHeaders(familyValue);
-
-  // Single, default style.
-  if (styleHeaders === null) {
-    return [defaultStyle(optimizedCss)];
-  }
-
-  // Possibly multiple, non-default style(s).
-  return nonDefaultStyles(
-    optimizedCss,
-    styleHeaders,
-    getStyleTuples(familyValue) as string[][]
-  );
-}
-
-/**
- * Firefox needs quotes to be passed manually; Chrome adds them automatically.
- * 
- * Firefox e.g.: 'Foo Bar' --> "Foo Bar"
- * Chrome e.g.: 'Foo Bar' --> '"Foo Bar"'
- */
-let familyWrapper: string = '';
-if (navigator.userAgent.toLowerCase().indexOf('gecko/') > -1) {
-  familyWrapper = '"';
-}
-
-/**
- * Reference:
- * 
- * - https://developer.mozilla.org/en-US/docs/Web/API/Document/fonts
- * - https://developer.mozilla.org/en-US/docs/Web/API/CSS_Font_Loading_API
- * - https://developer.mozilla.org/en-US/docs/Web/API/FontFaceSet
- * - https://developer.mozilla.org/en-US/docs/Web/API/FontFace
- * - https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face
- */
-async function loadFontStyles(
-  family: string,
-  fontStyles: OptimizedFontStyle[]
-): Promise<true | void> {
-  for (const fontStyle of fontStyles) {
-    for (const url of fontStyle.urls) {
-      // Font name is changed in order to avoid any override.
-      const fontFace = new FontFace(
-        `${familyWrapper}${familyPrefix}${family}${familyWrapper}`,
-        `url(${url})`,
-        {
-          display: "swap",
-          style: fontStyle.cssProperties.fontStyle,
-          weight: fontStyle.cssProperties.fontWeight,
-          stretch: fontStyle.cssProperties.fontStretch,
-        }
-      );
-
-      try {
-        await fontFace.load();
-        document.fonts.add(fontFace);
-      } catch (error) {
-        throw Error('failed to load styles');
-      }
-    }
-  }
-}
-
 export {
-  defaultStyle,
-  getFontStyles,
-  getMatchingWoff2Urls,
-  loadFontStyles,
-  nonDefaultStyles,
+  getDefaultStyle,
+  getNonDefaultStyles,
+  getStyleMatchingCssFontFaceRules,
+  getStyles,
+  loadStyles,
   parseStyleHeadersAndTuple,
   styleHeaderToReadableName,
   styleTupleValueToCssValue,
   weightToWeightName,
-  widthToWidthName
+  widthToWidthName,
 };
