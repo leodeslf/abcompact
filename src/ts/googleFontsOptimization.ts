@@ -1,23 +1,22 @@
 import {
   generateGoogleFontsUrl,
   getCss,
-  getFamilyValues,
   getFamily,
+  getFamilyValues,
   getOptimizedCss,
   getTotalWoff2Weight
 } from "./googleFontsApi";
-import { getFontStyles, loadFontStyles } from "./styles";
+import { getStyles, loadStyles } from "./styles";
+import { getWoff2Urls } from "./googleFontsCss";
 import {
-  getAvailableCharacters,
-  getUsedCssBlocks,
-  getWoff2Urls,
-  removeDuplicatedCssBlocks
-} from "./googleFontsCss";
-import {
-  getAvailableCharacterUnits,
-  getCharacterCoverageBitmap,
-  getEncodedCharacterChunks
-} from "./characters";
+  generateCharAtoms,
+  generateCharMolecules,
+  generateCharMoleculeToCharAtomIndicesMap,
+  generateCharReport,
+  generateRequestChunks,
+  getCharsFromUnicodeRanges,
+  getWhiteListedChars,
+} from "./chars";
 import store from "../stores/store";
 import {
   requestStatusFinish,
@@ -38,35 +37,21 @@ import {
   outputSummaryClear
 } from "../stores/outputSummarySlice";
 
-function errorFont(
-  optimizedFontCore: OptimizedFontCore,
-  errorMessage: string
-): OptimizedFontWithError {
-  return {
-    ...optimizedFontCore,
-    errorMessage
-  };
-}
-
-async function getWeightData(
+async function getWeightReport(
   defaultCss: string,
   optimizedCss: string,
-  availableCharacterUnits: string[]
-): Promise<[WeightReport, WeightReport]> {
-  const usedCss = getUsedCssBlocks(
-    defaultCss,
-    [...availableCharacterUnits.join('')]
-  );
-  const defaultWoff2Urls = getWoff2Urls(usedCss);
+  defaultCssInUse: string
+): Promise<[css: WeightReport, woff2: WeightReport]> {
+  const defaultWoff2Urls = getWoff2Urls(defaultCssInUse);
   const defaultWoff2Weight = await getTotalWoff2Weight(defaultWoff2Urls);
   const optimizedWoff2Urls = getWoff2Urls(optimizedCss);
   const optimizedWoff2Weight = await getTotalWoff2Weight(optimizedWoff2Urls);
 
   return [
     {
-      default: usedCss.length,
+      default: defaultCss.length,
       optimized: optimizedCss.length,
-      difference: usedCss.length - optimizedCss.length
+      difference: defaultCss.length - optimizedCss.length
     },
     {
       default: defaultWoff2Weight,
@@ -78,7 +63,10 @@ async function getWeightData(
 
 async function* getOptimizedFonts(
   familyValues: string[],
-  characterUnits: string[]
+  charAtoms: string[],
+  charAtomToCharAtomIndexMap: CharAtomToCharAtomIndexMap,
+  charMolecules: string[],
+  charMoleculeToCharAtomIndicesMap: CharMoleculeToCharAtomIndicesMap
 ): AsyncGenerator<OptimizedFont, void, unknown> {
   let index: number = 0;
 
@@ -87,74 +75,103 @@ async function* getOptimizedFonts(
     const family = getFamily(familyValue);
 
     try {
+      if (charMolecules.length === 0) {
+        throw Error('no characters were specified');
+      }
+
       const googleFontsUrl = generateGoogleFontsUrl(familyValue);
       const defaultCss = await getCss(googleFontsUrl);
-      const availableCharacters = getAvailableCharacters(defaultCss);
-      const characterCoverageBitmap = getCharacterCoverageBitmap(
-        characterUnits,
-        availableCharacters
+      const {
+        charMoleculesBitmap,
+        charMoleculesAvailable,
+        usedCssFontFaceRules
+      } = generateCharReport(
+        charMolecules,
+        defaultCss,
+        (familyValue.match(/@(.*)+/)?.[1] || '').split(';').length
       );
-      const availableCharacterUnits = getAvailableCharacterUnits(
-        characterUnits,
-        characterCoverageBitmap
-      );
-      const encodedCharacterChunks = getEncodedCharacterChunks(
-        availableCharacterUnits
+      const { charChunks, unicodeRangeChunks } = generateRequestChunks(
+        charAtoms,
+        charMoleculesAvailable,
+        charMoleculeToCharAtomIndicesMap,
       );
       const optimizedCss = await getOptimizedCss(
         googleFontsUrl,
-        encodedCharacterChunks
+        charChunks,
+        unicodeRangeChunks
       );
-      const cleanOptimizedCss = removeDuplicatedCssBlocks(optimizedCss);
-      const [cssWeightData, woff2WeightData] = await getWeightData(
+      const styles = getStyles(familyValue, optimizedCss, unicodeRangeChunks);
+      await loadStyles(family, styles);
+      const [cssWeightReport, woff2WeightReport] = await getWeightReport(
         defaultCss,
-        cleanOptimizedCss,
-        availableCharacterUnits
+        optimizedCss,
+        usedCssFontFaceRules
       );
-      const fontStyles = getFontStyles(familyValue, cleanOptimizedCss);
-      await loadFontStyles(family, fontStyles);
-
-      yield <OptimizedFont>{
+      yield <OptimizedFontWithoutError>{
         id,
         family,
         results: {
-          characterCoverageBitmap,
-          filesWeight: {
-            css: cssWeightData,
-            woff2: woff2WeightData,
+          charMoleculesBitmap,
+          weightReport: {
+            css: cssWeightReport,
+            woff2: woff2WeightReport,
           },
-          optimizedCss: cleanOptimizedCss,
-          styles: fontStyles
+          optimizedCss: optimizedCss,
+          styles
         }
       };
     } catch (error) {
-      yield errorFont(
-        { id, family },
-        error instanceof Error ? error.message : 'an unexpected error occurred'
-      );
+      console.error(error);
+      yield <OptimizedFontWithError>{
+        id,
+        family,
+        errorMessage: error instanceof Error ?
+          error.message :
+          'an unexpected error occurred'
+      };
     }
   }
 }
 
 async function requestOptimizedFonts(
   googleFontsUrl: string,
-  characterUnits: string[]
+  inputChars: string,
+  inputUnicodeRanges: UnicodeRange[]
 ): Promise<void> {
   const familyValues = getFamilyValues(googleFontsUrl);
-  const optimizedFonts = getOptimizedFonts(familyValues, characterUnits);
-  let amountOfErrors: number = 0;
+  const charsFromUnicodeRanges = getCharsFromUnicodeRanges(inputUnicodeRanges);
+  const allInputChars = getWhiteListedChars(inputChars)
+    .concat(charsFromUnicodeRanges);
+  const {
+    charAtoms,
+    charAtomToCharAtomIndexMap
+  } = generateCharAtoms(allInputChars);
+  const charMolecules = generateCharMolecules(allInputChars);
+  const charMoleculeToCharAtomIndicesMap =
+    generateCharMoleculeToCharAtomIndicesMap(
+      charAtomToCharAtomIndexMap,
+      charMolecules
+    );
+  const optimizedFonts = getOptimizedFonts(
+    familyValues,
+    charAtoms,
+    charAtomToCharAtomIndexMap,
+    charMolecules,
+    charMoleculeToCharAtomIndicesMap
+  );
   store.dispatch(requestStatusInitialize(familyValues.length));
-  store.dispatch(requestMemoSet({ googleFontsUrl, characterUnits }));
+  store.dispatch(requestMemoSet({ googleFontsUrl, charMolecules }));
   store.dispatch(outputSummaryClear());
   store.dispatch(optimizedCssClear());
   store.dispatch(optimizedFontsClear());
+  let amountOfErrors: number = 0;
 
   for await (const optimizedFont of optimizedFonts) {
     store.dispatch(optimizedFontsAdd(Object.freeze(optimizedFont)));
     store.dispatch(requestStatusUpdateProgress());
 
-    if ("results" in optimizedFont && optimizedFont.results) {
-      store.dispatch(outputSummaryAdd(optimizedFont.results.filesWeight));
+    if ('results' in optimizedFont && optimizedFont.results) {
+      store.dispatch(outputSummaryAdd(optimizedFont.results.weightReport));
       store.dispatch(optimizedCssAdd(optimizedFont.results.optimizedCss));
     } else {
       amountOfErrors++;
