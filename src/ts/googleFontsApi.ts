@@ -1,7 +1,7 @@
-import { defaultCssRegex, fontFaceCssRegex } from "./googleFontsCss.js";
+import { generateCssUnicodeRange } from "./googleFontsCss.js";
 
 /**
- * Equivalent regex for HTML (tested manually):
+ * Equivalent regex for HTML (manually tested):
  * .*https://fonts\.googleapis\.com/css2\?(family=[+,-.:;@\dA-Za-z]+&)+display=swap.*
  */
 const googleFontsUrlRegex = /.*(https:\/\/fonts\.googleapis\.com\/css2\?(family=[+,-.:;@\dA-Za-z]+&)+display=swap).*/;
@@ -14,14 +14,14 @@ function getGoogleFontsUrl(googleFontsCode: string): string {
 // Each family includes the font name and its styles (if any).
 function getFamilyValues(googleFontsUrl: string): string[] {
   return (googleFontsUrl
-    .match(/family=[^&]+&/g) as string[])
+    .match(/family=.+?&/g) as string[])
     .map(match => match.slice(7, -1));
 }
 
 function getFamily(familyValue: string): string {
   return (
     familyValue.match(/([^:]+):?/)?.[1] as string
-  ).replace(/\+/g, ' ') as string;
+  ).replace(/\+/g, ' ');
 }
 
 function generateGoogleFontsUrl(familyValue: string): string {
@@ -33,7 +33,7 @@ async function getCss(googleFontsUrl: string): Promise<string> {
     try {
       const responseText = await (await fetch(googleFontsUrl)).text();
 
-      if (fontFaceCssRegex.test(responseText)) {
+      if (/@font-face/.test(responseText)) {
         resolve(responseText);
       };
     } catch (error) {
@@ -44,28 +44,37 @@ async function getCss(googleFontsUrl: string): Promise<string> {
 
 async function getOptimizedCss(
   googleFontsUrl: string,
-  characterChunks: string[]
+  characterChunks: string[],
+  unicodeRangeChunks: UnicodeRange[][]
 ): Promise<string> {
   let optimizedCss: string = '';
+  const amountOfChunks = characterChunks.length;
 
-  for (const characterChunk of characterChunks) {
+  for (let i = 0; i < amountOfChunks; i++) {
     const optimizedCssChunk = await getCss(
-      `${googleFontsUrl}&text=${characterChunk}`
+      `${googleFontsUrl}&text=${encodeURIComponent(characterChunks[i])}`
     );
 
-    if (defaultCssRegex.test(optimizedCssChunk)) {
+    if (/\/\* .+ \*\/\n@font-face/.test(optimizedCssChunk)) {
       throw Error('this font couldn\'t be optimized by Google Fonts');
     }
 
-    optimizedCss += optimizedCssChunk;
+    optimizedCss += optimizedCssChunk
+      .replaceAll(/(src: .+;)/g, `$1\n  unicode-range: ${generateCssUnicodeRange(
+        unicodeRangeChunks[i]
+      )};`);
   }
 
-  return optimizedCss;
+  return [...new Set(
+    (optimizedCss.match(/(\/\*.+\*\/\n)?.+ {\n([^}]+\n)+}(\n)?/g) as string[])
+      .reverse()
+  )]
+    .reverse()
+    .join('\n');
 }
 
-const woff2Request = new XMLHttpRequest();
-
 async function getWoff2Weight(woff2Url: string): Promise<number> {
+  const woff2Request = new XMLHttpRequest();
   woff2Request.open('GET', woff2Url);
   woff2Request.send();
   return new Promise((resolve, reject) => {
