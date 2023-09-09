@@ -1,14 +1,14 @@
 import { useState } from 'react';
 
-type PredefinedCharactersSubsetProps = {
+type PredefinedCharSubsetProps = {
   id: number,
   label: string
 };
 
-export default function PredefinedCharacterSubset({
+export default function PredefinedCharSubset({
   id,
   label
-}: PredefinedCharactersSubsetProps) {
+}: PredefinedCharSubsetProps) {
   const [checked, setChecked] = useState(false);
 
   return (
