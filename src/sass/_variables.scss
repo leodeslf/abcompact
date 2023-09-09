@@ -1,35 +1,34 @@
-$black--dark: hsl(0, 0%, 78%);
-$black--light: hsl(0, 0%, 81%);
-$grey--dark: hsl(0, 0%, 90%);
-$grey--light: hsl(0, 0%, 93%);
-$white--dark: hsl(0, 0%, 96%);
-$white--light: hsl(0, 0%, 100%);
+$black: hsl(0, 0%, 0%);
+$dark-grey: hsl(0, 0%, 45%);
+$blue: hsl(210, 100%, 88%);
+$light-grey: hsl(0, 0%, 90%);
+$white: hsl(0, 0%, 100%);
 
-$shadow--from-black: hsl(0, 0%, 70%);
-$shadow--from-grey: hsl(0, 0%, 82%);
-$shadow--from-white: hsl(0, 0%, 88%);
+$font-family--default: '"Noto Sans", sans-serif';
+$font-family--monospace: '"Noto Sans Mono", monospace';
+$font-family--preview: '\
+"Noto Sans (Cyrillic)", \
+"Noto Sans (Greek)", \
+"Noto Sans (Latin)", \
+"Noto Sans Arabic",\
+"Noto Sans Devanagari", \
+"Noto Sans Hebrew", \
+"Noto Sans JP (Hiragana)", \
+"Noto Sans JP (Kangxi Radicals)",\
+"Noto Sans JP (Katakana)", \
+"Noto Sans KR (Hangul)", \
+"Noto Sans Thai", \
+"Noto Color Emoji", \
+sans-serif';
 
-$color: hsl(0, 0%, 10%);
-$color--off: hsl(0, 0%, 55%);
-
-$border-radius: 4px;
-
-$font-family--default: "Roboto", "Noto Sans JP (Symbols)", sans-serif;
-$font-family--monospace: "Roboto Mono", monospace;
-$font-family--preview: "Noto Sans (Latin)", "Noto Sans (Cyrillic)", "Noto Sans (Devanagari)", "Noto Sans (Greek)",
-  "Noto Sans KR (Hangul)", "Noto Sans Hebrew", "Noto Sans JP (Hiragana)", "Noto Sans JP (Kangxi)",
-  "Noto Sans JP (Katakana)", "Noto Sans Thai", "Noto Sans Arabic", "Noto Color Emoji", sans-serif;
-
-$font-size--extra-large: 24px;
-$font-size--large: 18px;
-$font-size--medium: 14px;
-$font-size--small: 12px;
+$font-size--large: 19px;
+$font-size--default: 14.5px;
 
 $font-weight--normal: 400;
-$font-weight--bold: 500;
+$font-weight--bolder: 600;
 
-$distance--extra-large: 64px;
-$distance--large: 32px;
-$distance--medium: 8px;
-$distance--small: 4px;
-$distance--extra-small: 2px;
+$white-space--large: 50px;
+$white-space--medium: 20px;
+$white-space--small: 8px;
+
+$border-radius: 5px;
