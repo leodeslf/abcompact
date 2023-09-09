@@ -7,7 +7,7 @@ type UnicodeRange = {
 
 type RequestMemo = {
   googleFontsUrl: string,
-  characterUnits: string[]
+  charMolecules: string[]
 };
 
 type RequestStatus = {
@@ -17,12 +17,7 @@ type RequestStatus = {
   progressPhases: number
 };
 
-type CharacterAndUnicodeRangeChunk = {
-  characters: string,
-  unicodeRanges: UnicodeRange[]
-};
-
-// Registered == Standard (has a respective/equivalent CSS property).
+// Registered == Standard (has an equivalent CSS property).
 type RegisteredAxisTag = (
   'ital' |
   'opsz' |
@@ -66,24 +61,20 @@ type CustomAxisTag = (
 
 type AxisTag = RegisteredAxisTag | CustomAxisTag;
 
-type CamelCaseCssProperty = (
-  'fontOpticalSizing' |
-  'fontStretch' |
-  'fontStyle' |
-  'fontWeight'
-);
+type CharAtomToCharAtomIndexMap = {
+  [charAtom: string]: number
+};
 
-// type CamelCaseCssPropertyToMatch = (
-//   'fontStretch' |
-//   'fontStyle' |
-//   'fontWeight'
-// );
+type CharAtomToCharMoleculeIndicesMap = {
+  [charAtom: string]: number[]
+};
 
-// type KebabCaseCssPropertyToMatch = (
-//   'font-stretch' |
-//   'font-style' |
-//   'font-weight'
-// );
+type CharMoleculeToCharAtomIndicesMap = {
+  [CharMolecule: string]: {
+    charAtomIndices: number[],
+    charAtomIndicesAsString: string
+  }
+};
 
 type Bit = 0 | 1;
 
@@ -97,6 +88,25 @@ type FilesWeight = {
   css: WeightReport,
   woff2: WeightReport
 };
+
+// type CamelCaseCssPropertyToMatch = (
+//   'fontStretch' |
+//   'fontStyle' |
+//   'fontWeight'
+// );
+
+// type KebabCaseCssPropertyToMatch = (
+//   'font-stretch' |
+//   'font-style' |
+//   'font-weight'
+// );
+
+type CamelCaseCssProperty = (
+  'fontOpticalSizing' |
+  'fontStretch' |
+  'fontStyle' |
+  'fontWeight'
+);
 
 type CssPropertyToMatch = (
   'fontStretch' |
@@ -123,7 +133,7 @@ type OptimizedFontStyle = {
 };
 
 type OptimizedFontResults = {
-  characterCoverageBitmap: Bit[],
+  charMoleculesBitmap: Bit[],
   weightReport: FilesWeight,
   optimizedCss: string,
   styles: OptimizedFontStyle[]
