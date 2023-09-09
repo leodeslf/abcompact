@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { StrictMode } from 'react';
 import App from './App';
 import store from './stores/store';
+import { inject } from '@vercel/analytics';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -12,3 +13,4 @@ createRoot(document.getElementById('root')!).render(
     </Provider>
   </StrictMode>
 );
+inject();
