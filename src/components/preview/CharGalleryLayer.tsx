@@ -1,18 +1,17 @@
-type CharacterGalleryLayerProps = {
+type CharGalleryLayerProps = {
   children: React.ReactNode,
   style?: React.CSSProperties
 };
 
-const characterGalleryLayerClass = 'character-gallery__layer';
+const charGalleryLayerClass = 'char-gallery__layer';
 
-export default function CharacterGalleryLayer({
+export default function CharGalleryLayer({
   children,
   style
-}: CharacterGalleryLayerProps) {
+}: CharGalleryLayerProps) {
   return (
     <div
-      className={`${characterGalleryLayerClass} ${characterGalleryLayerClass
-        }--${style !== undefined ? 'included' : 'missing'}`}
+      className={`${charGalleryLayerClass} ${charGalleryLayerClass}--${style !== undefined ? 'included' : 'missing'}`}
       style={style}
     >
       {children}

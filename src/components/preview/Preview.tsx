@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useAppSelector } from "../../stores/hooks";
-import CharacterGallery from "./CharacterGallery";
+import CharGallery from "./CharGallery";
 import FontSelect from "./FontSelect";
 import StyleSelect from "./StyleSelect";
 import PageSelect from "./PageSelect";
@@ -45,7 +45,7 @@ export default function Preview() {
             }}
           />
         </Heading>
-        <CharacterGallery
+        <CharGallery
           {...{
             fontIndex,
             pageIndex,

@@ -1,4 +1,4 @@
-export default function CharacterUnitMissing() {
+export default function CharMoleculeMissing() {
   return (
     <div></div>
   );

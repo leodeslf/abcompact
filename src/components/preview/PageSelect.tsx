@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../stores/hooks";
-import { previewCharacterUnitsPerPage } from "../../ts/gui";
+import { previewCharMoleculesPerPage } from "../../ts/gui";
 
 type PageSelectProps = {
   pageIndex: number,
@@ -12,11 +12,11 @@ export default function PageSelect({
 }: PageSelectProps) {
   const {
     requestMemo: {
-      characterUnits
+      charMolecules
     }
   } = useAppSelector(state => state);
   const amountOfPages = Math.ceil(
-    characterUnits.length / previewCharacterUnitsPerPage
+    charMolecules.length / previewCharMoleculesPerPage
   );
 
   if (amountOfPages === 1) {

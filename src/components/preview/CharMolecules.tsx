@@ -1,28 +1,28 @@
 import { memo } from "react";
-import CharacterUnit from "./CharacterUnit";
-import CharacterUnitPlaceholder from "./CharacterUnitPlaceholder";
+import CharMolecule from "./CharMolecule";
+import CharMoleculePlaceholder from "./CharMoleculePlaceholder";
 
 // Works faster, not sure why.
-const CharacterUnitMemo = memo(CharacterUnit);
-const CharacterUnitPlaceholderMemo = memo(CharacterUnitPlaceholder);
+const CharMoleculeMemo = memo(CharMolecule);
+const CharMoleculePlaceholderMemo = memo(CharMoleculePlaceholder);
 
-type CharacterUnitsProps = {
+type CharMoleculesProps = {
   bitToMatch: Bit,
-  characterCoverageBitmap: Bit[],
-  characterUnits: string[]
+  charMoleculesBitmap: Bit[],
+  charMolecules: string[]
 };
 
-export default function CharacterUnits({
+export default function CharMolecules({
   bitToMatch,
-  characterCoverageBitmap,
-  characterUnits
-}: CharacterUnitsProps) {
+  charMoleculesBitmap,
+  charMolecules
+}: CharMoleculesProps) {
   return (<>
-    {characterUnits.map((characterUnit, i) => (
-      (characterCoverageBitmap[i] === bitToMatch) ? (
-        <CharacterUnitMemo key={i} {...{ characterUnit }} />
+    {charMolecules.map((charMolecule, i) => (
+      (charMoleculesBitmap[i] === bitToMatch) ? (
+        <CharMoleculeMemo key={i} {...{ charMolecule: charMolecule }} />
       ) : (
-        <CharacterUnitPlaceholderMemo key={i} />
+        <CharMoleculePlaceholderMemo key={i} />
       )
     ))}
   </>);

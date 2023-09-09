@@ -1,66 +1,66 @@
 import { familyPrefix, usePreviewPagination } from "../../ts/gui";
 import { memo, useMemo } from "react";
 import { useAppSelector } from "../../stores/hooks";
-import CharacterGalleryLayer from "./CharacterGalleryLayer";
-import CharacterUnits from "./CharacterUnits";
+import CharGalleryLayer from "./CharGalleryLayer";
+import CharMolecules from "./CharMolecules";
 
-const CharacterUnitsMemo = memo(CharacterUnits);
+const CharMoleculesMemo = memo(CharMolecules);
 
-type CharacterGalleryProps = {
+type CharGalleryProps = {
   fontIndex: number,
   styleIndex: number,
   pageIndex: number
 };
 
-export default function CharacterGallery({
+export default function CharGallery({
   fontIndex,
   styleIndex,
   pageIndex
-}: CharacterGalleryProps) {
+}: CharGalleryProps) {
   const {
     optimizedFonts,
     requestMemo: {
-      characterUnits
+      charMolecules
     }
   } = useAppSelector(state => state);
   const {
     results: {
-      characterCoverageBitmap,
+      charMoleculesBitmap,
       styles
     },
     family
   } = optimizedFonts[fontIndex] as OptimizedFontWithoutError;
   const { cssProperties } = styles[styleIndex];
   const [pageStart, pageEnd] = usePreviewPagination(pageIndex);
-  const characterUnitsPage = useMemo(
-    () => characterUnits.slice(pageStart, pageEnd),
+  const charMoleculesPage = useMemo(
+    () => charMolecules.slice(pageStart, pageEnd),
     [pageIndex]
   );
-  const characterCoverageBitmapPage = useMemo(
-    () => characterCoverageBitmap.slice(pageStart, pageEnd),
-    [characterCoverageBitmap, pageIndex]
+  const charMoleculesBitmapPage = useMemo(
+    () => charMoleculesBitmap.slice(pageStart, pageEnd),
+    [charMoleculesBitmap, pageIndex]
   );
 
   return (
-    <div className="character-gallery">
-      <CharacterGalleryLayer style={{
+    <div className="char-gallery">
+      <CharGalleryLayer style={{
         fontFamily: `"${familyPrefix}${family}", serif`,
         fontVariationSettings: cssProperties.fontVariationSettings, // *
         fontStyle: cssProperties.fontStyle, // Needs to be set >:(
       }}>
-        <CharacterUnitsMemo
+        <CharMoleculesMemo
           bitToMatch={1}
-          characterCoverageBitmap={characterCoverageBitmapPage}
-          characterUnits={characterUnitsPage}
+          charMoleculesBitmap={charMoleculesBitmapPage}
+          charMolecules={charMoleculesPage}
         />
-      </CharacterGalleryLayer>
-      <CharacterGalleryLayer>
-        <CharacterUnitsMemo
+      </CharGalleryLayer>
+      <CharGalleryLayer>
+        <CharMoleculesMemo
           bitToMatch={0}
-          characterCoverageBitmap={characterCoverageBitmapPage}
-          characterUnits={characterUnitsPage}
+          charMoleculesBitmap={charMoleculesBitmapPage}
+          charMolecules={charMoleculesPage}
         />
-      </CharacterGalleryLayer>
+      </CharGalleryLayer>
     </div>
   );
 };

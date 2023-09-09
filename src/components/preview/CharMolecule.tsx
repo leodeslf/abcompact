@@ -1,21 +1,18 @@
-type CharacterUnitIncludedProps = {
-  characterUnit: string
+type CharMoleculeProps = {
+  charMolecule: string
 };
 
-export default function CharacterUnitIncluded({
-  characterUnit
-}: CharacterUnitIncludedProps) {
+export default function CharMolecule({ charMolecule }: CharMoleculeProps) {
   return (
     <span
-      title={`"${characterUnit}" = ${[...characterUnit]
-        .map(character => `U+${((character
-          .codePointAt(0)) as number)
+      title={`"${charMolecule}" = ${[...charMolecule]
+        .map(charAtom => `U+${(charAtom.codePointAt(0) as number)
           .toString(16)
-          .toUpperCase()}`)
-        .join(' ')
+          .toUpperCase()}`
+        ).join(' ')
         }.`}
     >
-      {characterUnit}
+      {charMolecule}
     </span>
   );
 }
