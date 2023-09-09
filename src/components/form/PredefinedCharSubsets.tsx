@@ -1,18 +1,17 @@
 import { ChangeEvent, forwardRef, memo } from 'react';
-import predefinedCharacterSubsets from
-  '../../json/predefinedCharacterSubsets.json';
-import PredefinedCharacterSubset from './PredefinedCharacterSubset';
+import PredefinedCharSubset from './PredefinedCharSubset';
+import predefinedCharSubsets from '../../json/predefinedCharSubsets.json';
 
-const PredefinedCharacterSubsetMemo = memo(PredefinedCharacterSubset);
+const PredefinedCharSubsetMemo = memo(PredefinedCharSubset);
 
-type PredefinedCharacterSubsetsProps = {
+type PredefinedCharSubsetsProps = {
   amountOfSelectedSubsets: number,
   setAmountOfSelectedSubsets: (amount: number) => void;
 };
 
-const PredefinedCharacterSubsets = forwardRef<
+const PredefinedCharSubsets = forwardRef<
   HTMLFieldSetElement,
-  PredefinedCharacterSubsetsProps
+  PredefinedCharSubsetsProps
 >(({
   amountOfSelectedSubsets,
   setAmountOfSelectedSubsets
@@ -37,9 +36,9 @@ const PredefinedCharacterSubsets = forwardRef<
         Predefined Subsets
       </legend>
       <ul>
-        {predefinedCharacterSubsets.map(({ id, name }) => (
+        {predefinedCharSubsets.map(({ id, name }) => (
           <li key={id}>
-            <PredefinedCharacterSubsetMemo
+            <PredefinedCharSubsetMemo
               id={id}
               key={id}
               label={name}
@@ -51,4 +50,4 @@ const PredefinedCharacterSubsets = forwardRef<
   );
 });
 
-export default PredefinedCharacterSubsets;
+export default PredefinedCharSubsets;

@@ -1,17 +1,16 @@
 import { FormEvent, useRef, useState } from "react";
 import { getGoogleFontsUrl } from "../../ts/googleFontsApi";
 import { requestOptimizedFonts } from "../../ts/googleFontsOptimization";
-import CustomCharacters from "./CustomCharacters";
+import CustomChars from "./CustomChars";
 import GoogleFontsCode from "./GoogleFontsCode";
-import predefinedCharacterSubsets from
-  '../../json/predefinedCharacterSubsets.json';
-import PredefinedCharacterSubsets from "./PredefinedCharacterSubsets";
+import predefinedCharSubsets from '../../json/predefinedCharSubsets.json';
+import PredefinedCharSubsets from "./PredefinedCharSubsets";
 import SubmitButton from "./SubmitButton";
 
 export default function Form() {
   const googleFontsCodeRef = useRef<HTMLInputElement>(null);
-  const customCharactersRef = useRef<HTMLTextAreaElement>(null);
-  const predefinedCharacterSubsetsRef = useRef<HTMLFieldSetElement>(null);
+  const customCharsRef = useRef<HTMLTextAreaElement>(null);
+  const predefinedCharSubsetsRef = useRef<HTMLFieldSetElement>(null);
   const [
     amountOfSelectedSubsets,
     setAmountOfSelectedSubsets
@@ -21,22 +20,21 @@ export default function Form() {
     event: FormEvent<HTMLFormElement>
   ): Promise<void> {
     event.preventDefault();
-    const inputCharacters = (
-      customCharactersRef.current as HTMLTextAreaElement
+    const inputChars = (
+      customCharsRef.current as HTMLTextAreaElement
     ).value;
     const inputUnicodeRanges = [...(
-      predefinedCharacterSubsetsRef.current as HTMLFieldSetElement
+      predefinedCharSubsetsRef.current as HTMLFieldSetElement
     ).getElementsByTagName('input')]
       .filter(({ checked }) => checked)
       .map(({ value }) =>
-        predefinedCharacterSubsets
+        predefinedCharSubsets
           .filter(({ id }) => id === Number(value))[0]
           .unicodeRanges
-      )
-      .flat();
+      ).flat();
     await requestOptimizedFonts(
       getGoogleFontsUrl((googleFontsCodeRef.current as HTMLInputElement).value),
-      inputCharacters,
+      inputChars,
       inputUnicodeRanges
     );
   };
@@ -47,13 +45,13 @@ export default function Form() {
       onSubmit={onSubmitEventHandler}
     >
       <GoogleFontsCode ref={googleFontsCodeRef} />
-      <div className="characters__container">
-        <CustomCharacters
-          ref={customCharactersRef}
+      <div className="chars__container">
+        <CustomChars
+          ref={customCharsRef}
           isRequired={amountOfSelectedSubsets === 0}
         />
-        <PredefinedCharacterSubsets
-          ref={predefinedCharacterSubsetsRef}
+        <PredefinedCharSubsets
+          ref={predefinedCharSubsetsRef}
           {...{
             amountOfSelectedSubsets,
             setAmountOfSelectedSubsets

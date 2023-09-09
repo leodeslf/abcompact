@@ -1,35 +1,35 @@
 import { forwardRef, useState } from "react";
 
-type CustomCharactersProps = {
+type CustomCharsProps = {
   isRequired: boolean;
 };
 
-const CustomCharacters = forwardRef<
+const CustomChars = forwardRef<
   HTMLTextAreaElement,
-  CustomCharactersProps
+  CustomCharsProps
 >(({
   isRequired
 },
   ref
 ) => {
-  const [characters, setCharacters] = useState('');
+  const [chars, setChars] = useState('');
 
   return (
-    <div className="custom-characters__container">
-      <label htmlFor="custom-characters">
+    <div className="custom-chars__container">
+      <label htmlFor="custom-chars">
         Characters
       </label>
       <textarea
-        id="custom-characters"
+        id="custom-chars"
         required={isRequired}
-        onChange={({ target }) => setCharacters(target.value)}
+        onChange={({ target }) => setChars(target.value)}
         placeholder="Case sensitive..."
         ref={ref}
         spellCheck={false}
-        value={characters}
+        value={chars}
       />
     </div>
   );
 });
 
-export default CustomCharacters;
+export default CustomChars;
