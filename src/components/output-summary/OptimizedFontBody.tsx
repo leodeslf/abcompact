@@ -3,8 +3,8 @@ import DefaultVsOptimizedTds from "./DefaultVsOptimizedTds";
 
 export default function OptimizedFontBody({
   results: {
-    characterCoverageBitmap,
-    filesWeight,
+    charMoleculesBitmap,
+    weightReport,
     optimizedCss,
     styles
   },
@@ -12,13 +12,13 @@ export default function OptimizedFontBody({
 }: OptimizedFontWithoutError) {
   const {
     requestMemo: {
-      characterUnits: {
-        length: requiredCharacterUnits
+      charMolecules: {
+        length: amountOfRequiredCharMolecules
       }
     }
   } = useAppSelector(state => state);
-  const missingCharacterUnits = characterCoverageBitmap
-    .filter(item => !item)
+  const amountOfMissingCharMolecules = charMoleculesBitmap
+    .filter(bit => !bit)
     .length;
 
   return (
@@ -26,12 +26,12 @@ export default function OptimizedFontBody({
       <td>
         {family}{styles.length > 1 && <span role="status">
           {styles.length} styles
-        </span>}{missingCharacterUnits > 0 && <span
+        </span>}{amountOfMissingCharMolecules > 0 && <span
           role="alert"
-          title={`${missingCharacterUnits} character${missingCharacterUnits > 1 ? 's' : ''} missing.`}
+          title={`${amountOfMissingCharMolecules} character${amountOfMissingCharMolecules > 1 ? 's' : ''} missing.`}
         >
-          {requiredCharacterUnits - missingCharacterUnits}
-          /{requiredCharacterUnits} characters
+          {amountOfRequiredCharMolecules - amountOfMissingCharMolecules}
+          /{amountOfRequiredCharMolecules} characters
         </span>}
       </td>
       <td>
@@ -43,8 +43,8 @@ export default function OptimizedFontBody({
         </button>
       </td>
       {<DefaultVsOptimizedTds {...{
-        defaultWeight: filesWeight.css.default + filesWeight.woff2.default,
-        optimizedWeight: filesWeight.css.optimized + filesWeight.woff2.optimized
+        defaultWeight: weightReport.css.default + weightReport.woff2.default,
+        optimizedWeight: weightReport.css.optimized + weightReport.woff2.optimized
       }} />}
     </tr>
   );
