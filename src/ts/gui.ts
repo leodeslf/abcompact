@@ -12,7 +12,7 @@ function useReadableFileWeight(value: number): [
   roundedValue: number,
   valueUnit: string
 ] {
-  const sign = value >= 0 ? 1 : -1; // To cover the case of negative values.
+  const sign = value >= 0 ? 1 : -1;
   const absoluteValue = Math.abs(value);
   let roundedValue: number;
   let valueUnit: string;
@@ -22,14 +22,13 @@ function useReadableFileWeight(value: number): [
     valueUnit = 'B';
   } else if (absoluteValue >= kb && absoluteValue < mb) {
     roundedValue = absoluteValue / kb * sign;
-    valueUnit = 'KB'/* '㎅' */;
-  } else { // if (absoluteValue >= mb)
+    valueUnit = 'KB';
+  } else {
     roundedValue = absoluteValue / mb * sign;
-    valueUnit = 'MB'/* '㎆' */;
+    valueUnit = 'MB';
   }
 
-  roundedValue = Number(roundedValue.toFixed(1));
-  return [roundedValue, valueUnit];
+  return [Number(roundedValue.toFixed(1)), valueUnit];
 }
 
 function getPercentage(unit: number, fraction: number): number {
@@ -75,16 +74,16 @@ function getReadableCssProperties(fontVariationSettings: string): string {
 }
 
 const familyPrefix = 'Fontima - ';
-const previewColumns = 15;
+const previewColumns = 16;
 const previewRows = 45;
-const previewCharacterUnitsPerPage = previewColumns * previewRows;
+const previewCharMoleculesPerPage = previewColumns * previewRows;
 
 function usePreviewPagination(
   pageIndex: number
 ): [pageStart: number, pageEnd: number] {
   return [
-    pageIndex * previewCharacterUnitsPerPage,
-    (pageIndex + 1) * previewCharacterUnitsPerPage
+    previewCharMoleculesPerPage * pageIndex,
+    previewCharMoleculesPerPage * (pageIndex + 1)
   ];
 }
 
@@ -92,7 +91,7 @@ export {
   familyPrefix,
   getPercentage,
   getReadableCssProperties,
-  previewCharacterUnitsPerPage,
+  previewCharMoleculesPerPage,
   usePreviewPagination,
-  useReadableFileWeight
+  useReadableFileWeight,
 };
