@@ -147,17 +147,16 @@ async function requestOptimizedFonts(
     charAtomToCharAtomIndexMap
   } = generateCharAtoms(allInputChars);
   const charMolecules = generateCharMolecules(allInputChars);
-  const charMoleculeToCharAtomIndicesMap =
-    generateCharMoleculeToCharAtomIndicesMap(
-      charAtomToCharAtomIndexMap,
-      charMolecules
-    );
+  const charMoleculeToCharAtomsDataMap = generateCharMoleculeToCharAtomsDataMap(
+    charAtomToCharAtomIndexMap,
+    charMolecules
+  );
   const optimizedFonts = getOptimizedFonts(
     familyValues,
     charAtoms,
     charAtomToCharAtomIndexMap,
     charMolecules,
-    charMoleculeToCharAtomIndicesMap
+    charMoleculeToCharAtomsDataMap
   );
   store.dispatch(requestStatusInitialize(familyValues.length));
   store.dispatch(requestMemoSet({ googleFontsUrl, charMolecules }));

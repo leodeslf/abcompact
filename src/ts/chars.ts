@@ -131,20 +131,22 @@ function generateCharMolecules(chars: string): string[] {
   );
 }
 
-function generateCharMoleculeToCharAtomIndicesMap(
+function generateCharMoleculeToCharAtomsDataMap(
   charAtomToCharAtomIndexMap: CharAtomToCharAtomIndexMap,
   charMolecules: string[],
-): CharMoleculeToCharAtomIndicesMap {
-  const charMoleculeToCharAtomIndices: CharMoleculeToCharAtomIndicesMap = {};
+): CharMoleculeToCharAtomsDataMap {
+  const charMoleculeToCharAtomsDataMap: CharMoleculeToCharAtomsDataMap = {};
   charMolecules.forEach(charMolecule => {
-    const charAtomIndices = sortCharMolecules([...new Set(charMolecule)])
+    const charAtoms = sortCharMolecules([...new Set(charMolecule)]);
+    const charAtomIndices = charAtoms
       .map(charAtom => charAtomToCharAtomIndexMap[charAtom]);
-    charMoleculeToCharAtomIndices[charMolecule] = {
+    charMoleculeToCharAtomsDataMap[charMolecule] = {
+      charAtoms,
       charAtomIndices,
       charAtomIndicesAsString: charAtomIndices.toString()
     }
   });
-  return charMoleculeToCharAtomIndices;
+  return charMoleculeToCharAtomsDataMap;
 }
 
 function generateCharReport(
@@ -159,9 +161,9 @@ function generateCharReport(
   const charAtomToMissingCharMoleculeIndicesMap:
     CharAtomToCharMoleculeIndicesMap = {};
   charMolecules.forEach((charMolecule, i) => {
-    const charAtoms = sortCharMolecules([...new Set(charMolecule)]);
-
-    for (const charAtom of charAtoms) {
+    for (
+      const charAtom of charMoleculeToCharAtomsDataMap[charMolecule].charAtoms
+    ) {
       if (!charAtomToMissingCharMoleculeIndicesMap[charAtom]) {
         charAtomToMissingCharMoleculeIndicesMap[charAtom] = [i];
       } else {
@@ -267,7 +269,7 @@ function generateUnicodeRangesFromChars(chars: string): UnicodeRange[] {
 function generateRequestChunks(
   charAtoms: string[],
   charMolecules: string[],
-  charMoleculeToCharAtomIndicesMap: CharMoleculeToCharAtomIndicesMap
+  charMoleculeToCharAtomsDataMap: CharMoleculeToCharAtomsDataMap
 ): {
   charChunks: string[],
   unicodeRangeChunks: UnicodeRange[][]
@@ -284,7 +286,7 @@ function generateRequestChunks(
     const {
       charAtomIndices,
       charAtomIndicesAsString
-    } = charMoleculeToCharAtomIndicesMap[charMolecule];
+    } = charMoleculeToCharAtomsDataMap[charMolecule];
     let charMoleculeIsAssigned: boolean = false;
     let notAssignedCharAtomIndices: number[] = [...charAtomIndices];
     let assignableChunkIndex: number = -1;
@@ -368,6 +370,7 @@ export {
   generateCharMoleculeToCharAtomIndicesMap,
   generateCharAtoms,
   generateCharMolecules,
+  generateCharMoleculeToCharAtomsDataMap,
   generateCharReport,
   generateRequestChunks,
   generateUnicodeRangesFromChars,
