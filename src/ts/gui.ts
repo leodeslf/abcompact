@@ -3,7 +3,7 @@ import {
   styleTupleValueToCssValue,
   weightToWeightName,
   widthToWidthName
-} from "./styles.js";
+} from "./styles";
 
 const kb = 1_000;
 const mb = 1_000_000;
@@ -35,7 +35,7 @@ function getPercentage(unit: number, fraction: number): number {
   return Number((unit === 0 ? NaN : fraction / unit * 100).toFixed(1));
 }
 
-function getReadableCssProperties(fontVariationSettings: string): string {
+function useReadableCssProperties(fontVariationSettings: string): string {
   const styles = fontVariationSettings.match(/"\w{4}" [^,]+/g);
 
   if (styles === null) {
@@ -44,7 +44,6 @@ function getReadableCssProperties(fontVariationSettings: string): string {
 
   return styles
     .map(style => {
-      // At this point both matches are guaranteed, so we seal the types.
       const styleHeader = style.match(/"(\w{4})"/)?.[1] as AxisTag;
       const styleTupleValue = style.match(/"\w{4}" (.+)/)?.[1] as string;
       let propertyValue: string = styleTupleValue;
@@ -74,9 +73,11 @@ function getReadableCssProperties(fontVariationSettings: string): string {
 }
 
 const familyPrefix = 'Fontima - ';
-const previewColumns = 16;
-const previewRows = 45;
-const previewCharMoleculesPerPage = previewColumns * previewRows;
+const previewCharMoleculesPerPage = (() => {
+  const previewColumns = 16;
+  const previewRows = 45;
+  return previewColumns * previewRows;
+})();
 
 function usePreviewPagination(
   pageIndex: number
@@ -90,8 +91,8 @@ function usePreviewPagination(
 export {
   familyPrefix,
   getPercentage,
-  getReadableCssProperties,
   previewCharMoleculesPerPage,
   usePreviewPagination,
+  useReadableCssProperties,
   useReadableFileWeight,
 };

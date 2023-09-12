@@ -1,20 +1,20 @@
 import {
   generateGoogleFontsUrl,
+  generateOptimizedCss,
   getCss,
   getFamily,
   getFamilyValues,
-  getOptimizedCss,
-  getTotalWoff2Weight
+  getTotalWoff2Weight,
 } from "./googleFontsApi";
 import { getStyles, loadStyles } from "./styles";
 import { getWoff2Urls } from "./googleFontsCss";
 import {
   generateCharAtoms,
   generateCharMolecules,
-  generateCharMoleculeToCharAtomIndicesMap,
+  generateCharMoleculeToCharAtomsDataMap,
   generateCharReport,
+  generateCharsFromUnicodeRanges,
   generateRequestChunks,
-  getCharsFromUnicodeRanges,
   getWhiteListedChars,
 } from "./chars";
 import store from "../stores/store";
@@ -64,9 +64,8 @@ async function getWeightReport(
 async function* getOptimizedFonts(
   familyValues: string[],
   charAtoms: string[],
-  charAtomToCharAtomIndexMap: CharAtomToCharAtomIndexMap,
   charMolecules: string[],
-  charMoleculeToCharAtomIndicesMap: CharMoleculeToCharAtomIndicesMap
+  charMoleculeToCharAtomsDataMap: CharMoleculeToCharAtomsDataMap
 ): AsyncGenerator<OptimizedFont, void, unknown> {
   let index: number = 0;
 
@@ -87,15 +86,16 @@ async function* getOptimizedFonts(
         usedCssFontFaceRules
       } = generateCharReport(
         charMolecules,
+        charMoleculeToCharAtomsDataMap,
         defaultCss,
         (familyValue.match(/@(.*)+/)?.[1] || '').split(';').length
       );
       const { charChunks, unicodeRangeChunks } = generateRequestChunks(
         charAtoms,
         charMoleculesAvailable,
-        charMoleculeToCharAtomIndicesMap,
+        charMoleculeToCharAtomsDataMap,
       );
-      const optimizedCss = await getOptimizedCss(
+      const optimizedCss = await generateOptimizedCss(
         googleFontsUrl,
         charChunks,
         unicodeRangeChunks
@@ -139,9 +139,8 @@ async function requestOptimizedFonts(
   inputUnicodeRanges: UnicodeRange[]
 ): Promise<void> {
   const familyValues = getFamilyValues(googleFontsUrl);
-  const charsFromUnicodeRanges = getCharsFromUnicodeRanges(inputUnicodeRanges);
   const allInputChars = getWhiteListedChars(inputChars)
-    .concat(charsFromUnicodeRanges);
+    .concat(generateCharsFromUnicodeRanges(inputUnicodeRanges));
   const {
     charAtoms,
     charAtomToCharAtomIndexMap
@@ -154,7 +153,6 @@ async function requestOptimizedFonts(
   const optimizedFonts = getOptimizedFonts(
     familyValues,
     charAtoms,
-    charAtomToCharAtomIndexMap,
     charMolecules,
     charMoleculeToCharAtomsDataMap
   );

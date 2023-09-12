@@ -1,12 +1,12 @@
-import { getStyleHeaders, getStyleTuples } from "./googleFontsApi.js";
+import { getStyleHeaders, getStyleTuples } from "./googleFontsApi";
 import {
   generateCssUnicodeRange,
   getFontFaceRules,
   getWoff2Url
-} from "./googleFontsCss.js";
-import { familyPrefix } from "./gui.js";
+} from "./googleFontsCss";
+import { familyPrefix } from "./gui";
 
-function getDefaultStyle(
+function generateDefaultStyle(
   optimizedCss: string,
   unicodeRangeChunks: UnicodeRange[][]
 ): OptimizedFontStyle {
@@ -44,7 +44,7 @@ const styleTupleValueToCssValue = {
 };
 
 // Parse into CSS properties (from headers) and values (from tuple).
-function parseStyleHeadersAndTuple(
+function generateCssProperties(
   styleHeaders: AxisTag[],
   styleTuple: string[]
 ): CssProperties {
@@ -80,7 +80,7 @@ const camelCaseCssPropertyToKebabCaseCssProperty: {
   fontWeight: 'font-weight'
 };
 
-function getStyleMatchingCssFontFaceRules(
+function getStyleMatchingFontFaceRules(
   optimizedCss: string,
   cssProperties: CssProperties
 ): string[] {
@@ -109,7 +109,7 @@ function getStyleMatchingCssFontFaceRules(
     });
 }
 
-function getNonDefaultStyles(
+function generateNonDefaultStyles(
   optimizedCss: string,
   unicodeRangeChunks: UnicodeRange[][],
   styleHeaders: AxisTag[],
@@ -117,17 +117,17 @@ function getNonDefaultStyles(
 ): OptimizedFontStyle[] {
   return styleTuples
     .map(styleTuple => {
-      const cssProperties = parseStyleHeadersAndTuple(styleHeaders, styleTuple);
-      const matchingCssFontFaceRules = getStyleMatchingCssFontFaceRules(
+      const cssProperties = generateCssProperties(styleHeaders, styleTuple);
+      const styleMatchingFontFaceRules = getStyleMatchingFontFaceRules(
         optimizedCss,
         cssProperties
       );
       return {
         cssProperties,
-        chunkedCssPropertiesList: matchingCssFontFaceRules
-          .map<ChunkedCssProperties>((matchingCssFontFaceRule, i) => ({
+        chunkedCssPropertiesList: styleMatchingFontFaceRules
+          .map<ChunkedCssProperties>((styleMatchingFontFaceRule, i) => ({
             unicodeRange: generateCssUnicodeRange(unicodeRangeChunks[i]),
-            url: getWoff2Url(matchingCssFontFaceRule)
+            url: getWoff2Url(styleMatchingFontFaceRule)
           }))
       };
     });
@@ -141,10 +141,10 @@ function getStyles(
   const styleHeaders = getStyleHeaders(familyValue);
 
   if (styleHeaders === null) {
-    return [getDefaultStyle(optimizedCss, unicodeRangeChunks)];
+    return [generateDefaultStyle(optimizedCss, unicodeRangeChunks)];
   }
 
-  return getNonDefaultStyles(
+  return generateNonDefaultStyles(
     optimizedCss,
     unicodeRangeChunks,
     styleHeaders,
@@ -183,7 +183,6 @@ async function loadStyles(
 ): Promise<void> {
   for (const style of styles) {
     for (const chunkedCssPropertiesItem of style.chunkedCssPropertiesList) {
-      // Font name is changed in order to avoid any override.
       const fontFace = new FontFace(
         `${familyWrapper}${familyPrefix}${family}${familyWrapper}`,
         `url(${chunkedCssPropertiesItem.url})`,
@@ -269,12 +268,12 @@ const widthToWidthName = {
 };
 
 export {
-  getDefaultStyle,
-  getNonDefaultStyles,
-  getStyleMatchingCssFontFaceRules,
+  generateCssProperties,
+  generateDefaultStyle,
+  generateNonDefaultStyles,
+  getStyleMatchingFontFaceRules,
   getStyles,
   loadStyles,
-  parseStyleHeadersAndTuple,
   styleHeaderToReadableName,
   styleTupleValueToCssValue,
   weightToWeightName,

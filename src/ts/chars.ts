@@ -3,7 +3,7 @@ import {
   getFontFaceRules
 } from "./googleFontsCss";
 
-function getCharsFromUnicodeRange({ start, end }: UnicodeRange): string {
+function generateCharsFromUnicodeRange({ start, end }: UnicodeRange): string {
   let chars: string = '';
   let index: number = parseInt('0x'.concat(start));
   const lastIndex = parseInt('0x'.concat(end));
@@ -15,16 +15,16 @@ function getCharsFromUnicodeRange({ start, end }: UnicodeRange): string {
   return chars;
 }
 
-function getCharsFromUnicodeRanges(unicodeRanges: UnicodeRange[]): string {
+function generateCharsFromUnicodeRanges(unicodeRanges: UnicodeRange[]): string {
   return unicodeRanges
     .reduce((chars, unicodeRange) =>
-      chars.concat(getCharsFromUnicodeRange(unicodeRange)),
+      chars.concat(generateCharsFromUnicodeRange(unicodeRange)),
       ''
     );
 }
 
 // Control characters from (Basic) ASCII and Supplement-ASCII.
-const blackListedChars = getCharsFromUnicodeRanges([
+const blackListedChars = generateCharsFromUnicodeRanges([
   { start: "0", end: "1F" },
   { start: "80", end: "9F" }
 ]);
@@ -151,6 +151,7 @@ function generateCharMoleculeToCharAtomsDataMap(
 
 function generateCharReport(
   charMolecules: string[],
+  charMoleculeToCharAtomsDataMap: CharMoleculeToCharAtomsDataMap,
   defaultCss: string,
   amountOfStyles: number
 ): {
@@ -181,7 +182,7 @@ function generateCharReport(
   // Every style includes the same characters, so loop through the 1ts one only.
   for (let i = 0; i < amountOfFontFaceRulesPerStyle; i++) {
     let fontFaceRuleIsUsed: boolean = false;
-    const fontFaceRuleChars = getCharsFromUnicodeRanges(
+    const fontFaceRuleChars = generateCharsFromUnicodeRanges(
       generateUnicodeRangesFromCss(fontFaceRulesFirstStyle[i])
     );
 
@@ -320,18 +321,14 @@ function generateRequestChunks(
 
       // Not assigned characters do not fit, reset values.
       if (
-        (charAtomIndicesChunk.length +
-          notAssignedCharAtomIndices.length) > 800
+        (charAtomIndicesChunk.length + notAssignedCharAtomIndices.length) > 800
       ) {
         notAssignedCharAtomIndices = [...charAtomIndices];
         assignableChunkIndex = -1;
       }
 
       // Assign them all to this chunk if none is assigned yet.
-      if (
-        notAssignedCharAtomIndices.length ===
-        charAtomIndices.length
-      ) {
+      if (notAssignedCharAtomIndices.length === charAtomIndices.length) {
         assignableChunkIndex = j;
       }
     }
@@ -367,15 +364,14 @@ function generateRequestChunks(
 }
 
 export {
-  generateCharMoleculeToCharAtomIndicesMap,
   generateCharAtoms,
   generateCharMolecules,
   generateCharMoleculeToCharAtomsDataMap,
   generateCharReport,
+  generateCharsFromUnicodeRange,
+  generateCharsFromUnicodeRanges,
   generateRequestChunks,
   generateUnicodeRangesFromChars,
-  getCharsFromUnicodeRange,
-  getCharsFromUnicodeRanges,
   getWhiteListedChars,
   sortCharMolecules,
 };

@@ -1,4 +1,4 @@
-import { generateCssUnicodeRange } from "./googleFontsCss.js";
+import { generateCssUnicodeRange } from "./googleFontsCss";
 
 /**
  * Equivalent regex for HTML (manually tested):
@@ -42,27 +42,27 @@ async function getCss(googleFontsUrl: string): Promise<string> {
   });
 }
 
-async function getOptimizedCss(
+async function generateOptimizedCss(
   googleFontsUrl: string,
-  characterChunks: string[],
+  charChunks: string[],
   unicodeRangeChunks: UnicodeRange[][]
 ): Promise<string> {
   let optimizedCss: string = '';
-  const amountOfChunks = characterChunks.length;
+  const amountOfChunks = charChunks.length;
 
   for (let i = 0; i < amountOfChunks; i++) {
     const optimizedCssChunk = await getCss(
-      `${googleFontsUrl}&text=${encodeURIComponent(characterChunks[i])}`
+      `${googleFontsUrl}&text=${encodeURIComponent(charChunks[i])}`
     );
 
     if (/\/\* .+ \*\/\n@font-face/.test(optimizedCssChunk)) {
       throw Error('this font couldn\'t be optimized by Google Fonts');
     }
 
-    optimizedCss += optimizedCssChunk
-      .replaceAll(/(src: .+;)/g, `$1\n  unicode-range: ${generateCssUnicodeRange(
-        unicodeRangeChunks[i]
-      )};`);
+    optimizedCss += optimizedCssChunk.replaceAll(
+      /(src: .+;)/g,
+      `$1\n  unicode-range: ${generateCssUnicodeRange(unicodeRangeChunks[i])};`
+    );
   }
 
   return [...new Set(
@@ -114,14 +114,14 @@ function getStyleTuples(familyValue: string): string[][] | null {
 
 export {
   generateGoogleFontsUrl,
+  generateOptimizedCss,
   getCss,
-  getFamilyValues,
   getFamily,
+  getFamilyValues,
   getGoogleFontsUrl,
-  getOptimizedCss,
   getStyleHeaders,
   getStyleTuples,
   getTotalWoff2Weight,
   getWoff2Weight,
-  googleFontsUrlRegex
+  googleFontsUrlRegex,
 };

@@ -16,7 +16,7 @@ function getCssUnicodeRanges(css: string): string[] {
     .flat();
 }
 
-function parseCssUnicodeRange(cssUnicodeRange: string): UnicodeRange {
+function generateUnicodeRangeFromCss(cssUnicodeRange: string): UnicodeRange {
   const boundaries = cssUnicodeRange.match(/[\dA-Fa-f]{1,6}/g) as string[];
   return {
     start: boundaries[0],
@@ -25,12 +25,11 @@ function parseCssUnicodeRange(cssUnicodeRange: string): UnicodeRange {
 }
 
 function generateUnicodeRangesFromCss(css: string): UnicodeRange[] {
-  return getCssUnicodeRanges(css).map(parseCssUnicodeRange);
+  return getCssUnicodeRanges(css).map(generateUnicodeRangeFromCss);
 }
 
 function getFontFaceRules(css: string): string[] {
-  return css
-    .match(/(\/\*.+\*\/\n)?@font-face {\n([^}]+\n)+}(\n)?/g) as string[];
+  return css.match(/(\/\*.+\*\/\n)?@font-face([^}]+\n)+}(\n)?/g) as string[];
 }
 
 function getWoff2Url(css: string): string {
@@ -52,7 +51,6 @@ export {
   generateCssUnicodeRange,
   generateUnicodeRangesFromCss,
   getFontFaceRules,
-  getCssUnicodeRangeLine,
   getCssUnicodeRangeValue,
   getWoff2Url,
   getWoff2Urls,
