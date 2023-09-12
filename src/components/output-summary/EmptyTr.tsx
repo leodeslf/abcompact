@@ -3,7 +3,7 @@ import EmptyTd from "./EmptyTd";
 export default function EmptyTr() {
   return (
     <tr>
-      <EmptyTd />
+      <EmptyTd colSpan={6} />
     </tr>
   );
 };

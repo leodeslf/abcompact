@@ -1,5 +1,5 @@
 import { useAppSelector } from "../../stores/hooks";
-import { getReadableCssProperties } from "../../ts/gui";
+import { useReadableCssProperties } from "../../ts/gui";
 
 type StylePickerProps = {
   fontIndex: number,
@@ -17,7 +17,7 @@ export default function StylePicker({
     optimizedFonts[fontIndex] as OptimizedFontWithoutError
   ).results.styles;
   const styleOptions = styles.map(style =>
-    getReadableCssProperties(style.cssProperties.fontVariationSettings));
+    useReadableCssProperties(style.cssProperties.fontVariationSettings));
 
   return (
     <span>

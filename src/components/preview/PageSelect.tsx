@@ -1,5 +1,5 @@
-import { useAppSelector } from "../../stores/hooks";
 import { previewCharMoleculesPerPage } from "../../ts/gui";
+import { useAppSelector } from "../../stores/hooks";
 
 type PageSelectProps = {
   pageIndex: number,

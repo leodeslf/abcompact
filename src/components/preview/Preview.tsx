@@ -2,9 +2,9 @@ import { useState } from "react";
 import { useAppSelector } from "../../stores/hooks";
 import CharGallery from "./CharGallery";
 import FontSelect from "./FontSelect";
-import StyleSelect from "./StyleSelect";
-import PageSelect from "./PageSelect";
 import Heading from "../common/Heading";
+import PageSelect from "./PageSelect";
+import StyleSelect from "./StyleSelect";
 
 export default function Preview() {
   const { optimizedFonts } = useAppSelector(state => state);
@@ -18,20 +18,16 @@ export default function Preview() {
   return (
     <div>
       <div className="preview-selects__container">
-        <span>
-          <FontSelect {...{
-            fontIndex,
-            setFontIndex,
-            setStyleIndex
-          }} />
-        </span>
-        <span>
-          <StyleSelect {...{
-            fontIndex,
-            styleIndex,
-            setStyleIndex
-          }} />
-        </span>
+        <FontSelect {...{
+          fontIndex,
+          setFontIndex,
+          setStyleIndex
+        }} />
+        <StyleSelect {...{
+          fontIndex,
+          styleIndex,
+          setStyleIndex
+        }} />
       </div>
       <fieldset>
         <Heading>

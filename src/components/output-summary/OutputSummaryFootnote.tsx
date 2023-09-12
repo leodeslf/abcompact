@@ -8,7 +8,6 @@ export default function OutputSummaryFootnote() {
       woff2
     }
   } = useAppSelector(state => state);
-
   const totalDifference = css.difference + woff2.difference;
   const [
     roundedDifference,

@@ -3,7 +3,7 @@ export default function Header() {
     <header>
       <h1>
         <a href="/">
-          fontima
+          Fontima
         </a>
       </h1>
     </header>

@@ -13,7 +13,7 @@ export default function OptimizedFontBody({
   const {
     requestMemo: {
       charMolecules: {
-        length: amountOfRequiredCharMolecules
+        length: amountOfCharMolecules
       }
     }
   } = useAppSelector(state => state);
@@ -30,8 +30,8 @@ export default function OptimizedFontBody({
           role="alert"
           title={`${amountOfMissingCharMolecules} character${amountOfMissingCharMolecules > 1 ? 's' : ''} missing.`}
         >
-          {amountOfRequiredCharMolecules - amountOfMissingCharMolecules}
-          /{amountOfRequiredCharMolecules} characters
+          {amountOfCharMolecules - amountOfMissingCharMolecules}
+          /{amountOfCharMolecules} characters
         </span>}
       </td>
       <td>

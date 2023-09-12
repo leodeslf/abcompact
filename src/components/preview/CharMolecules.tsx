@@ -2,7 +2,6 @@ import { memo } from "react";
 import CharMolecule from "./CharMolecule";
 import CharMoleculePlaceholder from "./CharMoleculePlaceholder";
 
-// Works faster, not sure why.
 const CharMoleculeMemo = memo(CharMolecule);
 const CharMoleculePlaceholderMemo = memo(CharMoleculePlaceholder);
 
@@ -20,7 +19,7 @@ export default function CharMolecules({
   return (<>
     {charMolecules.map((charMolecule, i) => (
       (charMoleculesBitmap[i] === bitToMatch) ? (
-        <CharMoleculeMemo key={i} {...{ charMolecule: charMolecule }} />
+        <CharMoleculeMemo key={i} {...{ charMolecule }} />
       ) : (
         <CharMoleculePlaceholderMemo key={i} />
       )

@@ -14,7 +14,9 @@ export default function FontPicker({
 }: FontPickerProps) {
   const { optimizedFonts } = useAppSelector(state => state);
 
-  function fontPickerChangeHandler({ target }: ChangeEvent<HTMLSelectElement>): void {
+  function fontPickerChangeHandler(
+    { target }: ChangeEvent<HTMLSelectElement>
+  ): void {
     setStyleIndex(0);
     setFontIndex(target.selectedIndex);
   }

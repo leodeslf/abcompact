@@ -1,4 +1,4 @@
-export default function CharMoleculeMissing() {
+export default function CharMoleculePlaceholder() {
   return (
     <div></div>
   );
