@@ -1,16 +1,18 @@
 {
   "compilerOptions": {
-    "target": "es5",
     "lib": [
-      "es5",
+      "ESNext",
       "dom"
     ],
     "types": [
       "cypress",
-      "node"
+      // "node"
     ]
   },
+  "files": [
+    "../src/vite-env.d.ts",
+  ],
   "include": [
-    "**/*.ts"
+    "./**/*.ts"
   ]
 }
