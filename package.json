@@ -4,12 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "mocha:run": "set TS_NODE_PROJECT=tsconfig.spec.json&& mocha",
-    "cypress:run": "cypress run --port 9018",
-    "cypress:open": "cypress open --port 10018",
-    "dev": "vite --port 8018 --host",
+    "cypress:run": "cypress run --browser chrome",
+    "cypress:open": "cypress open --browser chrome",
+    "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview --port 7018 --host"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.1",
@@ -23,7 +22,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.9",
     "@vitejs/plugin-react": "^3.0.0",
-    "cypress": "^12.17.2",
+    "cypress": "^13.1.0",
     "sass": "^1.57.1",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.4",
