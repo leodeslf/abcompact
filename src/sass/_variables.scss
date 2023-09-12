@@ -1,7 +1,7 @@
 $black: hsl(0, 0%, 0%);
 $dark-grey: hsl(0, 0%, 45%);
 $blue: hsl(210, 100%, 88%);
-$light-grey: hsl(0, 0%, 90%);
+$light-grey: hsl(0, 0%, 92%);
 $white: hsl(0, 0%, 100%);
 
 $font-family--default: '"Noto Sans", sans-serif';
@@ -23,6 +23,7 @@ sans-serif';
 
 $font-size--large: 19px;
 $font-size--default: 14.5px;
+$font-size--small: 12.5px;
 
 $font-weight--normal: 400;
 $font-weight--bolder: 600;
@@ -31,4 +32,4 @@ $white-space--large: 50px;
 $white-space--medium: 20px;
 $white-space--small: 8px;
 
-$border-radius: 5px;
+$border-radius: 6px;
