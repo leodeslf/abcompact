@@ -69,8 +69,9 @@ type CharAtomToCharMoleculeIndicesMap = {
   [charAtom: string]: number[]
 };
 
-type CharMoleculeToCharAtomIndicesMap = {
+type CharMoleculeToCharAtomsDataMap = {
   [CharMolecule: string]: {
+    charAtoms: string[],
     charAtomIndices: number[],
     charAtomIndicesAsString: string
   }
