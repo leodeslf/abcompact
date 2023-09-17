@@ -109,7 +109,7 @@ function generateCharAtoms(chars: string): {
  * 
  * Related:
  * 
- * - https://unicode.org/Public/emoji/15.0/
+ * - https://unicode.org/Public/emoji/15.1/
  * - https://www.unicode.org/emoji/charts/
  * - https://www.unicode.org/emoji/charts/emoji-ordering.html
  * - https://www.unicode.org/emoji/charts/emoji-ordering.txt
