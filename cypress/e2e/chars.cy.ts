@@ -147,7 +147,7 @@ describe('Characters', () => {
         .to.be.an('array')
         .that.deep.equals(expectedCharMolecules);
     });
-    it('generates a "character molecule to character atom" indices map', () => {
+    it('generates a "character molecule to character atoms data" map', () => {
       expect(generateCharMoleculeToCharAtomsDataMap(
         expectedCharAtomToCharAtomIndexMap,
         expectedCharMolecules
