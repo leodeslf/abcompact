@@ -10,11 +10,11 @@
 
 >If you can not measure it, you can not improve it. -Lord Kelvin
 
-We often *attack* images with a battery of optimization tools, what we don't realize is that fonts are as large or even larger than images. Fontima *requests font subsets* and *optimizes those requests* on the fly. *Useful feedback* such as **how much you saved**, missing characters, heavier files, and font preview are some of its features.
+We often *attack* images with a battery of optimization tools, what we don't realize is that fonts are as large or even larger than images. Fontima *requests font subsets* and *optimizes those requests* on the fly. It gives you *useful feedback* such as **how much you saved**, missing character warnings, font previews, and of course the optimized CSS.
 
 ## When to Use Fontima?
 
-Use it as long as you **have a clear idea of what the characters wearing a given font will be**. Practical examples: a web/app logo; a set of math symbols; or even a set of languages (in case the web/app is not intended to be worldwide used e.g.: a local web or a private business app).
+Use it as long as you **have a clear idea of what the characters wearing a given font will be**. Some examples would be: a web/app logo; a set of math symbols; or even a set of languages (in case the web/app is not intended to be worldwide used e.g.: a local web or a private business app).
 
 ## How to Use Fontima?
 
@@ -28,18 +28,17 @@ That's it!
 
 ✔️ Pros:
 
-- Overall **fewer bytes**;
-- Overall **fewer request**;
-- **What is needed when it is needed**;
-- **Feedback** about what changes.
+- Download **lighter files**,
+- Download **fewer files** (for most cases),
+- Download **only required glyphs when they're required**.
 
 ❌ Cons:
 
-- **Some fonts can not be optimized by GF**\*;
-- **Fonts may not include the glyphs they show**;
-- **Static CSS** instead of a static URL.
+- **Some fonts can not be optimized by GF**\*,
+- **Fonts may have missing glyphs** they are supposed to include,
+- **Static CSS** instead of a static URL for dynamic CSS.
 
-\*Specially the ones with *non-standard/unregistered [variable axes](https://fonts.google.com/knowledge/glossary/axis_in_variable_fonts "Axis (in variable fonts)")* and an *[optical size](https://fonts.google.com/knowledge/glossary/optical_size_axis "Optical Size axis (opsz)")* value different than `none`.
+\*Specially the ones with *non-standard/unregistered [variable axes](https://fonts.google.com/knowledge/glossary/axis_in_variable_fonts "Axis (in variable fonts)")* and an *[optical size](https://fonts.google.com/knowledge/glossary/optical_size_axis "Optical Size axis (opsz)")* value different than `none`, cases in which Google Fonts will return the default CSS.
 
 ## Author
 
