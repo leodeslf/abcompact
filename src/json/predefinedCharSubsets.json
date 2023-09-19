@@ -11,6 +11,16 @@
   },
   {
     "id": 1,
+    "name": "CJK Symbols and Punctuation",
+    "unicodeRanges": [
+      {
+        "start": "3000",
+        "end": "303F"
+      }
+    ]
+  },
+  {
+    "id": 2,
     "name": "Cyrillic",
     "unicodeRanges": [
       {
@@ -20,7 +30,7 @@
     ]
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Cyrillic Supplement",
     "unicodeRanges": [
       {
@@ -30,7 +40,7 @@
     ]
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Devanagari",
     "unicodeRanges": [
       {
@@ -40,7 +50,7 @@
     ]
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Devanagari Extended",
     "unicodeRanges": [
       {
@@ -50,7 +60,7 @@
     ]
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Greek",
     "unicodeRanges": [
       {
@@ -60,7 +70,7 @@
     ]
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Greek Extended",
     "unicodeRanges": [
       {
@@ -70,7 +80,7 @@
     ]
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Hangul Compatibility Jamo",
     "unicodeRanges": [
       {
@@ -80,7 +90,7 @@
     ]
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Hangul Syllables",
     "unicodeRanges": [
       {
@@ -90,7 +100,7 @@
     ]
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Hebrew",
     "unicodeRanges": [
       {
@@ -100,7 +110,7 @@
     ]
   },
   {
-    "id": 10,
+    "id": 11,
     "name": "Hiragana",
     "unicodeRanges": [
       {
@@ -114,7 +124,7 @@
     ]
   },
   {
-    "id": 11,
+    "id": 12,
     "name": "Kangxi Radicals",
     "unicodeRanges": [
       {
@@ -124,7 +134,7 @@
     ]
   },
   {
-    "id": 12,
+    "id": 13,
     "name": "Katakana",
     "unicodeRanges": [
       {
@@ -134,7 +144,7 @@
     ]
   },
   {
-    "id": 13,
+    "id": 14,
     "name": "Latin Basic ASCII",
     "unicodeRanges": [
       {
@@ -144,7 +154,7 @@
     ]
   },
   {
-    "id": 14,
+    "id": 15,
     "name": "Latin Supplement ASCII",
     "unicodeRanges": [
       {
@@ -154,7 +164,7 @@
     ]
   },
   {
-    "id": 15,
+    "id": 16,
     "name": "Thai",
     "unicodeRanges": [
       {
