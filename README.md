@@ -42,4 +42,4 @@ That's it!
 
 ## Author
 
-[Leonardo de S. Leal F.](https://github.com/leodeslf "GitHub profile").
+[Leonardo de S. Leal F.](https://github.com/leodeslf "GitHub profile")
