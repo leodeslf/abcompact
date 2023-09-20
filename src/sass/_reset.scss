@@ -1,10 +1,17 @@
 :root {
+  --bg--alert: #{$yellow};
   --bg--button: #{$blue};
   --bg--default: #{$white};
+  --bg--error: #{$red};
   --bg--off: #{$light-grey};
+  --bg--ok: #{$green};
   --border-radius: #{$border-radius};
+  --color--alert: #{darken($yellow, 80%)};
+  --color--button: #{darken($blue, 80%)};
   --color--default: #{$black};
+  --color--error: #{darken($red, 80%)};
   --color--off: #{$dark-grey};
+  --color--ok: #{darken($green, 80%)};
   --font-family--default: #{$font-family--default};
   --font-family--monospace: #{$font-family--monospace};
   --font-family--preview: #{$font-family--preview};
@@ -90,9 +97,6 @@ main > * {
   padding-block: var(--white-space--large);
   padding-inline: var(--white-space--medium);
   width: 841px;
-  &:not(*:first-child) {
-    border-block-start: 1px solid var(--line-color--default);
-  }
   &:last-child {
     padding-block-end: var(--white-space--large);
   }
@@ -205,7 +209,10 @@ ul {
 
 button {
   background-color: var(--bg--button);
-  box-shadow: 0 1px 2px var(--shadow-color--button);
+  box-shadow:
+    0 1px 2px var(--shadow-color--button),
+    0 1px 3px var(--shadow-color--button);
+  color: var(--color--button);
   font-family: inherit;
   font-weight: var(--font-weight--bolder);
   transition-duration: 120ms;
@@ -230,12 +237,13 @@ button {
   }
   &:active:not([disabled]) {
     filter: brightness(0.95);
-    box-shadow: 0 1px 2px var(--shadow-color--button) inset;
+    box-shadow:
+      0 1px 2px var(--shadow-color--button) inset,
+      0 1px 3px var(--shadow-color--button) inset;
   }
 }
 
 [disabled] {
-  // ??
   color: var(--color--off);
   cursor: default;
   filter: grayscale(1);
@@ -247,10 +255,23 @@ button {
 
 table {
   border-collapse: collapse;
+  line-height: 2;
   [role] {
-    border-inline-start: 1px solid var(--line-color--default);
-    margin-inline-start: 1ch;
-    padding-inline-start: 1ch;
+    border-radius: var(--border-radius);
+    margin-inline-start: 2ch;
+    position: relative;
+    word-break: break-all;
+    &:before {
+      align-self: center;
+      border-inline-start: 1px solid var(--line-color--default);
+      content: "";
+      height: 61.8%;
+      margin-block: auto;
+      margin-inline-start: 1ch;
+      padding-inline-start: 1ch;
+      position: absolute;
+      right: 100%;
+    }
   }
 }
 
@@ -272,7 +293,7 @@ tbody {
 }
 
 tr > * {
-  padding-inline: 1ch; // ??
+  padding-inline: 1ch;
   padding-block: 0.25rem;
 }
 
@@ -281,8 +302,30 @@ tr > *:first-child {
   text-align: left;
 }
 
+[role="status"] {
+  &.ok {
+    background-color: var(--bg--ok);
+    color: var(--color--ok);
+  }
+}
+
+[role="alert"] {
+  background-color: var(--bg--alert);
+  color: var(--color--alert);
+  &.error {
+    background-color: var(--bg--error);
+    color: var(--color--error);
+  }
+}
+
 [role="status"],
-[role="alert"],
+[role="alert"] {
+  border-radius: var(--border-radius);
+  display: inline-flex;
+  line-height: 1.75;
+  padding-inline: var(--white-space--small);
+}
+
 [role="note"] {
   color: var(--color--off);
 }
@@ -303,3 +346,5 @@ tr > *:first-child {
 ////////////////////////////////////////////////////////////////////////////////
 /// preview minimum
 ////////////////////////////////////////////////////////////////////////////////
+
+// N/A

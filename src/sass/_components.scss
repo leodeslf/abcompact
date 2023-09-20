@@ -17,9 +17,17 @@
   position: relative;
 }
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 .request-progress {
+  animation: fade-in 120ms;
   justify-self: center;
-  padding-block-start: var(--white-space--small);
+  margin-block-start: var(--white-space--small);
+  opacity: 1;
   position: absolute;
   top: 100%;
 }
