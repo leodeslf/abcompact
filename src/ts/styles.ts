@@ -199,7 +199,7 @@ async function loadStyles(
         await fontFace.load();
         document.fonts.add(fontFace);
       } catch (error) {
-        throw Error('failed to load styles');
+        throw Error('a Google Fonts\' WOFF2 file seems to be corrupted');
       }
     }
   }
