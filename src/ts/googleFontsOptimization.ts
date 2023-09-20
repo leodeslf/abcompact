@@ -75,7 +75,7 @@ async function* getOptimizedFonts(
 
     try {
       if (charMolecules.length === 0) {
-        throw Error('no characters were specified');
+        throw Error('no printing characters were specified');
       }
 
       const googleFontsUrl = generateGoogleFontsUrl(familyValue);
