@@ -24,11 +24,9 @@ export default function OptimizedFontBody({
   return (
     <tr>
       <td>
-        {family}{styles.length > 1 && <span role="status">
-          {styles.length} styles
-        </span>}{amountOfMissingCharMolecules > 0 && <span
+        {family}{styles.length > 1 && (` (${styles.length} styles)`)}{amountOfMissingCharMolecules > 0 && <span
           role="alert"
-          title={`${amountOfMissingCharMolecules} character${amountOfMissingCharMolecules > 1 ? 's' : ''} missing.`}
+          title={`${amountOfMissingCharMolecules} missing character${amountOfMissingCharMolecules > 1 ? 's' : ''}.`}
         >
           {amountOfCharMolecules - amountOfMissingCharMolecules}
           /{amountOfCharMolecules} characters
