@@ -70,7 +70,7 @@ async function generateOptimizedCss(
       .reverse()
   )]
     .reverse()
-    .join('\n');
+    .join('');
 }
 
 async function getWoff2Weight(woff2Url: string): Promise<number> {
