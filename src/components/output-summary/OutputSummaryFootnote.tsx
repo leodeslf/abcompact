@@ -20,15 +20,19 @@ export default function OutputSummaryFootnote() {
 
   return (
     <p>
-      {totalDifference >= 0 ? (<>
-        You saved <strong>
-          {roundedDifference} {differenceUnit}
-        </strong> ({differenceAsPercentage}%)!
-      </>) : (<>
-        Bad, it's <strong>
-          {-roundedDifference} {differenceUnit}
-        </strong> ({-differenceAsPercentage}%) heavier than before.
-      </>)}
+      {totalDifference >= 0 ? (
+        <span role="status" className="ok">
+          You saved&nbsp;<strong>
+            {roundedDifference} {differenceUnit}
+          </strong>&nbsp;({differenceAsPercentage}%)!
+        </span>
+      ) : (
+        <span role="alert" className="error">
+          Bad, it's&nbsp;<strong>
+            {-roundedDifference} {differenceUnit}
+          </strong>&nbsp;({-differenceAsPercentage}%) heavier than before.
+        </span>
+      )}
     </p>
   );
 }
