@@ -7,8 +7,8 @@ export default function OptimizedFontBodyWithError({
   return (
     <tr>
       <td colSpan={2}>
-        {family}<span role="alert">
-          Error, {errorMessage}.
+        {family}<span role="alert" className="error">
+          Error, {errorMessage}
         </span>
       </td>
       <DefaultVsOptimizedTds
