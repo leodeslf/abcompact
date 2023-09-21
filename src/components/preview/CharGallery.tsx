@@ -45,8 +45,11 @@ export default function CharGallery({
     <div className="char-gallery">
       <CharGalleryLayer style={{
         fontFamily: `"${familyPrefix}${family}", serif`,
-        fontVariationSettings: cssProperties.fontVariationSettings, // *
-        fontStyle: cssProperties.fontStyle, // Needs to be set >:(
+        fontStretch: cssProperties.fontStretch,
+        fontStyle: cssProperties.fontStyle,
+        fontVariationSettings: cssProperties.fontVariationSettings,
+        fontWeight: cssProperties.fontWeight,
+        fontOpticalSizing: cssProperties.fontOpticalSizing as 'auto' | undefined // Type complain about a non existent/standard type. 
       }}>
         <CharMoleculesMemo
           bitToMatch={1}
@@ -64,10 +67,3 @@ export default function CharGallery({
     </div>
   );
 };
-
-/**
- * * 04/04/2023
- * `fontVariationSettings: "ital" 1` is supposed to override its counterpart
- *  heigh-level property `font-style` but is not working (it used to). For now,
- *  we need to use `font-style` to ensure the correct style is used.
- */
