@@ -1,4 +1,4 @@
-![Fontima's cover image.](https://drive.google.com/file/d/1ohpdVBh_vnWDPboGl5i6kfO6NC5OXl51/view?usp=drive_link "Fontima's cover image.")
+![Fontima's cover image.](https://i.ibb.co/B6jXFmW/cover-1270x760.png "Fontima's cover image.")
 
 # Fontima
 
