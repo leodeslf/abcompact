@@ -1,4 +1,4 @@
-![Fontima's cover image.](https://i.ibb.co/B6jXFmW/cover-1270x760.png "Fontima's cover image.")
+![Fontima's cover image.](./assets/cover_1270x760_compressed.png "Fontima's cover image.")
 
 # Fontima
 
