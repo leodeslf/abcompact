@@ -2,17 +2,17 @@
 
 # Fontima
 
->Optimize your Google Fonts requests
+>Optimizing Google Fonts Subsets
 
 ## About
 
-**[Fontima](https://fontima.com/) delivers fine-grained font CSS**.
+**[Fontima](https://fontima.com/) delivers fine-grained CSS for Google Fonts subsets**.
 
-It is based on the `text` URL parameter from Google Fonts, the one we use to *subset a font* by specifying which characters (actually glyphs) we need from it. Fontima lets you do that with just a couple of clicks while optimizing the CSS on the fly, producing *better, measurable results* to **get the characters you need from the families you want when they are required**.
+It is based on the `text` URL parameter used to *subset a font* by specifying which characters we need from it. Fontima lets you do that with just a couple of clicks while optimizing the CSS on the fly, producing *better, measurable results* to **get the characters you need from the families you want when they are required**.
 
 ## Why Fontima?
 
-**Fonts need to be optimized**.
+**We need to optimize fonts**.
 
 We often say "images weight too much," so we use a battery of tools to optimize them. The problem is that **fonts are as large or even larger than images**. Fontima exists to address that issue, it can *save you up to +95% on font files* (CSS + WOFF2) and *prevent undesired, automatic downloads* by including the appropriate `unicode-range` value on each `@font-face` rule.
 
@@ -23,12 +23,6 @@ We often say "images weight too much," so we use a battery of tools to optimize 
 1. Click Optimize to get your CSS.
 
 That's it!
-
-## Do I Need Fontima?
-
-Prerequisite: **have a clear idea of what the characters wearing a given font family will be**.
-
-It could be used for a web logo; a set of math symbols; a set of languages for any web/app that is not intended to be worldwide used (e.g.: a local web or a private business app); a single character, etc.
 
 ## Pros and Cons of Using Fontima
 
