@@ -6,21 +6,23 @@
 
 ## About
 
-**[Fontima](https://fontima.com/) delivers fine-grained CSS for Google Fonts subsets**.
+✨ **[Fontima](https://fontima.com/) delivers fine-grained CSS for Google Fonts subsets**.
 
-It is based on the `text` URL parameter used to *subset a font* by specifying which characters we need from it. Fontima lets you do that with just a few clicks while optimizing the CSS on the fly, producing *better, measurable results* to **get the characters you need from the families you want when they are required**.
+It is based on the `text` URL parameter used to *subset a font* by specifying which characters we need from it. Fontima lets you do that while optimizing the CSS on the fly producing *better, measurable results* to get: **the characters you need**; **from the families you want**; **only when required**. And it does it with just a few clicks.
 
 ## Why Fontima?
 
-**We need to optimize fonts**.
+🎯 **We need to optimize fonts**.
 
 We often say "images weight too much," so we use a battery of tools to optimize them. The problem is that **fonts are as large or even larger than images**. Fontima exists to address that issue, it can *save you up to +95% on font files* (CSS + WOFF2) and *prevent undesired, automatic downloads* by including the appropriate `unicode-range` value on each `@font-face` rule.
 
 ## How to Use Fontima?
 
-1. Bring the code given by Google Fonts,
-1. Choose the characters you need,
-1. Click Optimize to get your CSS.
+💡 It's easy:
+
+1. Bring the code from Google Fonts,
+1. Choose the characters,
+1. Get your CSS.
 
 That's it!
 
