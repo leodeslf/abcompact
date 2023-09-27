@@ -8,7 +8,7 @@
 
 **[Fontima](https://fontima.com/) delivers fine-grained CSS for Google Fonts subsets**.
 
-It is based on the `text` URL parameter used to *subset a font* by specifying which characters we need from it. Fontima lets you do that with just a couple of clicks while optimizing the CSS on the fly, producing *better, measurable results* to **get the characters you need from the families you want when they are required**.
+It is based on the `text` URL parameter used to *subset a font* by specifying which characters we need from it. Fontima lets you do that with just a few clicks while optimizing the CSS on the fly, producing *better, measurable results* to **get the characters you need from the families you want when they are required**.
 
 ## Why Fontima?
 
