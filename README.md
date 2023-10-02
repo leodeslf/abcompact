@@ -1,4 +1,4 @@
-![Fontima's cover image.](./assets/cover_1270x760_compressed.png "Fontima's cover image.")
+![Fontima's cover image.](https://raw.githubusercontent.com/leodeslf/fontima/master/assets/cover_1270x760_compressed.png "Fontima's cover image.")
 
 # Fontima
 
