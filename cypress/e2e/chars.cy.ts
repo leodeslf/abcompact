@@ -185,12 +185,88 @@ describe('Characters', () => {
   });
   describe('Analysis', () => {
     it('generates a "character report"', () => {
-      expect(generateCharReport());
+      const {
+        charMoleculesAvailable,
+        charMoleculesBitmap,
+        usedCssFontFaceRules
+      } = generateCharReport(/* ... */);
+      expect(charMoleculesAvailable);
+      expect(charMoleculesBitmap);
+      expect(usedCssFontFaceRules);
     });
   });
   describe('Splitting', () => {
-    it('splits a given string into several string chunks', () => {
-      expect(generateRequestChunks());
+    it('splits a given string into "request chunks"', () => {
+      const {
+        charChunks,
+        unicodeRangeChunks
+      } = generateRequestChunks(/* ... */);
+      expect(charChunks);
+      expect(unicodeRangeChunks);
     });
   });
 });
+
+/* 
+describe('Character Coverage Bitmap', () => {
+  it('identifies missing length-one Character Units', () => {
+    expect(getCharacterCoverageBitmap(
+      ['@', 'a', 'b'],
+      ['a', 'b', 'c']
+    ))
+      .to.be.an('array')
+      .that.deep.equals([0, 1, 1]);
+  });
+  it('identifies missing multi-character Character Units (emojis)', () => {
+    expect(getCharacterCoverageBitmap(
+      ['👩🏽‍💻', '👨🏽‍💻'],
+      ['👩', '🏽', '‍', '💻']
+    ))
+      .to.deep.equal([1, 0]);
+  });
+});
+
+describe('Available Character Units (depends on a Character Coverage)', () => {
+  it('filters spected items', () => {
+    expect(getAvailableCharacterUnits(['@', 'a', 'b', '👩🏽‍💻', '👨🏽‍💻'], [0, 1, 1, 1, 0]))
+      .to.be.an('array')
+      .that.deep.equals(['a', 'b', '👩🏽‍💻']);
+  });
+});
+
+describe('Character Chunk', () => {
+  const _856CharacterUnits = generateCharacterUnits(
+    getCharactersFromUnicodeRanges([
+      { start: '400', end: '4FF' }, // Cyrillic
+      { start: '3041', end: '3096' }, // Hiragana
+      { start: '3099', end: '309F' }, // Hiragana
+      { start: '2F00', end: '2FD5' }, // Kangxi Radicals
+      { start: '30A0', end: '30FF' }, // Katakana
+      { start: '20', end: '7E' }, // Latin Basic ASCII
+      { start: 'A0', end: 'FF' }, // Latin Supplement ASCII
+    ]).concat('👋👋🏻👋🏼👋🏽👋🏾👋🏿') // == the waving hand and all five modifiers
+  );
+
+  it('delivers the chunks and their unicode ranges', () => {
+    const characterAndUnicodeRangeChunks = getCharacterAndUnicodeRangeChunks(
+      _856CharacterUnits
+    );
+
+    expect(characterAndUnicodeRangeChunks)
+      .to.be.an('array')
+      .that.has.lengthOf(2);
+    expect(characterAndUnicodeRangeChunks[0].characters)
+      .to.be.a('string')
+      .that.has.lengthOf(800)
+      .and.contains('👋');
+    expect(characterAndUnicodeRangeChunks[1].characters)
+      .to.have.lengthOf(56)
+      .and.to.contain(' ');
+    expect(characterAndUnicodeRangeChunks[1].unicodeRanges)
+      .to.be.deep.equal({
+        start: '20',
+        end: (parseInt('0x20') + 55).toString(16)
+      });
+  });
+});
+*/

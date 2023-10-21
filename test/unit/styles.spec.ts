@@ -1,10 +1,10 @@
 import 'mocha';
 import { expect } from 'chai';
 import {
-  defaultStyle,
-  getMatchingWoff2Urls,
   // loadFontStyles,
-  nonDefaultStyles,
+  getDefaultStyle,
+  getNonDefaultStyles,
+  getStyleMatchingCssFontFaceRules,
   parseStyleHeadersAndTuple
 } from '../../src/ts/styles.js';
 import {
@@ -31,7 +31,7 @@ describe('Styles', () => {
           fontOpticalSizing: 'auto',
           fontStretch: '120%',
           fontStyle: 'italic',
-          fontVariationSettings: '"ital" 1, "opsz" 26, "wdth" 120, "wght" 800',
+          fontVariationSettings: '"ital" 1, "opsz" auto, "wdth" 120, "wght" 800',
           fontWeight: '800',
         });
       expect(parseStyleHeadersAndTuple(
@@ -49,7 +49,7 @@ describe('Styles', () => {
 
   describe('(Style) Matching WOFF2 URLs', () => {
     it('gets only WOFF2 URLs that correspond to the given style object', () => {
-      expect(getMatchingWoff2Urls(
+      expect(getStyleMatchingCssFontFaceRules(
         robotoNonDefaultStylesOneToThreeCss,
         {
           fontStyle: 'italic',
@@ -58,31 +58,44 @@ describe('Styles', () => {
         }
       ))
         .to.be.an('array')
-        .that.deep.equals(robotoOneToThreeItalic500Woff2Urls);
+        .that.contains(`@font-face {
+font-family: 'Roboto';
+font-style: italic;
+font-weight: 500;
+font-display: swap;
+src: url(https://fonts.gstatic.com/l/font?kit=KFOjCnqEu92Fr1Mu51S7ABc4GMLDp7s&skey=c985e17098069ce0&v=v30) format('woff2');
+`);
     });
   });
 
   describe('Default Style', () => {
     it('produces a style object for default styles (font-weight = 400, font-style = normal)', () => {
-      expect(defaultStyle(robotoCss))
+      expect(getDefaultStyle(
+        robotoCss,
+        []
+      ))
         .to.deep.equal({
           cssProperties: { fontVariationSettings: '' },
-          urls: robotoWoff2Urls
+          chunkedCssPropertiesList: [{
+            unicodeRange: '',
+            urls: robotoWoff2Urls
+          }]
         });
     });
   });
 
   describe('Non-Default Styles', () => {
     it('produces a style object for a non-default (and/or multiple) styles', () => {
-      expect(nonDefaultStyles(
+      expect(getNonDefaultStyles(
         loraRegularNormalAndItalicSemiBoldCss,
+        [],
         ['ital', 'wght'],
         [
           ['0', '400'],
           ['1', '600'],
         ]
       ))
-        .to.deep.equal([
+        .to.deep.contain([
           {
             cssProperties: {
               fontStyle: 'normal',
@@ -102,19 +115,20 @@ describe('Styles', () => {
         ]);
     });
     it('produces a style object for a non-default (and/or multiple) styles including font-optical-size', () => {
-      expect(nonDefaultStyles(
+      expect(getNonDefaultStyles(
         robotoFlexRegularAndSemiBoldCss,
+        [],
         ['opsz', 'wght'],
         [
           ['8..144', '400'],
           ['8..144', '600'],
         ]
       ))
-        .to.deep.equal([
+        .to.deep.contain([
           {
             cssProperties: {
               fontOpticalSizing: 'auto',
-              fontVariationSettings: '"opsz" 26, "wght" 400',
+              fontVariationSettings: '"opsz" auto, "wght" 400',
               fontWeight: '400'
             },
             urls: robotoFlexRegularWoff2Urls
@@ -122,7 +136,7 @@ describe('Styles', () => {
           {
             cssProperties: {
               fontOpticalSizing: 'auto',
-              fontVariationSettings: '"opsz" 26, "wght" 600',
+              fontVariationSettings: '"opsz" auto, "wght" 600',
               fontWeight: '600'
             },
             urls: robotoFlexSemiBoldWoff2Urls

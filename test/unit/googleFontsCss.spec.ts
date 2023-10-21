@@ -2,7 +2,7 @@ import 'mocha';
 import { expect } from 'chai';
 import {
   getAvailableCharacters,
-  getUsedCssBlocks,
+  getUsedCssFontFaceRules,
   getWoff2Urls
 } from '../../src/ts/googleFontsCss.js';
 import {
@@ -36,12 +36,12 @@ describe('Google Fonts CSS', () => {
   describe('Used CSS Blocks (@font-face at-rules)', () => {
     it('falis if no CSS block is used', () => {
       // Montserrat does not include japanese characters.
-      expect(getUsedCssBlocks(montserratCss, ['ツ']))
+      expect(getUsedCssFontFaceRules(montserratCss, ['ツ']))
         .to.be.an('string')
         .that.is.empty;
     });
     it('gets (only) used CSS blocks from', () => {
-      expect(getUsedCssBlocks(montserratCss, ['0', 'Б']))
+      expect(getUsedCssFontFaceRules(montserratCss, ['0', 'Б']))
         .to.equal(montserratCyrillicLatinCss);
     });
   });

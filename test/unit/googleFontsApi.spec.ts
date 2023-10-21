@@ -18,7 +18,7 @@ import {
 describe('Google Fonts API', () => {
   describe('Google Fonts URL', () => {
     it('fails to read a GF URL from a broken link', () => {
-      expect('https://fonts.googleapis.com/css2?family=Robotodisplay=swap')
+      expect('https://fontsgoogleapis.com/css2?family=Roboto&display=swap')
         .to.not.match(googleFontsUrlRegex)
         .and.to.be.null;
     });
