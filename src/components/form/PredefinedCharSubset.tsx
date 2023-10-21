@@ -13,7 +13,6 @@ export default function PredefinedCharSubset({
 
   return (
     <label
-      aria-checked={checked}
       htmlFor={`subset-${id}`}
       title={label}
     >
