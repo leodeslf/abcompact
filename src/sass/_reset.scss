@@ -119,6 +119,9 @@ label:not(li label):not([role="heading"] label) {
 
 li > label {
   line-height: 1.75;
+  align-items: center;
+  display: flex;
+  gap: 1ch;
 }
 
 label:not(li label),
@@ -199,12 +202,6 @@ button {
 
 ul {
   list-style: none;
-}
-
-[role="checkbox"] {
-  align-items: center;
-  display: flex;
-  gap: 1ch;
 }
 
 button {
